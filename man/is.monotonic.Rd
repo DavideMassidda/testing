@@ -5,11 +5,12 @@
 Check if the values in a vector are a monotonic sequence.
 }
 \usage{
-is.monotonic(x, decreasing = FALSE)
+is.monotonic(x, decreasing = FALSE, na.rm = TRUE)
 }
 \arguments{
     \item{x}{Numeric vector.}
-    \item{decreasing}{Logical which indicate if check the sequence in a decreasing sense.}
+    \item{decreasing}{Logical value which indicates if check the sequence in a decreasing sense.}
+    \item{na.rm}{Logical value specifying if remove missing data before run the procedure.}
 }
 \details{
 da descrivere
