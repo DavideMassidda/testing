@@ -1,6 +1,6 @@
 \name{stdscore}
 \alias{stdscore}
-\title{From Raw Score to Standard Score}
+\title{From Raw Scores to Standard Scores}
 \description{
 Rescale a vector of raw scores on a giver standard scale.
 }
