@@ -1,4 +1,4 @@
-testing 1.0-1
+testing 1.0-2
 =============
 
 * English
