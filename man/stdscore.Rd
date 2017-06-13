@@ -1,6 +1,6 @@
 \name{stdscore}
 \alias{stdscore}
-\title{Data Standardization}
+\title{From Raw Score to Standard Score}
 \description{
 Rescale a vector of raw scores on a giver standard scale.
 }
@@ -16,7 +16,7 @@ stdscore(x, m = NULL, s = NULL,
     \item{integer}{Logical. If \code{TRUE}, data in output will bet rounded to nearest integer.}
 }
 \details{
-If \code{m} or \code{s} are \code{NULL}, the mean and the standard deviation
+If \code{m} or \code{s} are \code{NULL}, the mean or the standard deviation
 of \code{x} will be used to scale the observed data.
 }
 \author{
