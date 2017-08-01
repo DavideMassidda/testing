@@ -31,8 +31,4 @@ x2 <- x1
 # Smoothing of x1
 x2[3:4] <- mean(x2[3:4])
 is.monotonic(x2)
-# Visualization of the trend
-plot(1:length(x1), x1, ylim=c(1,10), type="l", col="blue")
-par(new=TRUE)
-plot(1:length(x2), x2, ylim=c(1,10), type="l", col="red3")
 }
