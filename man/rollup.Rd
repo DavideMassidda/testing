@@ -5,7 +5,7 @@
 Classifies a numeric sequence of scores into a sequence of classes of scores.
 }
 \usage{
-rollup <- function(x, direction = c("forward", "backward"))
+rollup(x, direction = c("forward", "backward"))
 }
 \arguments{
     \item{x}{Numeric vector sorted in ascending or descending order.}
