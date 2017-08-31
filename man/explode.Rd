@@ -11,7 +11,7 @@ explode(x, direction = c("forward", "backward"), sep = "-")
 \arguments{
     \item{x}{Numeric vector.}
     \item{direction}{Specify if the scores are classified in ascending (\code{forward})
-        or descending (\code{backward}) order. Default is (\code{forward}).}
+        or descending (\code{backward}) order. Default is \code{forward}.}
     \item{sep}{Symbol used to separate the extremes of an interval.}
 }
 \details{
