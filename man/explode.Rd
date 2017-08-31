@@ -24,7 +24,7 @@ vector.
 Davide Massidda \email{davide.massidda@gmail.com}
 }
 \seealso{
-\code{\link[testing]{implode}, \code{\link[testing]{rollup}}
+\code{\link[testing]{implode}}, \code{\link[testing]{rollup}}
 }
 \examples{
 # Example of interval explosion:
