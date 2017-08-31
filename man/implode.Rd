@@ -22,7 +22,7 @@ the representative values for intervals.
 Davide Massidda \email{davide.massidda@gmail.com}
 }
 \seealso{
-\code{\link[testing]{explode}, \code{\link[testing]{rollup}}, \code{\link[testing]{integer.round}}
+\code{\link[testing]{explode}}, \code{\link[testing]{rollup}}, \code{\link[testing]{integer.round}}
 }
 \examples{
 x <- data.frame(
