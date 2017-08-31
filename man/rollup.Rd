@@ -20,7 +20,7 @@ Missed scores must be coded by using an empty string.
 Davide Massidda \email{davide.massidda@gmail.com}
 }
 \seealso{
-\code{\link[testing]{implode}, \code{\link[testing]{explode}}
+\code{\link[testing]{implode}}, \code{\link[testing]{explode}}
 }
 \examples{
 x <- data.frame(integer=rev(c(1,3,3,4,5,6,7,7,7,8,9,10,11,14,14,15,16,16,17,19)))
