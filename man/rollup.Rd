@@ -11,7 +11,7 @@ rollup(x, direction = c("forward", "backward"))
     \item{x}{Numeric vector sorted in ascending or descending order.}
     \item{direction}{Specify if the classification of scores must be performed in
         ascending (\code{forward}) or descending (\code{backward}) order. Default
-        is (\code{forward}).}
+        is \code{forward}.}
 }
 \details{
 Missed scores must be coded by using an empty string.
