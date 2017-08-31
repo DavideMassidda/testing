@@ -32,3 +32,4 @@ x <- data.frame(
     )
 x$implosion <- implode(x$class)
 x
+}
