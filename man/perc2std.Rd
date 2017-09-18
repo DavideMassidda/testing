@@ -6,7 +6,7 @@ Convert a vector of percentiles in the corresponding standard scores
 according to the Normal distribution.
 }
 \usage{
-perc2std(p, scale=c("z","t","nce","stanine","sten","iq"))
+perc2std(p, scale=c("z","t","nce","iq","scaled","stanine","sten"))
 }
 \arguments{
     \item{p}{Vector of percentiles on a 0-100 scale.}
