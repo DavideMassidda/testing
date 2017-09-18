@@ -5,7 +5,8 @@
 Identify the raw scores corresponding to a vector of standard scores.
 }
 \usage{
-rawscore(q, m, s, scale = c("z","t","nce","stanine","sten","iq"),
+rawscore(q, m, s,
+    scale = c("z","t","nce","iq","scaled","stanine","sten"),
     integer = FALSE)
 }
 \arguments{
