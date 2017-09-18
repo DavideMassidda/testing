@@ -6,7 +6,7 @@ Convert a vector of standard scores in the corresponding percentiles
 according to the Normal distribution.
 }
 \usage{
-std2perc(q, scale=c("z","t","nce","stanine","sten","iq"))
+std2perc(q, scale=c("z","t","nce","iq","scaled","stanine","sten"))
 }
 \arguments{
     \item{q}{Vector of standard scores.}
