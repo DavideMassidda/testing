@@ -35,10 +35,11 @@ explode <- function(x, direction=c("forward","backward"), sep="-")
 }
 
 # Classifica una variabile continua in punteggi interi o intervalli di punteggio
-rollup <- function(x, direction=c("forward","backward"))
+rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
 {
     direction <- direction[1]
     direction <- match.arg(direction)
+    forward <- direction=="forward"
     # Rimozione posizioni con dati mancanti
     na.check <- is.na(x)
     if(any(na.check)) {
@@ -56,75 +57,37 @@ rollup <- function(x, direction=c("forward","backward"))
     decreasing <- which(monotonic)==2
     if(decreasing)
         x <- rev(x)
-    # Individuazione dati ripetuti
-    # Rimozione ripetizioni dai limiti
-    empty <- which(x[-1] == x[-n])
-    # Individuazione limiti intervalli di punteggi
-    if(direction=="forward") {
-        r <- list(from=x[-n], to=x[-1])
-        r$to[r$to > r$from] <- r$to[r$to > r$from]-1
-        empty <- empty+1
+    # Calcolo del minimo e massimo
+    if(is.null(x.min))
+        x.min <- min(x,na.rm=TRUE)
+    if(is.null(x.max))
+        x.max <- max(x,na.rm=TRUE)
+    # Classificazione dei valori
+    # -> individuazione e rimozione dei valori duplicati
+    dupl <- which(duplicated(x,fromLast=!forward))
+    x[dupl] <- NA
+    v <- x[-dupl]
+    n <- length(v)
+    # -> individuazione dei limiti degli intervalli
+    if(forward) {
+        from <- v[-n]
+        from <- c(x.min,from[-1],from[n-1]+1)
+        to <- c(v[-1]-1,x.max)
     } else {
-        r <- list(from=x[-1], to=x[-n])
-        r$to[r$to < r$from] <- r$to[r$to < r$from]+1
-        empty <- empty-1
+        from <- c(x.min,v[-n]+1)
+        to <- c(v[-n],x.max)
     }
-    r$to[empty] <- r$from[empty] <- NA
-    # Inizializzazione vettore di output
-    p <- character(n)
-    # Collassamento dei punteggi
-    if(direction=="forward") {
-        for(i in 1:(n-1)) {
-            if(is.na(r$from[i]))
-                next
-            else {
-                next.i <- i+1
-                if(any(next.i == empty)) {
-                    while(any(next.i == empty))
-                        next.i <- next.i+1
-                    if(next.i < (n-1))
-                        if((r$from[next.i]-r$from[i]) > 1)
-                            r$to[i] <- r$from[next.i]-1
-                }
-                if(r$to[i] > r$from[i])
-                    p[i] <- paste(r$from[i],r$to[i],sep="-")
-                else
-                    p[i] <- r$from[i]
-            }
-        }
-        # Aggiunta ultimo valore
-        p[n] <- x[n]
-    } else { # downward
-        for(i in (n-1):1) {
-            if(is.na(r$from[i]))
-                next
-            else {
-                next.i <- i-1
-                if(any(next.i == empty)) {
-                    while(any(next.i == empty))
-                        next.i <- next.i-1
-                    if(next.i > 1)
-                        if((r$from[next.i]-r$from[i]) < -1)
-                            r$to[i] <- r$from[next.i]+1
-                }
-                if(r$to[i] < r$from[i])
-                    p[i] <- paste(r$to[i],r$from[i],sep="-")
-                else
-                    p[i] <- r$from[i]
-            }
-        }
-        # Aggiunta primo valore
-        p[-1] <- p[-n]
-        p[1] <- x[1]
-    }
+    # -> collassamento dei valori
+    from <- as.character(from)
+    to <- as.character(to)
+    v <- paste(from,to,sep="-")
+    intervals <- which(from==to)
+    v[intervals] <- from[intervals]
+    # -> sostituzione dei valori originali con quelli collassati
+    x[-dupl] <- v
     if(decreasing)
-        p <- rev(p)
-    # Restituzione dati mancanti
-    if(any(na.check)) {
-        x[-na.pos] <- p
-        p <- x
-    }
-    return(p)
+        x <- rev(x)
+    return(x)
 }
 
 is.monotonic <- function(x, direction=c("both","forward","backward"), decreasing=NULL, na.rm=TRUE)
