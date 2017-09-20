@@ -5,10 +5,12 @@
 Classifies a numeric sequence of scores into a sequence of classes of scores.
 }
 \usage{
-rollup(x, direction = c("forward", "backward"))
+rollup(x, x.min = NULL, x.max = NULL, direction = c("forward", "backward"))
 }
 \arguments{
     \item{x}{Numeric vector sorted in ascending or descending order.}
+    \item{x.min}{Theoretical minimum of \code{x}.}
+    \item{x.max}{Theoretical minimum of \code{x}.}
     \item{direction}{Specify if the classification of scores must be performed in
         ascending (\code{forward}) or descending (\code{backward}) order. Default
         is \code{forward}.}
@@ -23,8 +25,8 @@ Davide Massidda \email{davide.massidda@gmail.com}
 \code{\link[testing]{implode}}, \code{\link[testing]{explode}}
 }
 \examples{
-x <- data.frame(integer=rev(c(1,3,3,4,5,6,7,7,7,8,9,10,11,14,14,15,16,16,17,19)))
-x$forward <- rollup(x$integer)
-x$backward <- rollup(x$integer, direction="backward")
-x
+x <- c(1,9,12,12,13,14,15,15,17,18,19,19,19,20,21,22,23,24)
+xf <- rollup(x,x.min=0,x.max=24,direction="forward")
+xb <- rollup(x,x.min=0,x.max=24,direction="backward")
+data.frame(x,xf,xb)
 }
