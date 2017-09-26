@@ -98,6 +98,7 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
     if(decreasing)
         x <- rev(x)
     # -> reintroduzione dei dati mancanti
+    browser()
     if(any(na.check)) {
         output <- rep.int(NA,length(x)+sum(na.check))
         output[-na.pos] <- x
