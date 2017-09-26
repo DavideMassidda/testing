@@ -76,12 +76,13 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
     n <- length(v)
     # -> individuazione dei limiti degli intervalli
     if(forward) {
-        from <- v[-n]
-        from <- c(x.min,from[-1],from[n-1]+1)
+        from <- c(v[-n],v[n])
         to <- c(v[-1]-1,x.max)
+        from[1] <- x.min
     } else {
         from <- c(x.min,v[-n]+1)
-        to <- c(v[-n],x.max)
+        to <- c(v[1],v[-1])
+        to[length(to)] <- x.max
     }
     # -> collassamento dei valori
     from <- as.character(from)
