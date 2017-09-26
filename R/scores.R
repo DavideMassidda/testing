@@ -43,8 +43,11 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
     # Rimozione posizioni con dati mancanti
     na.check <- is.na(x)
     if(any(na.check)) {
-        na.pos <- which(na.check)
-        x <- x[-na.pos]
+        if(sum(na.check) < length(x)) {
+            na.pos <- which(na.check)
+            x <- x[-na.pos]
+        } else
+            return(x)
     }
     # Arrotondamento valori
     x <- .integer_round(x)
