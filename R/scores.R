@@ -68,8 +68,11 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
     # Classificazione dei valori
     # -> individuazione e rimozione dei valori duplicati
     dupl <- which(duplicated(x,fromLast=!forward))
-    x[dupl] <- NA
-    v <- x[-dupl]
+    if(length(dupl) > 0) {
+        x[dupl] <- NA
+        v <- x[-dupl]
+    } else
+        v <- x
     n <- length(v)
     # -> individuazione dei limiti degli intervalli
     if(forward) {
@@ -87,9 +90,14 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
     intervals <- which(from==to)
     v[intervals] <- from[intervals]
     # -> sostituzione dei valori originali con quelli collassati
-    x[-dupl] <- v
+    if(length(dupl) > 0)
+        x[-dupl] <- v
+    else
+        x <- v
+    # -> rigiramento del vettore
     if(decreasing)
         x <- rev(x)
+    # -> reintroduzione dei dati mancanti
     if(any(na.check)) {
         output <- rep.int(NA,length(x)+sum(na.check))
         output[-na.pos] <- x
