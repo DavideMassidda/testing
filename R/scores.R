@@ -11,7 +11,11 @@
 # Converte in numerico un intervallo di punteggi
 implode <- function(x, fn=mean)
 {
-    x <- as.character(x)
+    if(!is.character(x)) {
+        vn <- names(x)
+        x <- as.character(x)
+        names(x) <- vn
+    }
     x[which(x=="")] <- NA
     x <- gsub("-",",",x)
     x <- paste0(deparse(substitute(fn)),"(c(",x,"))")
@@ -24,7 +28,11 @@ explode <- function(x, direction=c("forward","backward"), sep="-")
 {
     direction <- direction[1]
     direction <- match.arg(direction)
-    x <- as.character(x)
+    if(!is.character(x)) {
+        vn <- names(x)
+        x <- as.character(x)
+        names(x) <- vn
+    }
     x <- gsub(sep,":",x)
     x <- lapply(x, function(x) eval(parse(text=x)))
     if(direction=="backward")
