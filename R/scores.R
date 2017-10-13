@@ -39,8 +39,10 @@ explode <- function(x, direction=c("forward","backward"), sep="-")
     x <- lapply(x, function(x) eval(parse(text=x)))
     if(direction=="backward")
         x <- lapply(x, rev)
-    x <- unlist(x)
+    vn <- rep(vn, lapply(x, length))
+    x <- unlist(x, use.names=FALSE)
     x <- .integer_round(as.numeric(x))
+    names(x) <- vn
     return(x)
 }
 
