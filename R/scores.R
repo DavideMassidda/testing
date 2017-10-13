@@ -30,6 +30,8 @@ explode <- function(x, direction=c("forward","backward"), sep="-")
     direction <- match.arg(direction)
     if(!is.character(x)) {
         vn <- names(x)
+        if(is.null(vn))
+            vn <- seq_len(length(x))
         x <- as.character(x)
         names(x) <- vn
     }
