@@ -11,8 +11,8 @@
 # Converte in numerico un intervallo di punteggi
 implode <- function(x, fn=mean)
 {
+    vn <- names(x)
     if(!is.character(x)) {
-        vn <- names(x)
         x <- as.character(x)
         names(x) <- vn
     }
@@ -28,10 +28,10 @@ explode <- function(x, direction=c("forward","backward"), sep="-")
 {
     direction <- direction[1]
     direction <- match.arg(direction)
+    vn <- names(x)
+    if(is.null(vn))
+        vn <- seq_len(length(x))
     if(!is.character(x)) {
-        vn <- names(x)
-        if(is.null(vn))
-            vn <- seq_len(length(x))
         x <- as.character(x)
         names(x) <- vn
     }
