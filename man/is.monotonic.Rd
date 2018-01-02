@@ -22,7 +22,7 @@ da descrivere
 Davide Massidda \email{davide.massidda@gmail.com}
 }
 \seealso{
-\code{\link[stats]{isoreg}}, \code{\link[stats]{is.continuous}}
+\code{\link[stats]{isoreg}}, \code{\link[testing]{is.continuous}}
 }
 \examples{
 x1 <- c(1.3, 2.2, 3.8, 3.3, 5.6, 6.1, 8.0, 8.0, 8.9, 9.9)
