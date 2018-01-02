@@ -1,3 +1,15 @@
+kr20 <- function(x,hit=1)
+{
+    x <- na.omit(x)
+    k <- ncol(x)
+    n <- nrow(x)
+    p <- colSums(x==hit)/n
+    q <- 1-p
+    totalVar <- var(apply(x, 1, sum))
+    r <- (k/(k-1))*(1-sum(p*q)/totalVar)
+    return(r)
+}
+
 cronbach.alpha <- function(x)
 {
     x <- na.omit(x)
