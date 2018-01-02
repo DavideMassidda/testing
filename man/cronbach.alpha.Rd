@@ -1,4 +1,5 @@
-\name{cronbach}
+\name{cronbach.alpha}
+\alias{cronbach.alpha}
 \alias{cronbach}
 \title{Cronbach's alpha}
 \description{
@@ -21,5 +22,5 @@ Davide Massidda \email{davide.massidda@gmail.com}
 }
 \examples{
 data("drive")
-cronbach(drive[,5:10])
+cronbach.alpha(drive[,5:10])
 }
