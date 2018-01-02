@@ -39,7 +39,7 @@ homogeneous Likert data. Empirical Software Engineering, 11, 463–489.
 Davide Massidda <davide.massidda@gmail.com>
 }
 \seealso{
-\code{\code{\link[testing]{na.impute}}
+\code{\code{\link[testing]{na.impute}}}
 }
 \examples{
 data(airquiality)
