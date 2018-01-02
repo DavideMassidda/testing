@@ -1,3 +1,22 @@
+cronbach.alpha <- function(x)
+{
+    x <- na.omit(x)
+    itemVar <- sum(apply(x,2,var))
+    totalVar <- var(apply(x,1,sum))
+    k <- ncol(x)
+    alpha <- (k/(k-1))*(1-(itemVar/totalVar))
+    return(alpha)
+}
+
+cronbach.strata <- function(x, r, composite=NULL)
+{
+    if(is.null(composite))
+        composite <- rowSums(x)
+    v <- sapply(x, var, na.rm=TRUE)
+    alpha <- 1-sum(v*(1-r))/var(composite)
+    return(alpha)
+}
+
 reliability <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=sum)
 {
     cor.method <- cor.method[1]
