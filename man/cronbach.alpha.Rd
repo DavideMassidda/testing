@@ -14,10 +14,6 @@ cronbach.alpha(x)
 \details{
 Missing data are treated by using listwise deletion.
 }
-\references{
-Cronbach, L.J., Schoenemann, P., McKie, D. (1965).
-    Alpha coefficient for stratified-parallel tests. \emph{Educational and Psychological Measurement}, 25, 291-312.
-}
 \author{
 Davide Massidda \email{davide.massidda@gmail.com}
 }
