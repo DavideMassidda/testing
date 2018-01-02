@@ -32,6 +32,17 @@ cronbach.strata <- function(x, r, composite=NULL)
     return(r)
 }
 
+split.half <- function(x, set1=seq(1,ncol(x),by=2))
+{
+    x <- na.omit(x)
+    set2 <- seq_len(ncol(x))[-set1]
+    x1 <- rowSums(x[,set1])
+    x2 <- rowSums(x[,set2])
+    r <- cor(x1,x2)
+    r <- (2*r)/(1+r)
+    return(r)
+}
+
 reliability <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=sum)
 {
     cor.method <- cor.method[1]
