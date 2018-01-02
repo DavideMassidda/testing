@@ -6,7 +6,7 @@
 Calculate the Cronbach's alpha.
 }
 \usage{
-cronbach(x)
+cronbach.alpha(x)
 }
 \arguments{
     \item{x}{A data frame in which the rows represents the subjects and the columns the items.}
