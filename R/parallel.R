@@ -11,10 +11,10 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, sta
         maxCateg <- max(x)-min(x)
         numGEN <- function(n) return(rbinom(n,maxCateg,0.5))
         if(maxCateg == 1) {
-            corfn <- function(m,N) return(tetrachoric(m)$rho)
+            corfn <- function(m,N) return(psych::tetrachoric(m)$rho)
             correlation <- "tetrachoric"
         } else {
-            corfn <- function(m,N) return(polychoric(m)$rho)
+            corfn <- function(m,N) return(psych::polychoric(m)$rho)
             correlation <- "polychoric"
         }
     }
