@@ -20,7 +20,7 @@ The total score if calculated by omitting the item under analysis.
 Davide Massidda \email{davide.massidda@gmail.com}
 }
 \seealso{
-\code{\link[testing]{cronbach}}
+\code{\link[testing]{cronbach.alpha}}
 }
 \examples{
 data("drive")
