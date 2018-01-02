@@ -30,9 +30,7 @@ A data frame with missing data replaced.
 Davide Massidda <davide.massidda@gmail.com>
 }
 \seealso{
-\code{\link[testing]{na.check}},
-\code{\link[testing]{knn.impute}},
-\code{\link[testing]{integer.round}}
+\code{\link[testing]{knn.impute}}, \code{\link[testing]{integer.round}}
 }
 \examples{
 data(airquiality)
