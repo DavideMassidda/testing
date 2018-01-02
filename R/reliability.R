@@ -4,8 +4,8 @@ cronbach.alpha <- function(x)
     itemVar <- sum(apply(x,2,var))
     totalVar <- var(apply(x,1,sum))
     k <- ncol(x)
-    alpha <- (k/(k-1))*(1-(itemVar/totalVar))
-    return(alpha)
+    r <- (k/(k-1))*(1-(itemVar/totalVar))
+    return(r)
 }
 
 cronbach.strata <- function(x, r, composite=NULL)
@@ -15,8 +15,8 @@ cronbach.strata <- function(x, r, composite=NULL)
     if(is.null(composite))
         composite <- rowSums(x)
     v <- sapply(x, var, na.rm=TRUE)
-    alpha <- 1-sum(v*(1-r))/var(composite)
-    return(alpha)
+    r <- 1-sum(v*(1-r))/var(composite)
+    return(r)
 }
 
 reliability <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=sum)
