@@ -10,6 +10,8 @@ cronbach.alpha <- function(x)
 
 cronbach.strata <- function(x, r, composite=NULL)
 {
+    if(length(r) != ncol(x))
+        stop("The number of elements of r is different to the number of columns of x.")
     if(is.null(composite))
         composite <- rowSums(x)
     v <- sapply(x, var, na.rm=TRUE)
