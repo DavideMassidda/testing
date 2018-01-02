@@ -41,9 +41,9 @@ reliability <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=s
     for(j in 1:k) {
         total <- apply(x[,-j],1,fn)
         r[j,1] <- corFUN(total,x[,j])
-        r[j,2] <- cronbach(x[,-j])
+        r[j,2] <- cronbach.alpha(x[,-j])
     }
-    output <- list(alpha=cronbach(x),item.total=r,cor.method=cor.method)
+    output <- list(alpha=cronbach.alpha(x),item.total=r,cor.method=cor.method)
     class(output) <- "reliability"
     return(output)
 }
