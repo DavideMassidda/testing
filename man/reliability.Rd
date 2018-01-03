@@ -1,9 +1,9 @@
 \name{reliability}
 \alias{reliability}
 \alias{print.reliability}
-\title{Internal Consistence}
+\title{Internal Consistency Reliability}
 \description{
-Verify the internal consistence by using the item-total correlation.
+Verify the internal consistency of a test by using the item-total correlation.
 }
 \usage{
 reliability(x, cor.method = c("pearson","biserial","polyserial"), fn = sum)
@@ -11,7 +11,7 @@ reliability(x, cor.method = c("pearson","biserial","polyserial"), fn = sum)
 \arguments{
     \item{x}{Data frame of observed data.}
     \item{cor.method}{Type of correlation to use.}
-    \item{fn}{Function to use to calculate the total scores.}
+    \item{fn}{Function to use to calculate total scores.}
 }
 \details{
 The total score if calculated by omitting the item under analysis.
