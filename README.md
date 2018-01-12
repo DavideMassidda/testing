@@ -1,7 +1,7 @@
 testing 1.3.0
-* * *
+=============
 
-* English
+# English
 
 Tools to develop psychological tests
 
@@ -15,9 +15,9 @@ devtools::install_github("DavideMassidda/testing")
 
 Warning: testing is a package under development and important changes in the future could be implemented.
 
-===
+* * *
 
-* Italian
+# Italian
 
 Strumenti per lo sviluppo di test psicologici
 
