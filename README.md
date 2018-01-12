@@ -1,5 +1,5 @@
 testing 1.3.0
-=============
+* * *
 
 * English
 
@@ -9,11 +9,13 @@ testing is a package for the R statistical software. It provides functions to de
 
 After you open R, to install the package testing you can run the command:
 
+```r
 devtools::install_github("DavideMassidda/testing")
+```
 
 Warning: testing is a package under development and important changes in the future could be implemented.
 
-* * *
+===
 
 * Italian
 
@@ -23,6 +25,8 @@ testing è un pacchetto per il software statistico R, che fornisce funzioni per 
 
 Aperto R, per instllare il pacchetto testing è sufficiente lanciare il comando:
 
+```r
 devtools::install_github("DavideMassidda/testing")
+```
 
 Attenzione: testing è un pacchetto in piena fase di sviluppo e in futuro potrebbe subire importanti modifiche.
