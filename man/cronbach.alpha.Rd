@@ -3,7 +3,7 @@
 \alias{cronbach}
 \title{Cronbach's alpha}
 \description{
-Calculate the Cronbach's alpha.
+Calculate the Cronbach's Alpha.
 }
 \usage{
 cronbach.alpha(x)
