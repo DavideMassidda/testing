@@ -24,7 +24,7 @@ parallel(x, iter = 1000, ordinal = FALSE, method = "perm", alpha = 0.05,
          to the eigen value from factor analysis (or PCA, according to the argument \code{fn}.)}
     \item{fn}{Function to calcolate eigenvalues. The default \code{fa} uses the factor analysis,
          while \code{eigen} calculates eigenvalues according to the principal component analysis.}
-    \item{...}{Further arguments to the function \code{fn}.}
+    \item{...}{Further arguments for the function \code{fn}.}
 }
 \details{
 The function \code{parallel} was developed starting from the function \code{parpca} (see the
@@ -37,5 +37,5 @@ Davide Massidda \email{davide.massidda@gmail.com}
 \code{\link[psych]{fa.parallel}}
 }
 \examples{
-# to do
+# (examples under construction)
 }
