@@ -1,6 +1,6 @@
 \name{cronbach.strata}
 \alias{cronbach.strata}
-\title{Stratified Cronbach's alpha}
+\title{Stratified Cronbach's Alpha}
 \description{
 Calculate the stratified Cronbach's alpha, measuring the reliability of a composite score,
 obtained from the combination of more item or scale scores.
