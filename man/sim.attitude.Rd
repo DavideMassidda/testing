@@ -1,11 +1,11 @@
-\name{respsim}
-\alias{respsim}
-\title{Random Dichotomous Responses}
+\name{sim.attitude}
+\alias{sim.attitude}
+\title{RaRandom Responses for Attitude Tests}
 \description{
 Generate a random patttern of dichotomous responses for an attitude test.
 }
 \usage{
-respsim(hits, x.min = min(hits), x.max = max(hits), p = NULL,
+sim.attitude(hits, x.min = min(hits), x.max = max(hits), p = NULL,
     incr.diff = TRUE, time.limit = FALSE, floor = FALSE,
     ceiling = FALSE, seed = NULL)
 }
@@ -36,10 +36,10 @@ Davide Massidda <davide.massidda@gmail.com>
 # Simulation of responses for a test with fifteen items
 # and four response alternatives (coded from 1 to 4).
 # -> vector of correct responses:
-correct <- c(1,2,1,3,3,4,3,2,1,2,2,2,4,1,4)
+correct <- c(1, 2, 1, 3, 3, 4, 3, 2, 1, 2, 2, 2, 4, 1, 4)
 # -> simulation:
-respsim(correct, seed=16)
+sim.attitude(correct, seed=16)
 # -> simulation with time pressure:
-respsim(correct, p=0.7, time.limit=TRUE, seed=46)
-# (NA: missed responses which are considered wrong)
+sim.attitude(correct, p=0.7, time.limit=TRUE, seed=46)
+# (NAs represent missed responses, which are considered wrong)
 }
