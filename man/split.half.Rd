@@ -1,6 +1,6 @@
 \name{split.half}
 \alias{split.half}
-\title{Split-half reliability}
+\title{Split-Half Reliability}
 \description{
 Calculate the correlation between two halves of an item set, adjusting the value using
 the Spearman–Brown prophecy formula.
