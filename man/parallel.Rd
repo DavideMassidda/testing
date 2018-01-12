@@ -13,8 +13,8 @@ parallel(x, iter = 1000, ordinal = FALSE, method = "perm", alpha = 0.05,
 \arguments{
     \item{x}{Data frame or matrix with raw data.}
     \item{iter}{Number of iterations.}
-    \item{ordinal}{If \code{TRUE}, use the polychoric/tetrachoric correlation instead
-         the Pearson's index (very slow).}
+    \item{ordinal}{If \code{TRUE}, the function uses the polychoric/tetrachoric correlation
+         instead of the Pearson's index (very slow).}
     \item{method}{Method for generating random data. When \code{method="perm"}, random
          permutations of observed data are used. When \code{method="random"}, random data
          normally distributed are generated.}
