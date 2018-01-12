@@ -2,7 +2,7 @@ testing 1.3.0
 =============
 
 ### English
-Tools to develop psychological tests
+**Tools to develop psychological tests**
 
 testing is a package for the R statistical software. It provides functions to develop psychological tests. The package can be installed by connecting to this repository by using the package devtools, which must be previously installed.
 After you open R, to install the package testing you can run the command:
@@ -13,7 +13,7 @@ Warning: testing is a package under development and important changes in the fut
 
 
 ### Italian
-Strumenti per lo sviluppo di test psicologici
+**Strumenti per lo sviluppo di test psicologici**
 
 testing è un pacchetto per il software statistico R, che fornisce funzioni per lo sviluppo di test psicologici. Può essere installato connettendosi direttamente a questo repository sfruttando il pacchetto devtools, che deve essere preventivamente installato.
 Aperto R, per instllare il pacchetto testing è sufficiente lanciare il comando:
