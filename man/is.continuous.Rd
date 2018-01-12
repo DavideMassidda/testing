@@ -1,6 +1,6 @@
 \name{is.continuous}
 \alias{is.continuous}
-\title{Continuous Vectors}
+\title{Check for Continuous Vectors}
 \description{
 Check if a vector represents a continuous sequence of integer values between the minumum and
 the maximum, sorted in ascending or descending order.
