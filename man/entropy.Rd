@@ -8,7 +8,7 @@ Calculus of the Shannon's etropy index.
 entropy(x, base = exp(1), inverse = FALSE)
 }
 \arguments{
-    \item{x}{Numeric vector}
+    \item{x}{Numeric vector.}
     \item{base}{Basis of the logarithm.}
     \item{inverse}{Logical specifying if reverse the result by using the inverse function.}
 }
