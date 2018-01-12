@@ -27,7 +27,7 @@ parallel(x, iter = 1000, ordinal = FALSE, method = "perm", alpha = 0.05,
     \item{...}{Further arguments to the function \code{fn}.}
 }
 \details{
-The function \code{principal} was developed starting from the function \code{parpca} (see the
+The function \code{parallel} was developed starting from the function \code{parpca} (see the
 repository: https://github.com/DavideMassidda/parpca).
 }
 \author{
