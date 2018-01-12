@@ -1,4 +1,4 @@
-testing 1.2-1
+testing 1.3.0
 =============
 
 * English
@@ -12,6 +12,8 @@ After you open R, to install the package testing you can run the command:
 devtools::install_github("DavideMassidda/testing")
 
 Warning: testing is a package under development and important changes in the future could be implemented.
+
+* * *
 
 * Italian
 
