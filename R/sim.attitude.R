@@ -1,4 +1,5 @@
-respsim <- function(hits, x.min=min(hits), x.max=max(hits), p=NULL, incr.diff=TRUE, time.limit=FALSE, floor=FALSE, ceiling=FALSE, seed=NULL)
+sim.attitude <- function(hits, x.min=min(hits), x.max=max(hits), p=NULL, incr.diff=TRUE,
+                         time.limit=FALSE, floor=FALSE, ceiling=FALSE, seed=NULL)
 {
     set.seed(seed)
     if((floor+ceiling)==2)
