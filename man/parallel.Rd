@@ -4,7 +4,7 @@
 \alias{plot.parallel}
 \title{Parallel Analysis}
 \description{
-To describe
+Identify the number of factors or components starting by a raw data matrix by using the Parallel Analysis.
 }
 \usage{
 parallel(x, iter = 1000, ordinal = FALSE, method = "perm", alpha = 0.05,
@@ -59,7 +59,7 @@ Parallel analysis with unidimensional binary data.
 Educational and Psychological Measurement, 65(5), 697-716.
 }
 \seealso{
-\code{\link[psych]{fa.parallel}}
+\code{\link[psych]{fa.parallel}}, \code{\link[psych]{fa.parallel.poly}}
 }
 \examples{
 # (examples under construction)
