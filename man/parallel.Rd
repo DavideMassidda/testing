@@ -4,7 +4,7 @@
 \alias{plot.parallel}
 \title{Parallel Analysis}
 \description{
-Identify the number of factors or components starting by a raw data matrix by using the Parallel Analysis.
+Identify the number of components/factors starting by a raw data matrix by using the Parallel Analysis.
 }
 \usage{
 parallel(x, iter = 1000, ordinal = FALSE, method = "perm", alpha = 0.05,
