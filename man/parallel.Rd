@@ -8,22 +8,24 @@ Identify the number of factors or components starting by a raw data matrix by us
 }
 \usage{
 parallel(x, iter = 1000, ordinal = FALSE, method = "perm", alpha = 0.05,
-         standard = FALSE, plot = TRUE, fn = fa, ...)
+         standard = FALSE, plot = TRUE, fn = eigen, ...)
 }
 \arguments{
-    \item{x}{Data frame or matrix with raw data.}
+    \item{x}{Data frame or matrix of raw data.}
     \item{iter}{Number of iterations.}
     \item{ordinal}{If \code{TRUE}, the function uses the polychoric/tetrachoric correlation
          instead of the Pearson's index (very slow).}
-    \item{method}{Method for generating random data. When \code{method="perm"}, random
+    \item{method}{Method for random data generation. When \code{method="perm"}, random
          permutations of observed data are used. When \code{method="random"}, random data
          normally distributed are generated.}
-    \item{alpha}{Alpha threshold to select the number of factors.}
+    \item{alpha}{Alpha threshold to select the number of components/factors.}
     \item{standard}{If \code{TRUE}, the analysis is performed on standardized data.}
-    \item{plot}{Plot the scree plot overlapping the eigen values from the parallel analysis
-         to the eigen value from factor analysis (or PCA, according to the argument \code{fn}.)}
-    \item{fn}{Function to calcolate eigenvalues. The default \code{fa} uses the factor analysis,
-         while \code{eigen} calculates eigenvalues according to the principal component analysis.}
+    \item{plot}{Shows the scree plot overlapping the eigen values from the parallel analysis
+         to the eigen value from principal comonent analysis (or factor analysis, according to
+         the argument \code{fn}.)}
+    \item{fn}{Function to calcolate eigenvalues. The default \code{eigen} uses the principal
+         component analysis, while \code{psych::fa} calculates eigenvalues according to factor
+         analysis.}
     \item{...}{Further arguments for the function \code{fn}.}
 }
 \details{
