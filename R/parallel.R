@@ -1,7 +1,26 @@
+.generate_random <- function(x, nRows, numGEN)
+    return(numGEN(n))
+
+.parallel_random <- function(loadMat, emptyMat, nRrows, numGEN, fn, corfn, ...)
+{
+    # loadMat is used to iterate with apply().
+    emptyMat <- apply(emptyMat, 2, .generate_random, nRows, numGEN)
+    eigenValues <- fn(corfn(emptyMat),...)$values
+    return(eigenValues)
+}
+
+.parallel_permutate <- function(loadMat, N, K, V, nRows, nComp, fn, corfn, ...)
+{
+    # loadMat is used to iterate with apply().
+    permMat <- matrix(V[sample(K,size=N,replace=FALSE)],nrow=nRows,ncol=nComp)
+    eigenValues <- fn(corfn(permMat),...)$values
+    return(eigenValues)
+}
+
 parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, standard=FALSE, plot=TRUE, fn=eigen, ...)
 {
     x <- as.matrix(x)
-    nRows <- dim(x)[1]
+    nRows <- nrow(x)
     nComp <- ncol(x)
     if(!ordinal) {
         numGEN <- rnorm
@@ -11,42 +30,33 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, sta
         maxCateg <- max(x)-min(x)
         numGEN <- function(n) return(rbinom(n,maxCateg,0.5))
         if(maxCateg == 1) {
-            corfn <- function(m,N) return(psych::tetrachoric(m)$rho)
+            corfn <- function(m) return(psych::tetrachoric(m)$rho)
             correlation <- "tetrachoric"
         } else {
-            corfn <- function(m,N) return(psych::polychoric(m)$rho)
+            corfn <- function(m) return(psych::polychoric(m)$rho)
             correlation <- "polychoric"
         }
     }
-    if(!ordinal & standard) {
-        m <- apply(x,2,mean,na.rm=TRUE)
-        s <- apply(x,2,sd,na.rm=TRUE)
-        for(i in 1:nComp)
-            x[,i] <- (x[,i]-m[i])/s[i]
-    }
-    rowIndex <- 1:nRows
-    xRand <- vector("list",iter)
-    randLoad <- matrix(NA,ncol=nComp,nrow=iter)
+    if(!ordinal & standard)
+        x <- sapply(x, function(x) as.numeric(scale(x)))
+    compLabels <- paste0("c",1:nComp)
+    randLoad <- matrix(nrow=nComp,ncol=iter)
+    rownames(randLoad) <- compLabels
     eigenVal <- fn(corfn(x),...)$values
-    colnames(randLoad) <- names(eigenVal) <- paste("c",1:nComp,sep="")
+    names(eigenVal) <- compLabels
     if(method=="random") {
-        for(i in 1:iter) {
-            xRand[[i]] <- matrix(NA,nrow=nRows,ncol=nComp)
-            for(j in 1:nComp) xRand[[i]][,j] <- numGEN(nRows)
-            randLoad[i,] <- fn(corfn(xRand[[i]]),...)$values
-        }
+        emptyMat <- matrix(nrow=nRows,ncol=nComp)
+        randLoad <- apply(randLoad, 2, .parallel_random, emptyMat, nRrows, numGEN, fn, corfn, ...)
     } else {
         if(method=="perm") {
             N <- length(x)
             K <- 1:N
             V <- c(x)
-            for(i in 1:iter) {
-                xRand[[i]] <- matrix(V[sample(K,size=N,replace=FALSE)],nrow=nRows,ncol=nComp)
-                randLoad[i,] <- fn(corfn(xRand[[i]]),...)$values
-            }
+            randLoad <- apply(randLoad, 2, .parallel_permutate, N, K, V, nRows, nComp, fn, corfn, ...)
         }
     }
-    z <- abs(qnorm(alpha/2))
+    randLoad <- t(randLoad)
+    z <- qnorm(1-alpha/2)
     rM <- colMeans(randLoad)
     rSE <- apply(randLoad,2,mean)/sqrt(nRows)
     rQ <- apply(randLoad,2,quantile,probs=c(1-alpha/2,0.5,alpha/2))
@@ -83,17 +93,26 @@ plot.parallel <- function(x,...)
     main <- list(...)$main
     xlab <- list(...)$xlab
     ylab <- list(...)$ylab
+    ylim <- list(...)$ylim
+    nComp <- list(...)$n.comp
     if(is.null(main))
         main <- "Parallel Analysis"
     if(is.null(xlab))
         xlab <- "Component number"
     if(is.null(ylab))
         ylab <- "Eigenvalue"
-    nComp <- length(x$pca.eigen)
+    if(is.null(nComp))
+        nComp <- length(x$pca.eigen)
     component <- 1:nComp
+    x$pca.eigen <- x$pca.eigen[component]
+    x$parallel.CI <- x$parallel.CI[,component]
+    x$parallel.quantiles <- x$parallel.quantiles[,component]
     Q <- x$parallel.quantiles[1,]
     xlim <- c(1,nComp)
-    ylim <- c(0,ceiling(max(c(x$pca.eigen,x$parallel.quantiles[1,]))))
+    if(is.null(ylim)) {
+        v <- c(x$pca.eigen,Q)
+        ylim <- c(decimal.floor(min(v),digits=1),decimal.ceiling(max(v),digits=1))
+    }
     col <- c("gray56","black")
     # Simulated data
     stripchart(Q~component,vertical=TRUE,xlim=xlim,ylim=ylim,col=col[1],pch=20,cex=1.7,cex.lab=1.1,main=main,xlab=xlab,ylab=ylab)
