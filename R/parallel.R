@@ -46,7 +46,7 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, sta
     names(eigenVal) <- compLabels
     if(method=="random") {
         emptyMat <- matrix(nrow=nRows,ncol=nComp)
-        randLoad <- apply(randLoad, 2, .parallel_random, emptyMat, nRrows, numGEN, fn, corfn, ...)
+        randLoad <- apply(randLoad, 2, .parallel_random, emptyMat, nRows, numGEN, fn, corfn, ...)
     } else {
         if(method=="perm") {
             N <- length(x)
