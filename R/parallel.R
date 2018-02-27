@@ -1,10 +1,12 @@
 .generate_random <- function(x, nRows, numGEN)
+{
+    if(missing(nRows)) browser()
     return(numGEN(nRows))
+}
 
 .parallel_random <- function(loadMat, emptyMat, nRows, numGEN, fn, corfn, ...)
 {
     # loadMat is used to iterate with apply().
-    browser()
     emptyMat <- apply(emptyMat, 2, .generate_random, nRows, numGEN)
     eigenValues <- fn(corfn(emptyMat),...)$values
     return(eigenValues)
