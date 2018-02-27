@@ -1,5 +1,5 @@
 .generate_random <- function(x, nRows, numGEN)
-    return(numGEN(n))
+    return(numGEN(nRows))
 
 .parallel_random <- function(loadMat, emptyMat, nRrows, numGEN, fn, corfn, ...)
 {
