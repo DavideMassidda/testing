@@ -1,7 +1,7 @@
 .generate_random <- function(x, nRows, numGEN)
     return(numGEN(nRows))
 
-.parallel_random <- function(loadMat, emptyMat, nRrows, numGEN, fn, corfn, ...)
+.parallel_random <- function(loadMat, emptyMat, nRows, numGEN, fn, corfn, ...)
 {
     # loadMat is used to iterate with apply().
     emptyMat <- apply(emptyMat, 2, .generate_random, nRows, numGEN)
