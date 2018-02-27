@@ -1,6 +1,5 @@
 .generate_random <- function(x, nRows, numGEN)
 {
-    if(missing(nRows)) browser()
     return(numGEN(nRows))
 }
 
