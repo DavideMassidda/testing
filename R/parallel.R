@@ -70,7 +70,8 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, sta
         synthetic.eigen = randLoad,
         pca.eigen = eigenVal,
         parallel.CI = rCI,
-        parallel.quantiles = rQ
+        parallel.quantiles = rQ,
+        suggest.ncomp = sum(eigenVal > rQ[1,])
     )
     class(result) <- "parallel"
     if(plot) plot(result)
