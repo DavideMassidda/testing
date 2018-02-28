@@ -61,7 +61,7 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, sta
     z <- qnorm(1-alpha/2)
     rM <- colMeans(randLoad)
     rSE <- apply(randLoad,2,mean)/sqrt(nRows)
-    rQ <- apply(randLoad,2,quantile,probs=c(1-alpha/2,0.5,alpha/2))
+    rQ <- apply(randLoad,2,quantile,probs=c(1-alpha,0.5))
     rCI <- rbind(rM+rSE,rM,rM-rSE)
     rownames(rCI) <- c("CI Sup","Mean","CI Inf")
     result <- list(
