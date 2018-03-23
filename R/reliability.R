@@ -28,7 +28,7 @@ cronbach.strata <- function(x, r, composite=NULL)
     if(is.null(composite))
         composite <- rowSums(x)
     v <- sapply(x, var, na.rm=TRUE)
-    r <- 1-sum(v*(1-r))/var(composite)
+    r <- 1-sum(v*(1-r))/var(composite, na.rm=TRUE)
     return(r)
 }
 
