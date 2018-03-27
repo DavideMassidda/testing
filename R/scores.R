@@ -73,14 +73,14 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
     if(decreasing)
         x <- rev(x)
     # Individuazione del minimo e massimo
-    if(is.null(x.min)) {
-        x[which(x<x.min)] <- x.min
+    if(is.null(x.min))
         x.min <- min(x,na.rm=TRUE)
-    }
-    if(is.null(x.max)) {
-        x[which(x>x.max)] <- x.max
+    else
+        x[which(x<x.min)] <- x.min
+    if(is.null(x.max))
         x.max <- max(x,na.rm=TRUE)
-    }
+    else
+        x[which(x>x.max)] <- x.max
     # Classificazione dei valori
     # -> individuazione e rimozione dei valori duplicati
     dupl <- which(duplicated(x,fromLast=!forward))
