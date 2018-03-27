@@ -1,6 +1,6 @@
 \name{kr20}
 \alias{kr20}
-\title{Kuder–Richardson Formula 20}
+\title{Kuder-Richardson Formula 20}
 \description{
 Calculate the Kuder–Richardson Formula 20.
 }
