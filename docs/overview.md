@@ -2,9 +2,9 @@ Package overview
 ================
 
 ### Management of ages
-* **`age.character`** Age Conversion: from Numeric to Character.
 * **`age.completed`** Age Calculation.
-* **`age.numeric`** Age Conversion: from Character to Numeric.
+* **`age.numeric`** Age Conversion: from character to numeric.
+* **`age.character`** Age Conversion: from numeric to character.
 * **`age.segment`** Age Segmentation.
 
 ### Development of test items
@@ -59,16 +59,15 @@ Package overview
 * **`rollup`** Score intervals.
 * **`explode`** Score explosion.
 * **`implode`** Score implosion.
-* **`integer.round`** Rounding of numbers.
 * **`is.continuous`** Check for continuous vectors.
 * **`is.monotonic`** Check for monotonic vectors.
 
-### Rounding of Numbers
+### Rounding
 * **`integer.round`** Conversion from decimal to integer.
 * **`decimal.floor`** Round a decimal number to the nearest floor for a given decimal position.
 * **`decimal.ceiling`** Round a decimal number to the nearest ceiling for a given decimal position.
 * **`integer.floor`** Round a decimal number to the nearest integer floor.
 * **`integer.ceiling`** Round a decimal number to the nearest integer ceiling.
 
-### Data sets
+### Datasets
 * **`drive`** Secure drive project.

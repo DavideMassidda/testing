@@ -21,7 +21,7 @@ devtools::install_github("DavideMassidda/testing")
 ```
 Attenzione: testing è un pacchetto in piena fase di sviluppo e in futuro potrebbe subire importanti modifiche.
 
-### Tutorial (italian language)
+### Tutorial (italian only)
 
 [Introduzione](docs/motivation.md)
 
