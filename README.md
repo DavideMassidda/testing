@@ -11,7 +11,6 @@ devtools::install_github("DavideMassidda/testing")
 ```
 Warning: testing is a package under development and important changes in the future could be implemented.
 
-
 ### Italian
 **Funzioni di supporto per lo sviluppo di test psicometrici**
 
@@ -21,3 +20,8 @@ Aperto R, per instllare il pacchetto testing è sufficiente lanciare il comando:
 devtools::install_github("DavideMassidda/testing")
 ```
 Attenzione: testing è un pacchetto in piena fase di sviluppo e in futuro potrebbe subire importanti modifiche.
+
+### Tutorial (italian language)
+
+[Fondamento](docs/motivation.md)
+[Panoramica](docs/overview.md)
