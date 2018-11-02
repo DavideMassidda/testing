@@ -1,22 +1,9 @@
 Gestione delle età per analisi di test psicometrici
 ================
-Davide Massidda, [Kode Srl, Pisa](https://www.kode-solutions.net/it/index.html)
-02 nov 2018
 
 Nel a mettere a punto un test psicometrico per l'età evolutiva spesso si incontrano numerose difficoltà nella gestione delle variabili che codificano per l'età dei bambini. Talvolta tali variabili arrivano rappresentate secondo standard differenti rispetto a quanto richiesto, oppure l'analisi dei dati può necessitare di operazioni di ricodifica verso formati complessi da ottenere.
 
 Il pacchetto [testing](https://github.com/DavideMassidda/testing) contiene alcune funzioni che possono tornare utili in questi casi, pensate per essere flessibili e adattabili a esigenze diverse. Nel presente tutorial vengono mostrati gli usi principali di queste funzioni.
-
-Installazione del pacchetto
-===========================
-
-Il pacchetto *testing* è localizzato su un repository GitHub. Per installarlo è quindi necessario fare uso della funzione `install_github` fornita dal pacchetto *devtools*:
-
-``` r
-devtools::install_github("DavideMassidda/testing")
-```
-
-Una volta installato il pacchetto, sarà possibile attivarlo:
 
 ``` r
 library(testing)
