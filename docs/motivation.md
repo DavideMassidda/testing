@@ -1,5 +1,5 @@
-### Introduzione
-================
+Introduzione
+============
 
 _testing_ è una collezione di funzioni R per la messa a punto di strumenti psicometrici. _testing_ non è sostitutivo di altri più celebri pacchetti, come [_psych_](https://cran.r-project.org/web/packages/psych/index.html) (dal quale dipende), ma va considerato come una loro integrazione.
 
