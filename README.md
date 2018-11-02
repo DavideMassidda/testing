@@ -23,5 +23,8 @@ Attenzione: testing è un pacchetto in piena fase di sviluppo e in futuro potreb
 
 ### Tutorial (italian language)
 
-[Fondamento](docs/motivation.md)
-[Panoramica](docs/overview.md)
+[Introduzione](docs/motivation.md)
+
+[Panoramica delle funzioni](docs/overview.md)
+
+[Gestione delle età](docs/ages.md)
