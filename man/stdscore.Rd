@@ -20,9 +20,6 @@ stdscore(x, m = NULL, s = NULL,
 If \code{m} or \code{s} are \code{NULL}, the mean or the standard deviation
 of \code{x} will be used to scale the observed data.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \seealso{
 \code{\link[testing]{rawscore}}
 }

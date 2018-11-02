@@ -15,9 +15,6 @@ std2perc(q, scale=c("z","t","nce","iq","scaled","stanine","sten"))
 \details{
 Percentiles are provided on a 0-100 scale.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \examples{
 perc2std(c(5,50,95), "IQ")
 }

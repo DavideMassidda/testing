@@ -18,9 +18,6 @@ For each interval of scores, the function finds a representative number for the 
 within the extremes (see the examples for details). Customised functions can be used to extract
 the representative values for intervals.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
 \code{\link[testing]{explode}}, \code{\link[testing]{rollup}}
 }

@@ -18,9 +18,6 @@ The function \code{strsplit} is used to split the vector of items.
 A \code{data.frame} containing two columns. The column \code{id} reports the identity code
 of the items, while the column \code{text} reports the text content.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
 \code{\link[base]{strsplit}}, \code{\link[testing]{item.shuffle}}
 }

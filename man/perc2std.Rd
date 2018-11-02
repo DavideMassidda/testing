@@ -15,9 +15,6 @@ perc2std(p, scale=c("z","t","nce","iq","scaled","stanine","sten"))
 \details{
 Percentiles must be provided on a 0-100 scale.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \examples{
 perc2std(c(30,50,70), "T")
 }

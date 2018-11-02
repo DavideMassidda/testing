@@ -29,9 +29,6 @@ others are wrong.
 A \code{list} object in which the first element (\code{pattern}) contains the simulated responses
 and the second element (\code{score}) indicates if each response is correct (1) or uncorrect (0).
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \examples{
 # Simulation of responses for a test with fifteen items
 # and four response alternatives (coded from 1 to 4).

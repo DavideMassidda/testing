@@ -17,9 +17,6 @@ When \code{inverse = T}, the entropy H is corrected by using the formula: base^H
 In this case, the entropy will be included between 1 and the numbers of categories
 of \code{x}.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \examples{
 x <- c(1,1,1,1, 2,2,2,2, 3,3,3,3, 4,4,4,4, 5,5,5,5)
 entropy(x, inverse=TRUE)

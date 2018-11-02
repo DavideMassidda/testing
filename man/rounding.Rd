@@ -34,9 +34,6 @@ decimal digit, specified by \code{digits}.
 \code{integer.floor} and \code{integer.ceiling} round a number to the nearest integer
 value specified by \code{base}.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \seealso{
 \code{\link[base]{round}}
 }

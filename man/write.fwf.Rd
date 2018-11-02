@@ -18,14 +18,11 @@ write.fwf(x, file="", na = ".", append = FALSE, fileEncoding = "")
 \details{
 The row names are used as subject's identity code.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
 \code{\link[utils]{write.table}}
 }
-\examples{
+\examples{\dontrun{
 data("drive")
 str(drive)
 write.fwf(drive[1:10,5:10])
-}
+}}

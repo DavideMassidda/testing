@@ -9,8 +9,8 @@ reverse(x, x.min = min(x), x.max = max(x))
 }
 \arguments{
     \item{x}{Numerical vector of responses.}
-    \item{x.min}{Theretical minimum of \code{x}.}
-    \item{x.max}{Theretical maximum of \code{x}.}
+    \item{x.min}{Theoretical minimum of \code{x}.}
+    \item{x.max}{Theoretical maximum of \code{x}.}
 }
 \details{
 The function allows to reverse the scores of a vector.

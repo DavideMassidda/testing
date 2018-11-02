@@ -32,7 +32,7 @@ cronbach.strata <- function(x, r, composite=NULL)
     return(r)
 }
 
-split.half <- function(x, set1=seq(1,ncol(x),by=2))
+splithalf <- function(x, set1=seq(1,ncol(x),by=2))
 {
     x <- na.omit(x)
     set2 <- seq_len(ncol(x))[-set1]
@@ -43,7 +43,16 @@ split.half <- function(x, set1=seq(1,ncol(x),by=2))
     return(r)
 }
 
-reliability <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=sum)
+fisher.z <- function(r)
+    0.5*log((1+r)/(1-r))
+
+invfisher.z <- function(z)
+    (exp(2*z)-1)/(exp(2*z)+1)
+
+average.r <- function(r)
+    invfisher.z(mean(fisher.z(c(r))))
+
+dropitem <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=sum)
 {
     cor.method <- cor.method[1]
     cor.method <- match.arg(cor.method)
@@ -70,11 +79,11 @@ reliability <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=s
         r[j,2] <- cronbach.alpha(x[,-j])
     }
     output <- list(alpha=cronbach.alpha(x),item.total=r,cor.method=cor.method)
-    class(output) <- "reliability"
+    class(output) <- "dropitem"
     return(output)
 }
 
-print.reliability <- function(x,...)
+print.dropitem <- function(x,...)
 {
     cat("\nOverall Cronbach\'s alpha:",round(x$alpha,2),"\n\n")
     print(round(x$item.total,2))

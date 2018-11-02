@@ -14,11 +14,8 @@ cronbach.alpha(x)
 \details{
 Missing data are treated by using listwise deletion.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
-\code{\link[testing]{reliability}}, \code{\link[testing]{cronbach.strata}}
+\code{\link[testing]{cronbach.alpha}}, \code{\link[testing]{dropitem}}
 }
 \examples{
 data("drive")

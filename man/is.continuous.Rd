@@ -18,9 +18,6 @@ is.continuous(x, direction = c("both", "forward", "backward"), na.rm = TRUE)
 Pay attantion that the monotonicity is required. In this sense, \code{is.continuous} is stronger
 than \code{is.monotonic}.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
 \code{\link[testing]{is.monotonic}}
 }

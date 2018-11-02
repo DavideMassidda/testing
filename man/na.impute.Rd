@@ -26,9 +26,6 @@ The argument \code{na.rm=T} isn't mandatory (see examples).
 \value{
 A data frame with missing data replaced.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \seealso{
 \code{\link[testing]{knn.impute}}
 }

@@ -19,9 +19,6 @@ The function rescale the data by using the formula:
 \deqn{ a + (b - a) * (x - min(x))/(max(x) - min(x)) }
 where \eqn{a} is the new minimum of \eqn{x} and \eqn{b} the new maximum.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \examples{
 x <- 5:15
 normalize(x, 0, 10)

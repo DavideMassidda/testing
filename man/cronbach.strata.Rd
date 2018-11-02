@@ -19,15 +19,12 @@ cronbach.strata(x, r, composite=NULL)
 \details{
 Missing data are treated by using listwise deletion.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \references{
 Cronbach, L.J., Schoenemann, P., McKie, D. (1965).
     Alpha coefficient for stratified-parallel tests. \emph{Educational and Psychological Measurement}, 25, 291-312.
 }
 \seealso{
-\code{\link[testing]{cronbach.alpha}}
+\code{\link[testing]{cronbach.alpha}}, \code{\link[testing]{dropitem}}
 }
 \examples{
 data("drive")

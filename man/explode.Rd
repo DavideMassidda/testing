@@ -20,9 +20,6 @@ te extremes (see the examples for details).
 Pay attention that the length of the output vector can be different to the length of the input
 vector.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
 \code{\link[testing]{implode}}, \code{\link[testing]{rollup}}
 }

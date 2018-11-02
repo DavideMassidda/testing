@@ -21,9 +21,6 @@ For each breakpoint, if \code{fun = "<="}, the function returns the percentage o
 to the break value. Otherwise, if \code{fun = ">="}, the function returns the percentage of data greater
 than or equal to the break value.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \examples{
 data("drive")
 score <- rowSums(drive[,5:10])

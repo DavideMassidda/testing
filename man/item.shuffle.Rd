@@ -19,9 +19,6 @@ item.shuffle(item, id = NULL, scale = NULL, tolerance = 0, fixed = NULL)
 If the \code{scale} argument is specified, items will be randomized within each scale.
 Fixed items, if specified, will be left in the same position of the original vector.
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
 \code{\link[testing]{item.split}}
 }

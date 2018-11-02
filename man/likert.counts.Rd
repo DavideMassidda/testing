@@ -17,21 +17,18 @@ likert.counts(x, x.min = min(x), x.max = max(x), perc = FALSE, na.keep = TRUE)
         when converting counts in percentages (see details).}
 }
 \details{
-The function is simular to \code{table}, but: 1) returns a vector; 2) returns the
+The function is simular to \code{table}, but: 1) it returns a vector; 2) it returns the
 counts for all categories included in the range, considering also the categories
-which not compare in the vector of responses; 3) the counts can be converted directly
-in percentages (\code{perc=T}).
+which not compare in the vector of responses; 3) it can convert directly counts in
+percentages (\code{perc=T}).
 
-When \code{perc=T}, if \code{na.keep=T} in the calculus of percentages missing data
+When \code{perc=T}, if \code{na.keep=T}, in the calculus of percentages missing data
 will be counted. For this reason, if missing data are present in the vector of responses,
 the resulting sum of percentages will be lower to 100. The percentages will be calculated
 dividing the counts for n-q, where q is the number of missing data.
 }
 \value{
 A \code{vector} containing the frequencies.
-}
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
 }
 \seealso{
 \code{\link[base]{table}}

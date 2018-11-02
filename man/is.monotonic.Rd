@@ -18,9 +18,6 @@ is.monotonic(x, direction = c("both","forward","backward"),
 \details{
 da descrivere
 }
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
-}
 \seealso{
 \code{\link[stats]{isoreg}}, \code{\link[testing]{is.continuous}}
 }

@@ -1,1 +1,8 @@
 exportPattern("^[[:alpha:]]+")
+import("graphics")
+import("stats")
+import("utils")
+S3method(print, dropitem)
+S3method(print, parallel)
+S3method(print, ROC)
+S3method(plot, parallel)

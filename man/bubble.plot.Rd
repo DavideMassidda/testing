@@ -24,9 +24,6 @@ Massidda, D. (2015).
 [Visualizing the relation between Likert variables].
 URL http://www.insular.it/?p=3688
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \seealso{
 \code{\link[graphics]{symbols}}
 }

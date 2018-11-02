@@ -19,9 +19,6 @@ rawscore(q, m, s,
 \details{
 The arguments \code{m} and \code{s} are mandatory.
 }
-\author{
-Davide Massidda <davide.massidda@gmail.com>
-}
 \seealso{
 \code{\link[testing]{stdscore}}
 }

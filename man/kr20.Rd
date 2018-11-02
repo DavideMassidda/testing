@@ -2,7 +2,7 @@
 \alias{kr20}
 \title{Kuder-Richardson Formula 20}
 \description{
-Calculate the Kuder–Richardson Formula 20.
+Calculate the Kuder-Richardson Formula 20.
 }
 \usage{
 kr20(x,hit=1)
@@ -12,13 +12,10 @@ kr20(x,hit=1)
     \item{hit}{Value in \code{x} indicating correct responses.}
 }
 \details{
-Missing data are treated by using listwise deletion.
-}
-\author{
-Davide Massidda \email{davide.massidda@gmail.com}
+Missing data are treated by listwise deletion.
 }
 \seealso{
-\code{\link[testing]{reliability}}
+\code{\link[testing]{cronbach.alpha}}, \code{\link[testing]{dropitem}}
 }
 \examples{
 data("drive")

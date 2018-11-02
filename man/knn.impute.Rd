@@ -20,7 +20,7 @@ knn.impute(x, k = NULL, distance = c("euclidean", "manhattan", "matching"),
     \item{standard}{Logical. If \code{TRUE}, the process make use of standardized data.}
 }
 \details{
-The function implements the method described by Jönsson and Wohlin (2004, 2006).
+The function implements the method described by Jonsson and Wohlin (2004, 2006).
 
 For large datasets, the replacements process can be very slow.
 }
@@ -28,15 +28,12 @@ For large datasets, the replacements process can be very slow.
 A data frame with missing data replaced.
 }
 \references{
-Jönsson P. and C. Wohlin (2004). An Evaluation of k-nearest Neighbour Imputation
+Jonsson P. and C. Wohlin (2004). An Evaluation of k-nearest Neighbour Imputation
 Using Likert Data. Proceedings 10th International Symposium pn Software Metrics,
 pp. 108-118, Chiaco, USA. Selected for special issue.
 
-Jönsson P. and C. Wohlin (2006). Benchmarking k-nearest neighbour imputation with
-homogeneous Likert data. Empirical Software Engineering, 11, 463–489.
-}
-\author{
-Davide Massidda <davide.massidda@gmail.com>
+Jonsson P. and C. Wohlin (2006). Benchmarking k-nearest neighbour imputation with
+homogeneous Likert data. Empirical Software Engineering, 11, 463-489.
 }
 \seealso{
 \code{\link[testing]{na.impute}}

@@ -1,11 +1,12 @@
 Package: testing
 Type: Package
 Title: Psychometric Testing
-Version: 1.3.5
-Date: 2018-03-27
-Author: Davide Massidda <davide.massidda@gmail.com>
-Maintainer: Davide Massidda <davide.massidda@gmail.com>
-Description: Tools to develop psychometric tests.
-Imports: psych
+Version: 1.4.0
+Date: 2018-11-02
+Author: Davide Massidda <d.massidda@kode-solutions.net>
+Maintainer: Davide Massidda <d.massidda@kode-solutions.net>
+Description: Convenience functions to develop psychometric tests.
+Imports: psych, stats, utils, graphics
 License: GPL (>= 3)
 URL: https://github.com/DavideMassidda/testing
+RoxygenNote: 6.0.1
