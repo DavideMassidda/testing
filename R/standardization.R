@@ -9,27 +9,88 @@
 }
 
 # Converte un punteggio grezzo in punteggio standardizzato
-stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","scaled","stanine","sten"),integer=FALSE)
+stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","scaled","stanine","sten"),integer=FALSE,out.names=as.character(x))
 {
     if(is.null(m))
         m <- mean(x,na.rm=TRUE)
     if(is.null(s))
         s <- sd(x,na.rm=TRUE)
+    n <- list("m"=length(m),"s"=length(s))
+    if(n$m>1 & n$s==1) {
+        s <- rep.int(s,n$m)
+        n$s <- n$m
+    } else {
+        if(n$m==1 & n$s>1) {
+            m <- rep.int(m,n$s)
+            n$m <- n$s
+        }
+    }
+    if(n$m != n$s)
+        stop("m and s must be the same length.")
     pars <- .scale_param(scale=scale)
-    z <- (x-m)/s
-    q <- pars$m + pars$s * z
-    if(integer)
-        q <- integer.round(q)
+    if(n$m==1) {
+        q <- pars$m + pars$s * ((x-m)/s)
+        names(q) <- out.names
+    } else {
+        q <- sapply(seq_len(n$m),
+            function(i)
+                pars$m + pars$s * ((x-m[i])/s[i])
+        )
+        cn <- names(m)
+        if(is.null(cn))
+            cn <- names(s)
+        colnames(q) <- cn
+        rownames(q) <- out.names
+        q <- data.frame(q, check.names=FALSE)
+    }
+    if(integer) {
+        if(n$m==1)
+            q <- integer.round(q)
+        else
+            q[,] <- apply(q, 2, integer.round)
+    }
     return(q)
 }
 
 # Converte un punteggio standardizzato in punteggio grezzo
-rawscore <- function(q,m,s,scale=c("z","t","nce","iq","scaled","stanine","sten"),integer=FALSE)
+rawscore <- function(q,m,s,scale=c("z","t","nce","iq","scaled","stanine","sten"),integer=FALSE,out.names=as.character(q))
 {
+    n <- list("m"=length(m),"s"=length(s))
+    if(n$m>1 & n$s==1) {
+        s <- rep.int(s,n$m)
+        n$s <- n$m
+    } else {
+        if(n$m==1 & n$s>1) {
+            m <- rep.int(m,n$s)
+            n$m <- n$s
+        }
+    }
+    if(n$m != n$s)
+        stop("m and s must be the same length.")
     pars <- .scale_param(scale=scale)
-    x <- m+(s*(q-pars$m))/pars$s
-    if(integer)
-        x <- integer.round(x)
+    if(n$m==1) {
+        x <- m+(s*(q-pars$m))/pars$s
+        names(x) <- out.names
+    } else {
+        x <- sapply(seq_len(n$m),
+            function(i)
+                m[i]+(s[i]*(q-pars$m))/pars$s
+        )
+        cn <- names(m)
+        if(is.null(cn))
+            cn <- names(s)
+        colnames(x) <- cn
+        rownames(x) <- out.names
+        x <- data.frame(x, check.names=FALSE)
+    }
+    if(integer) {
+        if(n$m==1)
+            x <- integer.round(x)
+        else
+            x[,] <- apply(x, 2, integer.round)
+    }
+    
+        
     return(x)
 }
 

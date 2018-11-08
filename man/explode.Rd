@@ -6,13 +6,14 @@ Converts a sequence of classified scores into a numeric sequence, by exploding t
 included in the intervals.
 }
 \usage{
-explode(x, direction = c("forward", "backward"), sep = "-")
+explode(x, direction = c("forward", "backward"), sep = "-", out.names = names(x))
 }
 \arguments{
     \item{x}{Numeric vector.}
     \item{direction}{Specify if the scores are classified in ascending (\code{forward})
         or descending (\code{backward}) order. Default is \code{forward}.}
     \item{sep}{Symbol used to separate the extremes of an interval.}
+    \item{out.names}{Names for the elements in the output vector (use \code{NULL} to exclude names).}
 }
 \details{
 For each interval of scores, the resulting vector will contain all the numbers included within

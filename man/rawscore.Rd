@@ -7,7 +7,7 @@ Identify the raw scores corresponding to a vector of standard scores.
 \usage{
 rawscore(q, m, s,
     scale = c("z","t","nce","iq","scaled","stanine","sten"),
-    integer = FALSE)
+    integer = FALSE, out.names = as.character(q))
 }
 \arguments{
     \item{q}{Vector of standard scores.}
@@ -15,6 +15,7 @@ rawscore(q, m, s,
     \item{s}{Standard deviation of observed data.}
     \item{scale}{Reference scale of the standard scores.}
     \item{integer}{Logical. If \code{TRUE}, data in output will bet rounded to nearest integer.}
+    \item{out.names}{Names for the elements in the output vector (use \code{NULL} to exclude names).}
 }
 \details{
 The arguments \code{m} and \code{s} are mandatory.

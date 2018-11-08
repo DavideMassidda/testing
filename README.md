@@ -1,30 +1,84 @@
-testing 1.4.0
-=============
+See tutorials page in [Italian](docs/it/index.md)
 
-### English
-**Convenience functions to develop psychometric tests**
+## Convenience functions to develop psychometric tests
 
-_testing_ is a package for the R statistical software. It provides functions to develop psychometric tests. The package can be installed by connecting to this repository by using the package devtools, which must be previously installed.
+_testing_ is a package for the R statistical software providing functions to develop psychometric tests. The package can be installed by connecting to this repository by using the package devtools, which must be previously installed.
+
 After you open R, to install the package testing you can run the command:
 ```r
 devtools::install_github("DavideMassidda/testing")
 ```
 Warning: testing is a package under development and important changes in the future could be implemented.
 
-### Italian
-**Funzioni di supporto per lo sviluppo di test psicometrici**
+## Package overview
 
-_testing_ è un pacchetto per il software statistico R, che fornisce funzioni per lo sviluppo di test psicometrici. Può essere installato connettendosi direttamente a questo repository sfruttando il pacchetto devtools, che deve essere preventivamente installato.
-Aperto R, per instllare il pacchetto testing è sufficiente lanciare il comando:
-```r
-devtools::install_github("DavideMassidda/testing")
-```
-Attenzione: testing è un pacchetto in piena fase di sviluppo e in futuro potrebbe subire importanti modifiche.
+### Standard scores
+* **`stdscore`** From raw scores to standard scores.
+* **`rawscore`** From standard scores to raw scores.
+* **`std2perc`** Standard scores conversion.
+* **`perc2std`** Percentile conversion.
+* **`prank`** Percentile rank.
 
-### Tutorial (italian only)
+### Normative tables
+* **`rollup`** Score intervals.
+* **`explode`** Score explosion.
+* **`implode`** Score implosion.
+* **`is.continuous`** Check for continuous vectors.
+* **`is.monotonic`** Check for monotonic vectors.
 
-[Introduzione](docs/motivation.md)
+### Rounding
+* **`integer.round`** Conversion from decimal to integer.
+* **`decimal.floor`** Round a decimal number to the nearest floor for a given decimal position.
+* **`decimal.ceiling`** Round a decimal number to the nearest ceiling for a given decimal position.
+* **`integer.floor`** Round a decimal number to the nearest integer floor.
+* **`integer.ceiling`** Round a decimal number to the nearest integer ceiling.
 
-[Panoramica delle funzioni](docs/overview.md)
+### Management of ages
+* **`age.completed`** Age Calculation.
+* **`age.numeric`** Age Conversion: from character to numeric.
+* **`age.character`** Age Conversion: from numeric to character.
+* **`age.segment`** Age Segmentation.
 
-[Gestione delle età](docs/ages.md)
+### Reliability
+* **`kr20`** Kuder–Richardson formula 20.
+* **`cronbach.alpha`** Cronbach's alpha.
+* **`cronbach.strata`** Stratified Cronbach's alpha.
+* **`average.r`** Average reliability coefficient.
+* **`fisher.z`** Fisher's z transformation.
+* **`invfisher.z`** Fisher's z transformation.
+* **`dropitem`** Internal consistency reliability.
+* **`split.half`** Split-half reliability.
+
+### Content validity
+* **`parallel`** Parallel analysis.
+
+### ROC Analysis
+* **`roc.curve`** ROC curve.
+* **`roc.table`** Receiver Operating Characteristic.
+
+### Development of test items
+* **`item.shuffle`** Item shuffling.
+* **`item.split`** Split items.
+
+### Data management
+* **`normalize`** Vector rescaling.
+* **`reverse`** Item reversing.
+* **`write.fwf`** Export data in a fixed-width format.
+
+### Data description
+* **`likert.counts`** Likert scale frequencies.
+* **`entropy`** Entropy index.
+* **`se.measure`** Standard error of measurement.
+
+### Data visualization
+* **`bubble.plot`** Bubble plot.
+
+### Missing data
+* **`knn.impute`** Missing data replacement by k-nearest neighbour.
+* **`na.impute`** Missing data imputation.
+
+### Data simulation
+* **`sim.attitude`** Random responses for attitude tests.
+
+### Datasets
+* **`drive`** Secure drive project.

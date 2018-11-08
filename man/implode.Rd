@@ -6,12 +6,13 @@ Converts a sequence of classified scores into a numeric sequence, by imploding t
 included in the intervals.
 }
 \usage{
-implode(x, fn = mean)
+implode(x, fn = mean, out.names = names(x))
 }
 \arguments{
     \item{x}{Numeric vector.}
     \item{fn}{Method to identify the representative value of intervals.
         Default is the mean between extremes.}
+    \item{out.names}{Names for the elements in the output vector (use \code{NULL} to exclude names).}
 }
 \details{
 For each interval of scores, the function finds a representative number for the values included

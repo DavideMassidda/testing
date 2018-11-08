@@ -9,47 +9,40 @@
 }
 
 # Converte in numerico un intervallo di punteggi
-implode <- function(x, fn=mean)
+implode <- function(x, fn=mean, out.names=names(x))
 {
-    vn <- names(x)
-    if(!is.character(x)) {
+    if(!is.character(x))
         x <- as.character(x)
-        names(x) <- vn
-    }
+    if(!is.null(out.names))
+        out.names[is.na(out.names)] <- ""
     x[which(x=="")] <- NA
     x <- gsub("-",",",x)
     x <- paste0(deparse(substitute(fn)),"(c(",x,"))")
     x <- sapply(x, function(x){eval(parse(text=x))})
+    names(x) <- out.names
     return(x)
 }
 
 # Srotola una sequenza di punteggi in cui possono essere compresi valori espressi come intervallo
-explode <- function(x, direction=c("forward","backward"), sep="-")
+explode <- function(x, direction=c("forward","backward"), sep="-", out.names=names(x))
 {
-    direction <- direction[1]
     direction <- match.arg(direction)
-    vn <- names(x)
-    if(is.null(vn))
-        vn <- seq_len(length(x))
-    if(!is.character(x)) {
+    if(!is.character(x))
         x <- as.character(x)
-        names(x) <- vn
-    }
     x <- gsub(sep,":",x)
     x <- lapply(x, function(x) eval(parse(text=x)))
     if(direction=="backward")
         x <- lapply(x, rev)
-    vn <- rep(vn, lapply(x, length))
+    out.names <- rep(out.names, lapply(x, length))
     x <- unlist(x, use.names=FALSE)
     x <- .integer_round(as.numeric(x))
-    names(x) <- vn
+    names(x) <- out.names
     return(x)
 }
 
 # Classifica una variabile continua in punteggi interi o intervalli di punteggio
-rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
+rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"), extremes=FALSE)
 {
-    direction <- direction[1]
     direction <- match.arg(direction)
     forward <- direction=="forward"
     # Rimozione posizioni con dati mancanti
@@ -120,6 +113,20 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"))
         output[-na.pos] <- x
     } else
         output <- x
+    if(extremes) {
+        n <- length(output)
+        v.pos <- which(!is.na(output))
+        if(is.na(output[1])) {
+            pos.catch <- v.pos[1]
+            output[1] <- output[pos.catch]
+            output[pos.catch] <- NA
+        }
+        if(is.na(output[n])) {
+            pos.catch <- v.pos[length(v.pos)]
+            output[n] <- output[pos.catch]
+            output[pos.catch] <- NA
+        }
+    }
     return(output)
 }
 
@@ -127,7 +134,6 @@ is.monotonic <- function(x, direction=c("both","forward","backward"), decreasing
 {
     # Warning: the argument decreasing is deprecated.
     # It's kept only for backward compatibility.
-    direction <- direction[1]
     direction <- match.arg(direction)
     if(!is.null(decreasing)) {
         if(!decreasing & direction=="both")
@@ -150,7 +156,6 @@ is.monotonic <- function(x, direction=c("both","forward","backward"), decreasing
 
 is.continuous <- function(x, direction = c("both","forward","backward"), na.rm=TRUE)
 {
-    direction <- direction[1]
     direction <- match.arg(direction)
     if(na.rm)
         x <- x[!is.na(x)]

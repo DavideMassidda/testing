@@ -5,7 +5,8 @@
 Classifies a numeric sequence of scores into a sequence of classes of scores.
 }
 \usage{
-rollup(x, x.min = NULL, x.max = NULL, direction = c("forward", "backward"))
+rollup(x, x.min = NULL, x.max = NULL,
+    direction = c("forward", "backward"), extremes = FALSE)
 }
 \arguments{
     \item{x}{Numeric vector sorted in ascending or descending order.}
@@ -14,6 +15,7 @@ rollup(x, x.min = NULL, x.max = NULL, direction = c("forward", "backward"))
     \item{direction}{Specify if the classification of scores must be performed in
         ascending (\code{forward}) or descending (\code{backward}) order. Default
         is \code{forward}.}
+    \item{extremes}{Should a value be assigned to extreme scores?}
 }
 \details{
 Missed scores must be coded by using an empty string.
