@@ -1,3 +1,5 @@
+[Torna all'indice](index.md)
+
 Tabulazione di punteggi normativi
 =================================
 
