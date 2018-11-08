@@ -1,24 +1,22 @@
-[Torna all'indice](index.md)
-
 Tabulazione di punteggi normativi
 =================================
 
-Un test deputato alla misura di un costrutto psicologico produce, di base, un punteggio che viene comunemente definito "grezzo". Tale punteggio quantifica su una certa scala di misura il costrutto e la sua metrica può dipendere da molti fattori, quali: la variabilità del fenomeno che cerca di catturare, la tipologia e il numero di prove che vanno a comporlo, le convenzioni adottate nella letteratura di riferimento, scelte contestuali alla natura del test.
+Un test deputato alla misura di un costrutto psicologico produce, di base, un punteggio che viene comunemente definito "grezzo". Tale punteggio quantifica su una certa scala di misura il costrutto e la sua metrica può dipendere da molti fattori, quali la variabilità del fenomeno che cerca di catturare, la tipologia e il numero di prove che lo compongono, le convenzioni adottate nella letteratura di riferimento, scelte contestuali alla natura del test.
 
 Inoltre, il test, se dotato di una "taratura", contiene una serie di riferimenti che permettono di convertire il punteggio grezzo in uno standardizzato. A differenza del punteggio grezzo, quello standardizzato consente di localizzare la prestazione di un soggetto rispetto alla prestazione di una popolazione di riferimento. Tale punteggio è quindi generalmente adottato per verificare come il soggetto si colloca rispetto a uno standard. In particolare, nel caso di fenomeni che si assumono essere distribuiti normalmente, il punteggio standardizzato consente di localizzare il soggetto rispetto alla media della popolazione di riferimento.
 
-Il più importante punteggio standardizzato è forse il celebre punto *z*. Moltissime altre tipologie di punteggi, infatti, non sono altro che una riscalatura dei punti *z*, adottata per fare in modo che i valori risultanti appartengano all'insieme dei numeri naturali (ovvero numeri interi positivi). Questo stratagemma consente di escludere la possibilità che un punteggio risulti negativo o contenga una parte decimale, favorendo l'interpretazione clinica del valore. La precisa scalatura del punteggio dipende poi da esigenze specifiche, esattamente come per il punteggio grezzo.
+Il più importante punteggio standardizzato è forse il celebre **punto** ***z***. Moltissime altre tipologie di punteggi, infatti, non sono altro che una riscalatura dei punti *z*, adottata per espanderne la scala e facendo in modo che i valori appartengano all'insieme dei numeri naturali (ovvero numeri interi positivi). Questo stratagemma consente di escludere la possibilità che un punteggio risulti negativo o contenga una parte decimale, favorendo l'interpretazione clinica del valore. La precisa scalatura del punteggio dipende poi da esigenze specifiche, esattamente come per il punteggio grezzo.
 
-La taratura di un test consiste, sostanzialmente, in una o più **tabelle normative** che contengono la corrispondenza fra punteggi grezzi e standardizzati, grazie alle quali sono possibili le operazioni di conversione. Una parte importante del processo di messa a punto di un test psicometrico consiste proprio nella costruzione di queste tabelle.
+La taratura di un test consiste, nella pratica, in una o più **tabelle normative** che contengono la corrispondenza fra punteggi grezzi e standardizzati, grazie alle quali sono possibili le operazioni di conversione. Una parte importante del processo di messa a punto di un test psicometrico riguarda proprio la costruzione di queste tabelle.
 
-Il pacchetto [testing](https://github.com/DavideMassidda/testing) mette a disposizione diverse funzioni utili per la costruzione delle tabelle normative di un test..
+Il pacchetto *testing* mette a disposizione diverse funzioni utili per la costruzione delle tabelle normative di un test.
 
 ``` r
 library(testing)
 ```
 
 Tabelle normative
-=================
+-----------------
 
 Consideriamo un ipotetico test dedicato alla misura di un'abilità cognitiva in età scolare (6-10 anni), che può produrre un punteggio grezzo compreso fra 0 e 30. Supponiamo che il costrutto sottoposto a esame si sviluppi con il progredire dell'età.
 
@@ -33,23 +31,21 @@ s <- c("6" = 4.28, "7" =  4.54, "8" =  4.13, "9" =  4.28, "10" =  3.71)
 
 Potremmo costruire una tabella normativa che consenta di convertire ogni punteggio grezzo ottenibile al test nel corrispettivo punteggio standardizzato.
 
-Da grezzo a standardizzato
---------------------------
+### Da grezzo a standardizzato
 
 Decidiamo di utilizzare come punteggio standardizzato il punto *z*, riscalato in modo tale che la media corrisponda a 10 (invece che a 0) e la deviazione standard a 3 (invece che a 1), quindi nel seguente modo:
 
-$$q = 10 + 3 \\frac{x-\\mu}{\\sigma}$$
- \[1\]
+$q = 10 + 3 \\frac{x-\\mu}{\\sigma}$ \[1\]
 
 dove *x* è il punteggio grezzo osservato, mentre *μ* e *σ* sono rispettivamente la media e la deviazione standard dei punteggi osservati per i bambini del campione inclusi nella specifica fascia d'età di cui si vogliono costruire le norme. I valori 10 e 3 saranno rispettivamente la nuova media e la nuova deviazione standard dei punteggi.
 
-Questo tipo di scalatura dei punti *z*, utilizzato nei test Wechsler con il nome di "scaled scores", è diventato piuttosto celebre nella pratica psicometrica.
+Questo tipo di scalatura dei punti *z*, utilizzato nei [test Wechsler](https://en.wikipedia.org/wiki/Wechsler_Scales) con il nome di "scaled scores", è diventato piuttosto celebre nella pratica psicometrica.
 
 La funzione `stdscore` del pacchetto testing applica la formula \[1\] per convertire una sequenza di punteggi grezzi nel punteggio standardizzato di riferimento. Per effettuare questa operazione è necessario fornire alla funzione:
 
--   `m` e `s`: media e la deviazione standard di riferimento.
+-   `m` e `s`: media e deviazione standard di riferimento.
 
--   `scale`: tipo di scalatura da applicare. Sono disponibili diverse opzioni; nel nostro esempio useremo la scalatura chiamata , che indica i *Wechsler Scaled Scores* (si rimanda all'help per ulteriori dettagli).
+-   `scale`: tipo di scalatura da applicare. Sono disponibili diverse opzioni; nel nostro esempio useremo la scalatura chiamata *scaled*, che indica i *Wechsler Scaled Scores* (si rimanda all'help della funzione per ulteriori dettagli).
 
 ``` r
 tab <- stdscore(30:0, m=m, s=s, scale="scaled")
@@ -106,13 +102,11 @@ Inoltre, come si può osservare in tabella, per una stessa età, a uno stesso pu
 
 Generalmente, quindi, si preferisce procedere in senso opposto, calcolando il punteggio grezzo corrispondente a ogni standardizzato.
 
-Da standardizzato a grezzo
---------------------------
+### Da standardizzato a grezzo
 
 A partire dalla \[1\] possiamo facilmente ottenere la formula inversa che consente di calcolare il punteggio grezzo atteso per ogni punteggio standardizzato di interesse:
 
-$$x = \\mu + \\sigma \\frac{q - 10}{3}$$
- \[2\]
+$x = \\mu + \\sigma \\frac{q - 10}{3}$ \[2\]
 
 Questa formula è implementata nella funzione `rawscore`, che può essere usata per costruire la tabella normativa desiderata.
 
@@ -145,7 +139,7 @@ show(tab)
     ## 2  -3.7533333 -0.03666667  5.946667  9.116667 12.59667
     ## 1  -5.1800000 -1.55000000  4.570000  7.690000 11.36000
 
-Si noti che al punteggio standardizzato 10 corrisponde esattamente il punteggio grezzo medio contenuto nel vettore `m`:
+In tabella sono dunque riportati i punteggi grezzi corrispondenti a ogni possibile punteggio standardizzato. Si noti che al punteggio standardizzato 10 corrisponde esattamente il punteggio grezzo medio contenuto nel vettore `m`:
 
 ``` r
 tab["10",]
@@ -158,8 +152,8 @@ Questa tabella presenta dei problemi simili a quelli visti per la tabella preced
 
 A entrambi i problemi possiamo far fronte applicando a ogni vettore colonna la funzione `rollup`, che consente di racchiudere i punteggi in intervalli.
 
-Intervalli di punteggio
------------------------
+Intervalli di punteggi
+----------------------
 
 Partendo dall'assunto che i punteggi grezzi prodotti da un test possono appartenere esclusivamente all'insieme dei numeri naturali, la funzione `rollup` associa univocamente ogni punteggio standardizzato a un intervallo di punteggi grezzi. La funzione individua entro quali valori grezzi interi sono racchiusi i punteggi tabulati, "arrotolandoli" entro classi di punteggio. La classificazione può essere effettuata arrotolando in senso ascendente (*forward direction*), ovvero partendo dal basso, oppure discendente (*backward direction*), ovvero partendo dall'alto.
 
@@ -230,12 +224,10 @@ show(normTab)
     ## 2   <NA>  <NA>   5-6     9    12
     ## 1      0     0   0-4   0-8  0-11
 
-Si noti che, nella tabella normativa costruita, le ultime due fasce d'età non possono mai ottenere il punteggio standardizzato massimo, perché in entrambi i casi già il punteggio standardizzato 17 è associato al punteggio grezzo massimo. Per ovviare a questo problema, qualora di problema dovesse trattarsi, è possibile importare a TRUE l'argomento `extremes`:
+Si noti che, nella tabella normativa costruita, le ultime due fasce d'età non possono mai ottenere il punteggio standardizzato massimo, perché in entrambi i casi già il punteggio standardizzato 17 è associato al punteggio grezzo massimo. Per ovviare a questo problema, qualora di problema dovesse trattarsi, è possibile impostare a TRUE l'argomento `extremes`:
 
 ``` r
-normTab <- sapply(tab, rollup, x.min=0, x.max=30, direction="forward", extremes=TRUE)
-normTab <- data.frame(normTab, stringsAsFactors=FALSE, check.names=FALSE)
-rownames(normTab) <- rownames(tab)
+normTab[,] <- sapply(tab, rollup, x.min=0, x.max=30, direction="forward", extremes=TRUE)
 ```
 
 L'argomento `extremes`, quando attivato, fa in modo che gli estremi del vettore risultino sempre valorizzati.
@@ -265,16 +257,13 @@ show(normTab)
     ## 2   <NA>  <NA>   5-6     9    12
     ## 1      0     0   0-4   0-8  0-11
 
-Esplosione e implosione della tabella
--------------------------------------
+### Esplosione e implosione della tabella
 
 All'occorrenza, i punteggi contenuti nella tabella normativa prodotta possono essere "srotolati" tramite esplosione o implosione dei vettori colonna.
 
 La funzione `explode` espande ogni intervallo di punteggi estraendo ogni singolo punteggio in esso contenuto. Per fare questo, però, la funzione necessita di sapere se i punteggi sono disposti in senso ascendente o discendente.
 
-Per capire la rilevanza di questo aspetto, si prenda la prima colonna della tabella normativa contenuta in `normTab`. Al punteggio standardizzato 19 corrisponde l'intervallo di punteggi grezzi
-20, 30
-. Se il vettore fosse disposto in senso ascendente, questo intervallo sarebbe da esplodere creando una sequenza di interi che va da 20 a 30; all'opposto, se fosse disposto in senso discendente (come in effetti è), l'intervallo sarebbe da esplodere creando una sequenza di interi che va da 30 a 20. Questa informazione è quindi di fondamentale importanza per il risultato finale.
+Per capire la rilevanza di questo aspetto, si prenda la prima colonna della tabella normativa contenuta in `normTab`. Al punteggio standardizzato 19 corrisponde l'intervallo di punteggi grezzi \[20,30\]. Se il vettore fosse disposto in senso ascendente, questo intervallo sarebbe da esplodere creando una sequenza di interi che va da 20 a 30; all'opposto, se fosse disposto in senso discendente (come in effetti è), l'intervallo sarebbe da esplodere creando una sequenza di interi che va da 30 a 20. Questa informazione è quindi di fondamentale importanza per il risultato finale.
 
 ``` r
 explode(normTab[,"6"], direction="backward")

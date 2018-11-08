@@ -1,10 +1,10 @@
-See tutorials page in [Italian](docs/it/index.md)
+See documentation pages in [Italian](docs/it/index.md).
 
 ## Convenience functions to develop psychometric tests
 
 _testing_ is a package for the R statistical software providing functions to develop psychometric tests. The package can be installed by connecting to this repository by using the package devtools, which must be previously installed.
 
-After you open R, to install the package testing you can run the command:
+After you open R, to install the package _testing_ you can run the command:
 ```r
 devtools::install_github("DavideMassidda/testing")
 ```
