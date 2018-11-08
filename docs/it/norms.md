@@ -35,7 +35,7 @@ Potremmo costruire una tabella normativa che consenta di convertire ogni puntegg
 
 Decidiamo di utilizzare come punteggio standardizzato il punto *z*, riscalato in modo tale che la media corrisponda a 10 (invece che a 0) e la deviazione standard a 3 (invece che a 1), quindi nel seguente modo:
 
-$q = 10 + 3 \\frac{x-\\mu}{\\sigma}$ \[1\]
+*q* = 10 + 3 (*x*-*μ*) / *σ* \[1\]
 
 dove *x* è il punteggio grezzo osservato, mentre *μ* e *σ* sono rispettivamente la media e la deviazione standard dei punteggi osservati per i bambini del campione inclusi nella specifica fascia d'età di cui si vogliono costruire le norme. I valori 10 e 3 saranno rispettivamente la nuova media e la nuova deviazione standard dei punteggi.
 
@@ -106,7 +106,7 @@ Generalmente, quindi, si preferisce procedere in senso opposto, calcolando il pu
 
 A partire dalla \[1\] possiamo facilmente ottenere la formula inversa che consente di calcolare il punteggio grezzo atteso per ogni punteggio standardizzato di interesse:
 
-$x = \\mu + \\sigma \\frac{q - 10}{3}$ \[2\]
+*x* = *μ* + *σ* (*q* - 10) / 3 \[2\]
 
 Questa formula è implementata nella funzione `rawscore`, che può essere usata per costruire la tabella normativa desiderata.
 
