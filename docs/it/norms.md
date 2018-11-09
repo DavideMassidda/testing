@@ -340,8 +340,7 @@ Vogliamo costruire una tabella normativa basata sui ranghi percentili, che conse
 Partiamo dalla variabile `score`. Dato un vettore di punteggi grezzi osservati, la funzione `prank` del pacchetto *testing* calcola il rango percentile corrispondente a ogni valore che gli viene passato nell'argomento `breaks`, individuando la percentuale di osservazioni **minori o uguali** a ogni *breakpoint*.
 
 ``` r
-percent <- prank(task$score, breaks=0:25)
-percent
+prank(task$score, breaks=0:25)
 ```
 
     ##     0     1     2     3     4     5     6     7     8     9    10    11 
