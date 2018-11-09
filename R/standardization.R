@@ -95,7 +95,7 @@ rawscore <- function(q,m,s,scale=c("z","t","nce","iq","scaled","stanine","sten")
 }
 
 # Calcola il rango percentile corrispondente a un punteggio grezzo
-prank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, names=TRUE)
+prank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, out.names=as.character(breaks))
 {
     x <- as.vector(x[!is.na(x)])
     r <- numeric(length(breaks))
@@ -106,8 +106,7 @@ prank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, names=TRUE)
         r <- r*100
     if(!is.null(digits))
         r <- round(r,digits)
-    if(names)
-        names(r) <- breaks
+    names(r) <- out.names
     return(r)
 }
 

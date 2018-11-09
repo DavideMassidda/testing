@@ -3,22 +3,20 @@
 Tabulazione di punteggi normativi
 =================================
 
-Un test deputato alla misura di un costrutto psicologico produce, di base, un punteggio che viene comunemente definito "grezzo". Tale punteggio quantifica su una certa scala di misura il costrutto e la sua metrica può dipendere da molti fattori, quali la variabilità del fenomeno che cerca di catturare, la tipologia e il numero di prove che lo compongono, le convenzioni adottate nella letteratura di riferimento, scelte contestuali alla natura del test.
+Un test deputato alla misura di un costrutto psicologico produce, di base, un punteggio che viene comunemente definito "grezzo". Tale punteggio quantifica su una certa scala di misura il costrutto e la sua metrica può dipendere da molti fattori, quali la variabilità del fenomeno che cerca di catturare, la tipologia e il numero di prove che lo compongono, le convenzioni adottate nella letteratura di riferimento, scelte contestuali alla natura del test, ecc.
 
-Inoltre, il test, se dotato di una "taratura", contiene una serie di riferimenti che permettono di convertire il punteggio grezzo in uno standardizzato. A differenza del punteggio grezzo, quello standardizzato consente di localizzare la prestazione di un soggetto rispetto alla prestazione di una popolazione di riferimento. Tale punteggio è quindi generalmente adottato per verificare come il soggetto si colloca rispetto a uno standard. In particolare, nel caso di fenomeni che si assumono essere distribuiti normalmente, il punteggio standardizzato consente di localizzare il soggetto rispetto alla media della popolazione di riferimento.
+Inoltre, il test, se dotato di una *taratura*, contiene una serie di riferimenti normativi ottenuti a partire dai dati rilevati su un campione rappresentativo di una popolazione di interesse. Queste "norme" perttono di convertire il punteggio grezzo in uno standardizzato.
 
-Il più importante punteggio standardizzato è forse il celebre **punto** ***z***. Moltissime altre tipologie di punteggi, infatti, non sono altro che una riscalatura dei punti *z*, adottata per espanderne la scala e facendo in modo che i valori appartengano all'insieme dei numeri naturali (ovvero numeri interi positivi). Questo stratagemma consente di escludere la possibilità che un punteggio risulti negativo o contenga una parte decimale, favorendo l'interpretazione clinica del valore. La precisa scalatura del punteggio dipende poi da esigenze specifiche, esattamente come per il punteggio grezzo.
+A differenza del punteggio grezzo, il punteggio standardizzato consente di localizzare la prestazione di un soggetto rispetto alla prestazione di una popolazione di riferimento. Tale punteggio è quindi generalmente adottato per verificare come il soggetto si colloca rispetto a uno standard. In particolare, nel caso di fenomeni che si assumono essere distribuiti normalmente, il punteggio standardizzato consente di localizzare il soggetto rispetto alla media della popolazione di riferimento.
 
 La taratura di un test consiste, nella pratica, in una o più **tabelle normative** che contengono la corrispondenza fra punteggi grezzi e standardizzati, grazie alle quali sono possibili le operazioni di conversione. Una parte importante del processo di messa a punto di un test psicometrico riguarda proprio la costruzione di queste tabelle.
 
 Il pacchetto *testing* mette a disposizione diverse funzioni utili per la costruzione delle tabelle normative di un test.
 
-``` r
-library(testing)
-```
+Punti z e derivati
+------------------
 
-Tabelle normative
------------------
+Il più importante punteggio standardizzato è forse il celebre **punto** ***z***. Moltissime altre tipologie di punteggi, infatti, non sono altro che una riscalatura dei punti *z*, adottata per espanderne la scala e facendo in modo che i valori appartengano all'insieme dei numeri naturali (ovvero numeri interi positivi). Questo stratagemma consente di escludere la possibilità che un punteggio risulti negativo o contenga una parte decimale, favorendo l'interpretazione clinica del valore. La precisa scalatura del punteggio dipende poi da esigenze specifiche, esattamente come per il punteggio grezzo.
 
 Consideriamo un ipotetico test dedicato alla misura di un'abilità cognitiva in età scolare (6-10 anni), che può produrre un punteggio grezzo compreso fra 0 e 30. Supponiamo che il costrutto sottoposto a esame si sviluppi con il progredire dell'età.
 
@@ -304,3 +302,64 @@ implode(normTab[,"6"], out.names=rownames(normTab))
     ## 25.0 19.0 17.5 16.0 14.5 13.0 11.5 10.0  9.0  7.5  6.0  4.5  3.0  1.5   NA 
     ##    4    3    2    1 
     ##   NA   NA   NA  0.0
+
+Ranghi percentili
+-----------------
+
+Affrontiamo infine il caso di sistemi di norme basati sui ranghi percentili. Prendiamo come esempio il dataset `task` che contiene due punteggi ottenuti da un ipotetico campione di 30 soggetti a un ipotetico test di abilità.
+
+``` r
+load("task.rda")
+```
+
+``` r
+str(task)
+```
+
+    ## 'data.frame':    30 obs. of  3 variables:
+    ##  $ subject: Factor w/ 30 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ score  : num  25 25 6 9 24 7 25 18 25 9 ...
+    ##  $ errors : num  3 2 0 0 2 0 3 1 3 4 ...
+
+``` r
+head(task)
+```
+
+    ##   subject score errors
+    ## 1       1    25      3
+    ## 2       2    25      2
+    ## 3       3     6      0
+    ## 4       4     9      0
+    ## 5       5    24      2
+    ## 6       6     7      0
+
+La prova richiede al soggetto di eseguire un compito entro un intervallo di tempo prestabilito. L'esaminatore valuta l'esecuzione della prova attribuendole un punteggio compreso fra 0 e 25 (colonna `score`). Il soggetto deve eseguire la prova evitando di commettere errori (il numero di errori è registrato nella colonna `errors`).
+
+Vogliamo costruire una tabella normativa basata sui ranghi percentili, che consenta dunque all'utilizzatore del test di conoscere il rango percentile corrispondente a ogni punteggio grezzo ottenibile. Si presti attenzione al fatto che devono essere normati **tutti i possibili punteggi grezzi** che il test può produrre e non solo quelli osservati nel campione. Per questo motivo, a meno di casi particolari, non è buona prassi basare la costruzione delle tabelle normative sui range osservati.
+
+Partiamo dalla variabile `score`. Dato un vettore di punteggi grezzi osservati, la funzione `prank` del pacchetto *testing* calcola il rango percentile corrispondente a ogni valore che gli viene passato nell'argomento `breaks`, individuando la percentuale di osservazioni **minori o uguali** a ogni *breakpoint*.
+
+``` r
+percent <- prank(task$score, breaks=0:25)
+percent
+```
+
+    ##     0     1     2     3     4     5     6     7     8     9    10    11 
+    ##   0.0   6.7   6.7   6.7   6.7  13.3  20.0  23.3  30.0  36.7  36.7  40.0 
+    ##    12    13    14    15    16    17    18    19    20    21    22    23 
+    ##  43.3  43.3  43.3  46.7  53.3  60.0  66.7  66.7  66.7  66.7  70.0  73.3 
+    ##    24    25 
+    ##  80.0 100.0
+
+Passiamo ora alla colonna `errors`. Questa variabile ha una caratteristica particolare: diversamente da `score`, all'aumentare del valore, la prestazione del soggetto peggiora, perché la variabile rappresenta un conteggio di errori. In casi come questo, per facilitare l'interpretazione dei punteggi prodotti dal test, spesso si preferisce invertire i ranghi percentili, calcolando la percentuale di osservazioni **maggiori o uguali** a ogni *breakpoint*.
+
+Questo può essere fatto sfruttando l'argomento `fun`:
+
+``` r
+prank(task$errors, breaks=0:5, fun=">=")
+```
+
+    ##     0     1     2     3     4     5 
+    ## 100.0  73.3  53.3  33.3  16.7   6.7
+
+Si ricorda che, spesso, variabili che quantificano errori o tempi non sono limitate superiormente, ed è bene ricordarsi di questo aspetto nella tabulazione dei valori.
