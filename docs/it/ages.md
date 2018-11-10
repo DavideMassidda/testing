@@ -1,20 +1,16 @@
 [Torna all'indice](index.md)
 
 Gestione delle età per analisi di test psicometrici
-================
+===================================================
 
 Nel a mettere a punto un test psicometrico per l'età evolutiva spesso si incontrano numerose difficoltà nella gestione delle variabili che codificano per l'età dei bambini. Talvolta tali variabili arrivano rappresentate secondo standard differenti rispetto a quanto richiesto, oppure l'analisi dei dati può necessitare di operazioni di ricodifica verso formati complessi da ottenere.
 
 Il pacchetto [testing](https://github.com/DavideMassidda/testing) contiene alcune funzioni che possono tornare utili in questi casi, pensate per essere flessibili e adattabili a esigenze diverse. Nel presente tutorial vengono mostrati gli usi principali di queste funzioni.
 
-``` r
-library(testing)
-```
-
 Calcolo dell'età compiuta
 =========================
 
-Il modo più semplice per registrare l'età di un gruppo di soggetti è... non registrarla. Ci sono infatti diversi pacchetti R che consentono di calcolare l'età in un preciso istante conoscendo semplicemente la data del giorno della valutazione e la data di nascita dell'individuo. È dunque possibile calcolare l'età di un soggetto a cui è stato somministrato un test conoscendo semplicemente la data di nascita e la data di valutazione. Il calcolo automatizzato dell'età consente di limitare l'influenza dell'errore che può essere commesso attraverso il calcolo manuale, ma presuppone una registrazione rigorosa delle date.
+Il modo più semplice per registrare l'età di un gruppo di soggetti è... non registrarla. Ci sono infatti diversi pacchetti R che consentono di calcolare l'età in un preciso istante conoscendo semplicemente la data del giorno della valutazione e la data di nascita dell'individuo. Il calcolo automatizzato dell'età consente di limitare l'influenza dell'errore che può essere commesso attraverso il calcolo manuale, ma presuppone una registrazione rigorosa delle date.
 
 Il dataset *testdates* contiene la data di nascita (*born*) e la data di somministrazione (*test*) di un test, per un ipotetico gruppo di bambini.
 
@@ -175,7 +171,7 @@ age.completed(testdates$born, testdates$test,
 Conversione dell'età
 ====================
 
-Non sempre le date di nascita e di somministrazione del test sono disponibili. Talvolta l'età arriva già calcolata in formata numerico, mentre altre volte arriva codificata in un formato testuale. Per far fronte a queste evenienze, il pacchetto *testing* dispone di due funzioni che consentono di passare da un formato all'altro, approssimando l'età. Si tratta, in ogni caso, di un'approssimazione: il risultato, per quanto si avvicini all'età corretta, talvolta potrebbe non risultare precisissimo, a causa della perdita di informazione che si ha passando da un formato all'altro.
+Non sempre le date di nascita e di somministrazione del test sono disponibili. Talvolta l'età arriva già calcolata in formato numerico, mentre altre volte arriva codificata in un formato testuale. Per far fronte a queste evenienze, il pacchetto *testing* dispone di due funzioni che consentono di passare da un formato all'altro, approssimando l'età. Si tratta, in ogni caso, di un'approssimazione: il risultato, per quanto si avvicini all'età corretta, talvolta potrebbe non risultare precisissimo, a causa della perdita di informazione che si ha passando da un formato all'altro.
 
 Prima di partire con gli esempi, aggiungiamo al dataset due variabili età, una in formato numerico e una in formato carattere.
 
@@ -313,4 +309,4 @@ table(testdates$group, useNA = "always")
     ## 0:0-1:11 2:0-3:11 3:0-4:11 4:0-5:11     <NA> 
     ##        2        1        3        8        1
 
-Per operazioni di raggruppamento più sofisticate e che richiedono di operare più in profondità con gli intervalli, si rimanda alle funzioni `cut` e `findInterval` del pacchetto `base`.
+Per operazioni di raggruppamento più sofisticate e che richiedono di operare più in profondità con gli intervalli, si rimanda alle funzioni `cut` e `findInterval` del pacchetto *base*.

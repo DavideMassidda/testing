@@ -12,21 +12,23 @@ Warning: testing is a package under development and important changes in the fut
 
 ## Package overview
 
-### Standard scores
+### Scores conversion
 * **`stdscore`** From raw scores to standard scores.
 * **`rawscore`** From standard scores to raw scores.
-* **`std2perc`** Standard scores conversion.
-* **`perc2std`** Percentile conversion.
-* **`prank`** Percentile rank.
+* **`prank`** From observed scores to percentile ranks.
+* **`std2perc`** From standard scores to percentiles.
+* **`perc2std`** From percentiles to standard scores.
+* **`rollup`** Creation of intervals of scores.
+* **`explode`** Explosion of intervals of scores.
+* **`implode`** Implosion of intervals of scores.
 
-### Normative tables
-* **`rollup`** Score intervals.
-* **`explode`** Score explosion.
-* **`implode`** Score implosion.
+### Scores management
+* **`normalize`** Vector rescaling.
+* **`reverse`** Item reversing.
 * **`is.continuous`** Check for continuous vectors.
 * **`is.monotonic`** Check for monotonic vectors.
 
-### Rounding
+### Scores rounding
 * **`integer.round`** Conversion from decimal to integer.
 * **`decimal.floor`** Round a decimal number to the nearest floor for a given decimal position.
 * **`decimal.ceiling`** Round a decimal number to the nearest ceiling for a given decimal position.
@@ -45,12 +47,18 @@ Warning: testing is a package under development and important changes in the fut
 * **`cronbach.strata`** Stratified Cronbach's alpha.
 * **`average.r`** Average reliability coefficient.
 * **`fisher.z`** Fisher's z transformation.
-* **`invfisher.z`** Fisher's z transformation.
+* **`invfisher.z`** Inverse Fisher's z transformation.
 * **`dropitem`** Internal consistency reliability.
 * **`split.half`** Split-half reliability.
 
 ### Content validity
 * **`parallel`** Parallel analysis.
+
+### Data description
+* **`likert.counts`** Likert scale frequencies.
+* **`entropy`** Entropy index.
+* **`se.measure`** Standard error of measurement.
+* **`bubble.plot`** Bubble plot.
 
 ### ROC Analysis
 * **`roc.curve`** ROC curve.
@@ -60,22 +68,12 @@ Warning: testing is a package under development and important changes in the fut
 * **`item.shuffle`** Item shuffling.
 * **`item.split`** Split items.
 
-### Data management
-* **`normalize`** Vector rescaling.
-* **`reverse`** Item reversing.
-* **`write.fwf`** Export data in a fixed-width format.
-
-### Data description
-* **`likert.counts`** Likert scale frequencies.
-* **`entropy`** Entropy index.
-* **`se.measure`** Standard error of measurement.
-
-### Data visualization
-* **`bubble.plot`** Bubble plot.
-
-### Missing data
+### Missing data management
 * **`knn.impute`** Missing data replacement by k-nearest neighbour.
 * **`na.impute`** Missing data imputation.
+
+### Export datasets
+* **`write.fwf`** Export data in a fixed-width format.
 
 ### Data simulation
 * **`sim.attitude`** Random responses for attitude tests.

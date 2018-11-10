@@ -41,7 +41,7 @@ dove *x* è il punteggio grezzo osservato, mentre *μ* e *σ* sono rispettivamen
 
 Questo tipo di scalatura dei punti *z*, utilizzato nei [test Wechsler](https://en.wikipedia.org/wiki/Wechsler_Scales) con il nome di "scaled scores", è diventato piuttosto celebre nella pratica psicometrica.
 
-La funzione `stdscore` del pacchetto testing applica la formula \[1\] per convertire una sequenza di punteggi grezzi nel punteggio standardizzato di riferimento. Per effettuare questa operazione è necessario fornire alla funzione:
+La funzione `stdscore` applica la formula \[1\] per convertire una sequenza di punteggi grezzi nel punteggio standardizzato di riferimento. Per effettuare questa operazione è necessario fornire alla funzione:
 
 -   `m` e `s`: media e deviazione standard di riferimento.
 
@@ -224,7 +224,7 @@ show(normTab)
     ## 2   <NA>  <NA>   5-6     9    12
     ## 1      0     0   0-4   0-8  0-11
 
-Si noti che, nella tabella normativa costruita, le ultime due fasce d'età non possono mai ottenere il punteggio standardizzato massimo, perché in entrambi i casi già il punteggio standardizzato 17 è associato al punteggio grezzo massimo. Per ovviare a questo problema, qualora di problema dovesse trattarsi, è possibile impostare a TRUE l'argomento `extremes`:
+Nella tabella normativa costruita, le ultime due fasce d'età non possono mai ottenere il punteggio standardizzato massimo, perché in entrambi i casi già il punteggio standardizzato 17 è associato al punteggio grezzo massimo. Per ovviare a questo problema, qualora di problema dovesse trattarsi, è possibile impostare a TRUE l'argomento `extremes`:
 
 ``` r
 normTab[,] <- sapply(tab, rollup, x.min=0, x.max=30, direction="forward", extremes=TRUE)
@@ -306,7 +306,7 @@ implode(normTab[,"6"], out.names=rownames(normTab))
 Ranghi percentili
 -----------------
 
-Affrontiamo infine il caso di sistemi di norme basati sui ranghi percentili. Prendiamo come esempio il dataset `task` che contiene due punteggi ottenuti da un ipotetico campione di 30 soggetti a un ipotetico test di abilità.
+Affrontiamo infine il caso di sistemi di norme basati sui ranghi percentili. Prendiamo come esempio il dataset *task* che contiene due punteggi ottenuti da un ipotetico campione di 30 soggetti a un ipotetico test di abilità.
 
 ``` r
 load("task.rda")
@@ -337,7 +337,7 @@ La prova richiede al soggetto di eseguire un compito entro un intervallo di temp
 
 Vogliamo costruire una tabella normativa basata sui ranghi percentili, che consenta dunque all'utilizzatore del test di conoscere il rango percentile corrispondente a ogni punteggio grezzo ottenibile. Si presti attenzione al fatto che devono essere normati **tutti i possibili punteggi grezzi** che il test può produrre e non solo quelli osservati nel campione. Per questo motivo, a meno di casi particolari, non è buona prassi basare la costruzione delle tabelle normative sui range osservati.
 
-Partiamo dalla variabile `score`. Dato un vettore di punteggi grezzi osservati, la funzione `prank` del pacchetto *testing* calcola il rango percentile corrispondente a ogni valore che gli viene passato nell'argomento `breaks`, individuando la percentuale di osservazioni **minori o uguali** a ogni *breakpoint*.
+Partiamo dalla variabile *score*. Dato un vettore di punteggi grezzi osservati, la funzione `prank` calcola il rango percentile corrispondente a ogni valore che gli viene passato nell'argomento `breaks`, individuando la percentuale di osservazioni **minori o uguali** a ogni breakpoint.
 
 ``` r
 prank(task$score, breaks=0:25)
@@ -350,7 +350,7 @@ prank(task$score, breaks=0:25)
     ##    24    25 
     ##  80.0 100.0
 
-Passiamo ora alla colonna `errors`. Questa variabile ha una caratteristica particolare: diversamente da `score`, all'aumentare del valore, la prestazione del soggetto peggiora, perché la variabile rappresenta un conteggio di errori. In casi come questo, per facilitare l'interpretazione dei punteggi prodotti dal test, spesso si preferisce invertire i ranghi percentili, calcolando la percentuale di osservazioni **maggiori o uguali** a ogni *breakpoint*.
+Passiamo ora alla colonna *errors*. Questa variabile ha una caratteristica particolare: diversamente da *score*, all'aumentare del valore, la prestazione del soggetto peggiora, perché la variabile rappresenta un conteggio di errori. In casi come questo, per facilitare l'interpretazione dei punteggi prodotti dal test, spesso si preferisce invertire i ranghi percentili, calcolando la percentuale di osservazioni **maggiori o uguali** a ogni breakpoint.
 
 Questo può essere fatto sfruttando l'argomento `fun`:
 
@@ -362,3 +362,23 @@ prank(task$errors, breaks=0:5, fun=">=")
     ## 100.0  73.3  53.3  33.3  16.7   6.7
 
 Si ricorda che, spesso, variabili che quantificano errori o tempi non sono limitate superiormente, ed è bene ricordarsi di questo aspetto nella tabulazione dei valori.
+
+### Corrispondenza fra ranghi e punti z (e loro derivati)
+
+*testing* dispone di funzioni che permettono di covertire un rango percentile nel corrispettivo punto *z* (o altro punteggio derivato), e viceversa di conoscere quale rango percentile corrisponde a un certo punto *z*.
+
+Utilizzando la funzione `perc2std` possiamo per esempio sapere quale valore *scaled score* corrisponde al rango percentile 75:
+
+``` r
+perc2std(75, scale="scaled")
+```
+
+    ## [1] 12.02347
+
+All'opposto, utilizzando la funzione `std2perc` possiamo sapere quale rango percentile corrisponde a uno *scaled score* di 12:
+
+``` r
+std2perc(12, scale="scaled")
+```
+
+    ## [1] 74.75075

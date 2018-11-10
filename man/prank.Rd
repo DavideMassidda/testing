@@ -14,7 +14,7 @@ prank(x, breaks, fun = "<=", perc = TRUE, digits = 1,
     \item{fun}{Comparison function used to count the data.}
     \item{perc}{Logical. Convert the result in percentages.}
     \item{digits}{Number of decimals for output.}
-    \item{out.names}Names for the elements in the output vector (use \code{NULL} to exclude names).}
+    \item{out.names}{Names for the elements in the output vector (use \code{NULL} to exclude names).}
 }
 \details{
 For each breakpoint, if \code{fun = "<="}, the function returns the percentage of data less than or equal
