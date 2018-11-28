@@ -1,11 +1,14 @@
-\name{prank}
+\name{percrank}
+\alias{percrank}
 \alias{prank}
-\title{Percentile Rank}
+\title{Percentile Ranks}
 \description{
 Calculate the percentile rank corresponding to a breakpoint.
+
+WARNING: the old function \code{prank} is deprecated. Use \code{percrank} instead.
 }
 \usage{
-prank(x, breaks, fun = "<=", perc = TRUE, digits = 1,
+percrank(x, breaks, fun = "<=", perc = TRUE, digits = 1,
     out.names = as.character(breaks))
 }
 \arguments{
@@ -24,5 +27,5 @@ than or equal to the break value.
 \examples{
 data("drive")
 score <- rowSums(drive[,5:10])
-prank(score, seq(5,25,by=5))
+percrank(score, seq(5,25,by=5))
 }

@@ -4,10 +4,16 @@ See documentation pages in [Italian](docs/it/index.md).
 
 _testing_ is a package for the R statistical software providing functions to develop psychometric tests. The package can be installed by connecting to this repository by using the package devtools, which must be previously installed.
 
+``` r
+install.packages("devtools")
+```
+
 After you open R, to install the package _testing_ you can run the command:
+
 ```r
 devtools::install_github("DavideMassidda/testing")
 ```
+
 Warning: testing is a package under development and important changes in the future could be implemented.
 
 ## Package overview
@@ -15,7 +21,7 @@ Warning: testing is a package under development and important changes in the fut
 ### Scores conversion
 * **`stdscore`** From raw scores to standard scores.
 * **`rawscore`** From standard scores to raw scores.
-* **`prank`** From observed scores to percentile ranks.
+* **`percrank`** From observed scores to percentile ranks.
 * **`std2perc`** From standard scores to percentiles.
 * **`perc2std`** From percentiles to standard scores.
 * **`rollup`** Creation of intervals of scores.

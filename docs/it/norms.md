@@ -3,9 +3,17 @@
 Tabulazione di punteggi normativi
 =================================
 
+-   [Punti z e derivati](#punti-z-e-derivati)
+    -   [Da grezzo a standardizzato](#da-grezzo-a-standardizzato)
+    -   [Da standardizzato a grezzo](#da-standardizzato-a-grezzo)
+-   [Intervalli di punteggi](#intervalli-di-punteggi)
+    -   [Esplosione e implosione della tabella](#esplosione-e-implosione-della-tabella)
+-   [Ranghi percentili](#ranghi-percentili)
+-   [Corrispondenza fra ranghi e punti z](#corrispondenza-fra-ranghi-e-punti-z)
+
 Un test deputato alla misura di un costrutto psicologico produce, di base, un punteggio che viene comunemente definito "grezzo". Tale punteggio quantifica su una certa scala di misura il costrutto e la sua metrica può dipendere da molti fattori, quali la variabilità del fenomeno che cerca di catturare, la tipologia e il numero di prove che lo compongono, le convenzioni adottate nella letteratura di riferimento, scelte contestuali alla natura del test, ecc.
 
-Inoltre, il test, se dotato di una *taratura*, contiene una serie di riferimenti normativi ottenuti a partire dai dati rilevati su un campione rappresentativo di una popolazione di interesse. Queste "norme" perttono di convertire il punteggio grezzo in uno standardizzato.
+Inoltre, il test, se dotato di una *taratura*, contiene una serie di riferimenti normativi ottenuti a partire dai dati rilevati su un campione rappresentativo di una popolazione di interesse. Queste "norme" permettono di convertire il punteggio grezzo in uno standardizzato.
 
 A differenza del punteggio grezzo, il punteggio standardizzato consente di localizzare la prestazione di un soggetto rispetto alla prestazione di una popolazione di riferimento. Tale punteggio è quindi generalmente adottato per verificare come il soggetto si colloca rispetto a uno standard. In particolare, nel caso di fenomeni che si assumono essere distribuiti normalmente, il punteggio standardizzato consente di localizzare il soggetto rispetto alla media della popolazione di riferimento.
 
@@ -33,19 +41,25 @@ Potremmo costruire una tabella normativa che consenta di convertire ogni puntegg
 
 ### Da grezzo a standardizzato
 
-Decidiamo di utilizzare come punteggio standardizzato il punto *z*, riscalato in modo tale che la media corrisponda a 10 (invece che a 0) e la deviazione standard a 3 (invece che a 1), quindi nel seguente modo:
+Decidiamo di utilizzare come punteggio standardizzato il punto *z*, riscalato in modo tale che la media dellle osservazioni corrisponda a 10 (invece che a 0) e la deviazione standard a 3 (invece che a 1), quindi nel seguente modo:
 
-*q* = 10 + 3 (*x*-*μ*) / *σ* \[1\]
+*q* = 10 + 3 (*x* - *μ*) / *σ* `[1]`
 
 dove *x* è il punteggio grezzo osservato, mentre *μ* e *σ* sono rispettivamente la media e la deviazione standard dei punteggi osservati per i bambini del campione inclusi nella specifica fascia d'età di cui si vogliono costruire le norme. I valori 10 e 3 saranno rispettivamente la nuova media e la nuova deviazione standard dei punteggi.
 
 Questo tipo di scalatura dei punti *z*, utilizzato nei [test Wechsler](https://en.wikipedia.org/wiki/Wechsler_Scales) con il nome di "scaled scores", è diventato piuttosto celebre nella pratica psicometrica.
 
-La funzione `stdscore` applica la formula \[1\] per convertire una sequenza di punteggi grezzi nel punteggio standardizzato di riferimento. Per effettuare questa operazione è necessario fornire alla funzione:
+La funzione `stdscore` applica la formula `[1]` per convertire una sequenza di punteggi grezzi nel punteggio standardizzato di riferimento. Per effettuare questa operazione è necessario fornire alla funzione:
 
--   `m` e `s`: media e deviazione standard di riferimento.
+-   Il vettore che contiene i punteggi grezzi da convertire, che possono essere dei punti osservati o dei punti che si intende fissare in una tabella normativa.
+
+-   `m` e `s`: la media e la deviazione standard di riferimento (se non fornite, saranno calcolate a partire dal vettore di punteggi grezzi).
 
 -   `scale`: tipo di scalatura da applicare. Sono disponibili diverse opzioni; nel nostro esempio useremo la scalatura chiamata *scaled*, che indica i *Wechsler Scaled Scores* (si rimanda all'help della funzione per ulteriori dettagli).
+
+**NOTA \#1** Una tabella normnativa deve fornire la conversione di **tutti** i possibili punteggi grezzi che il test può produrre e non solo quelli osservati nel campione disponibile.
+
+**NOTA \#2** Spesso le tabelle normative sono disposte in senso decrescente, ponendo i punteggi alti in testa e i punteggi bassi ai piedi.
 
 ``` r
 tab <- stdscore(30:0, m=m, s=s, scale="scaled")
@@ -90,13 +104,13 @@ show(tab)
 
 La tabella riporta il punteggio standardizzato corrispondente a ogni punteggio grezzo ottenibile (righe), per ogni fascia d'età (colonne).
 
-La tabella, tuttavia, presenta qualche problema. In primo luogo, generalmente l'interpretazione clinica dei punteggi standardizzati viene effettuata arrotondando i valori all'intero più vicino. Tale problema potrebbe essere facilmente superato impostando a TRUE l'argomento `integer`, nel seguente modo:
+La tabella, così com'è ora, presenta qualche problema. In primo luogo, generalmente l'interpretazione clinica dei punteggi standardizzati viene effettuata arrotondando i valori all'intero più vicino. Tale problema potrebbe essere facilmente superato impostando a TRUE l'argomento `integer`, nel seguente modo:
 
 ``` r
 tab <- stdscore(30:0, m=m, s=s, scale="scaled", integer=TRUE)
 ```
 
-Tuttavia, questo non sarebbe sufficiente. Dato che punti *z* inferiori a -3 e superiori a 3 sono molto rari da osservare, generalmente le norme per valori che eccedono questi limiti vengono omesse. Da ciò deriva che sarebbe superfluo presentare i criteri di conversione da grezzo a standardizzato nel caso di scaled score inferiori a 1 (risultato di −3 \* 3 + 10) e superiori a 19 (risultato di 3\*3+10).
+Tuttavia, questo non sarebbe sufficiente. Dato che punti *z* inferiori a -3 e superiori a 3 sono molto rari da osservare, generalmente le norme per valori che eccedono questi limiti vengono omesse. Da ciò deriva che sarebbe superfluo presentare i criteri di conversione da grezzo a standardizzato nel caso di *scaled score* inferiori a 1 (risultato di −3 \* 3 + 10) e superiori a 19 (risultato di 3\*3+10).
 
 Inoltre, come si può osservare in tabella, per una stessa età, a uno stesso punteggio standardizzato possono corrispondere punteggi grezzi diversi: quest'ambiguità andrebbe evitata.
 
@@ -104,9 +118,9 @@ Generalmente, quindi, si preferisce procedere in senso opposto, calcolando il pu
 
 ### Da standardizzato a grezzo
 
-A partire dalla \[1\] possiamo facilmente ottenere la formula inversa che consente di calcolare il punteggio grezzo atteso per ogni punteggio standardizzato di interesse:
+A partire dalla `[1]` possiamo facilmente ottenere la formula inversa che consente di calcolare il punteggio grezzo atteso per ogni punteggio standardizzato di interesse:
 
-*x* = *μ* + *σ* (*q* - 10) / 3 \[2\]
+*x* = *μ* + *σ* (*q* - 10) / 3 `[2]`
 
 Questa formula è implementata nella funzione `rawscore`, che può essere usata per costruire la tabella normativa desiderata.
 
@@ -189,7 +203,7 @@ data.frame(
     ## 2  -3.7533333    <NA>     <NA>
     ## 1  -5.1800000       0     <NA>
 
-Si presti molta attenzione a due aspetti. Il primo è che non a tutti i punteggi standardizzati è associato un punteggio grezzo, ma si possono verificare dei salti (identificati dai valori mancanti). Il secondo è che sia il metodo *forward* che quello *backward*, nonostante portino a risultati leggermente differenti, sono da considerare entrambi validi: la scelta del metodo dovrebbe essere guidata da ragionati fondamenti teorici.
+Si presti molta attenzione a due aspetti. Il primo è che non a tutti i punteggi standardizzati è associato un punteggio grezzo, ma si possono verificare dei salti (identificati dai valori mancanti). Il secondo è che sia il metodo *forward* che quello *backward*, nonostante portino a risultati leggermente differenti, sono da considerarsi entrambi validi: la scelta del metodo dovrebbe essere guidata da ragionati fondamenti teorici.
 
 Possiamo applicare la funzione `rollup` a tutte le colonne della tabella normativa facendo uso del comando `sapply`:
 
@@ -335,12 +349,12 @@ head(task)
 
 La prova richiede al soggetto di eseguire un compito entro un intervallo di tempo prestabilito. L'esaminatore valuta l'esecuzione della prova attribuendole un punteggio compreso fra 0 e 25 (colonna `score`). Il soggetto deve eseguire la prova evitando di commettere errori (il numero di errori è registrato nella colonna `errors`).
 
-Vogliamo costruire una tabella normativa basata sui ranghi percentili, che consenta dunque all'utilizzatore del test di conoscere il rango percentile corrispondente a ogni punteggio grezzo ottenibile. Si presti attenzione al fatto che devono essere normati **tutti i possibili punteggi grezzi** che il test può produrre e non solo quelli osservati nel campione. Per questo motivo, a meno di casi particolari, non è buona prassi basare la costruzione delle tabelle normative sui range osservati.
+Vogliamo costruire una tabella normativa basata sui ranghi percentili, che consenta dunque all'utilizzatore del test di conoscere il rango percentile corrispondente a ogni punteggio grezzo ottenibile.
 
-Partiamo dalla variabile *score*. Dato un vettore di punteggi grezzi osservati, la funzione `prank` calcola il rango percentile corrispondente a ogni valore che gli viene passato nell'argomento `breaks`, individuando la percentuale di osservazioni **minori o uguali** a ogni breakpoint.
+Partiamo dalla variabile *score*. Dato un vettore di punteggi grezzi osservati, la funzione `percrank` calcola il rango percentile corrispondente a ogni valore che gli viene passato nell'argomento `breaks`, individuando la percentuale di osservazioni **minori o uguali** a ogni breakpoint.
 
 ``` r
-prank(task$score, breaks=0:25)
+percrank(task$score, breaks=0:25)
 ```
 
     ##     0     1     2     3     4     5     6     7     8     9    10    11 
@@ -355,7 +369,7 @@ Passiamo ora alla colonna *errors*. Questa variabile ha una caratteristica parti
 Questo può essere fatto sfruttando l'argomento `fun`:
 
 ``` r
-prank(task$errors, breaks=0:5, fun=">=")
+percrank(task$errors, breaks=0:5, fun=">=")
 ```
 
     ##     0     1     2     3     4     5 
@@ -363,7 +377,8 @@ prank(task$errors, breaks=0:5, fun=">=")
 
 Si ricorda che, spesso, variabili che quantificano errori o tempi non sono limitate superiormente, ed è bene ricordarsi di questo aspetto nella tabulazione dei valori.
 
-### Corrispondenza fra ranghi e punti z (e loro derivati)
+Corrispondenza fra ranghi e punti z
+-----------------------------------
 
 *testing* dispone di funzioni che permettono di covertire un rango percentile nel corrispettivo punto *z* (o altro punteggio derivato), e viceversa di conoscere quale rango percentile corrisponde a un certo punto *z*.
 
@@ -382,3 +397,5 @@ std2perc(12, scale="scaled")
 ```
 
     ## [1] 74.75075
+
+I valori restituiti rappresentano, chiaramente, un calcolo puramente teorico basato sulle proprietà della distribuzione normale. Più i dati osservati si avvicinano alla normalità distributiva, più i valori restituiti dalle due funzioni di conversione saranno rappresentativi della situazione reale.

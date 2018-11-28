@@ -3,6 +3,18 @@
 Gestione delle età per analisi di test psicometrici
 ===================================================
 
+-   [Calcolo dell'età compiuta](#calcolo-delletà-compiuta)
+    -   [Units](#units)
+    -   [Depth](#depth)
+    -   [Output](#output)
+    -   [La funzione age.completed](#la-funzione-age.completed)
+    -   [Esempi](#esempi)
+-   [Conversione dell'età](#conversione-delletà)
+    -   [Da carattere a numerico](#da-carattere-a-numerico)
+    -   [Da numerico a carattere](#da-numerico-a-carattere)
+-   [Raggruppamento per età](#raggruppamento-per-età)
+    -   [La funzione age.segment](#la-funzione-age.segment)
+
 Nel a mettere a punto un test psicometrico per l'età evolutiva spesso si incontrano numerose difficoltà nella gestione delle variabili che codificano per l'età dei bambini. Talvolta tali variabili arrivano rappresentate secondo standard differenti rispetto a quanto richiesto, oppure l'analisi dei dati può necessitare di operazioni di ricodifica verso formati complessi da ottenere.
 
 Il pacchetto [testing](https://github.com/DavideMassidda/testing) contiene alcune funzioni che possono tornare utili in questi casi, pensate per essere flessibili e adattabili a esigenze diverse. Nel presente tutorial vengono mostrati gli usi principali di queste funzioni.
@@ -51,7 +63,7 @@ Visualizzando la struttura del dataset possiamo notare come entrambe le date non
 
 Prima di partire con il calcolo dell'età, ci sono alcune importanti decisioni da prendere.
 
-units
+Units
 -----
 
 La prima scelta che dobbiamo fare riguarda l'unità di misura da adottare per esprimere l'età. *testing* fornisce due alternative: **anni** compiuti oppure **mesi** compiuti. I giorni non sono disponibili semplicemente perché si tratta di un caso banale per il quale è sufficiente calcolare lo scarto fra la data del test e quella di nascita, ovvero:
@@ -64,14 +76,14 @@ with(testdates, as.Date(test) - as.Date(born) )
     ##  [1] 1536  407 1843 1291 1762 1397 1402 1087 3289   29 1840 1846 1879 1806
     ## [15] 2172
 
-depth
+Depth
 -----
 
 La seconda scelta riguarda la profondità del formato in cui l'età deve essere espressa. Per esempio, potremmo non accontentarci di esprimere l'età in anni compiuti, ma vorremmo anche tenere traccia dei mesi compiuti, se non dei giorni, così da poter ordinare per età soggetti nati nello stesso anno o nello stesso mese.
 
 Il primo soggetto inserito nella tabella *testdates*, nato il 17 febbraio del 2008 e valutato il 2 maggio del 2012, ha 4 anni, ma potremmo anche specificare meglio e dire che ha 4 anni e 2 mesi, come potremmo spingerci ancora più in profondità e dire che ha 4 anni, 2 mesi e 15 giorni compiuti.
 
-output
+Output
 ------
 
 L'ultima scelta da prendere riguarda il formato in cui esprimere l'età.
@@ -82,8 +94,8 @@ In alternativa, potremmo scegliere di esprimere l'età attraverso un formato **n
 
 Considerando che 3 anni corrispondono a 36 mesi, l'età di questo bambino potrebbe essere espressa anche come 42.0, ovvero i 36 mesi che corrispondono a 6 anni più i successivi 6 mesi.
 
-age.completed
--------------
+La funzione age.completed
+-------------------------
 
 La funzione che calcola l'età a partire dalle date di nascita e di valutazione è `age.completed`. La funzione richiede che siano specificati gli argomenti `units`, `depth` e `output`, secondo le scelte prese seguendo quanto descritto sopra. Nel calcolo vengono considerati anche gli anni bisestili, aggiustando opportunamente il risultato. Di seguito sono descritti nel dettaglio gli argomenti.
 
@@ -95,7 +107,7 @@ La funzione che calcola l'età a partire dalle date di nascita e di valutazione 
 
 A eccezione di `born` e `test`, tutte le opzioni dispongono di valori predefiniti. Si rimanda all'help della funzione per ulteriori informazioni.
 
-esempi
+Esempi
 ------
 
 Età in formato numerico in cui la parte intera rappresenta il numero di anni compiuti e la parte decimale la porzione di anno successivo trascorsa dall'ultimo compleanno, espressa in giorni.
@@ -205,7 +217,7 @@ show(testdates)
     ## 14 2007-02-04 2012-01-15 4.94520548   4:11
     ## 15 2007-02-04 2013-01-15 5.94535519   5:11
 
-da carattere a numerico
+Da carattere a numerico
 -----------------------
 
 La funzione `age.numeric` consente di convertire in formato numerico un'età espressa in formato carattere, assumendo il simbolo *due punti* come separatore fra i livelli di profondità.
@@ -230,7 +242,7 @@ age.numeric(testdates$ageChr,
 
 Si noti che, dal momento che il vettore di partenza non conteneva l'informazione sui giorni compiuti, la sua conversione in numero non poteva essere fatta raggiungendo i giorni come livello di profondità, per cui si era obbligati a fermarsi ai mesi.
 
-da numerico a carattere
+Da numerico a carattere
 -----------------------
 
 Volendo effettuare l'operazione inversa, ovvero convertire delle età da formato numerico a formato carattere, possiamo utilizzare la funzione `age.character`. Gli argomenti di cui la funzione necessita per lavorare sono gli stessi descritti per la funzione `age.numeric`, ma se ne aggiunge uno:
@@ -258,8 +270,8 @@ La funzione suddivide un vettore d'età in intervalli chiusi a sinistra e aperti
 
 Il risultato è un nuovo vettore che indica, per ogni soggetto, in quale gruppo si trova.
 
-age.segment
------------
+La funzione age.segment
+-----------------------
 
 La funzione richiede quattro argomenti:
 
@@ -268,10 +280,7 @@ La funzione richiede quattro argomenti:
 -   `labels`: etichette da attribuire a ogni fascia d'età.
 -   `factor`: specifica se restituire o meno un vettore di tipo fattore, in cui i livelli sono ordinati in senso crescente per età (default: TRUE).
 
-esempio
--------
-
-Dividiamo i soggetti in cinque fasce d'età:
+Proviamo a dividere i soggetti in cinque fasce d'età:
 
 ``` r
 testdates$group <- age.segment(testdates$ageChr,
