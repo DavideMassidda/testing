@@ -1,4 +1,4 @@
-## Funzioni di supporto per lo sviluppo di test psicometrici
+# Funzioni di supporto per lo sviluppo di test psicometrici
 
 _testing_ è un pacchetto per il software statistico R, che fornisce funzioni per lo sviluppo di test psicometrici. Può essere installato connettendosi direttamente a questo repository sfruttando il pacchetto devtools, che deve essere preventivamente installato.
 
@@ -12,8 +12,7 @@ Aperto R, per instllare il pacchetto testing è sufficiente lanciare il comando:
 devtools::install_github("DavideMassidda/testing")
 ```
 
-Introduzione
-============
+## Introduzione
 
 _testing_ è una collezione di funzioni R per la messa a punto di strumenti psicometrici. _testing_ non è sostitutivo di altri più celebri pacchetti, come [_psych_](https://cran.r-project.org/web/packages/psych/index.html) (dal quale dipende), ma va considerato come una loro integrazione.
 
@@ -25,7 +24,7 @@ Nato da una disordinata raccolta di comandi sparsi all’interno di una moltitud
 
 Per qualsiasi genere di richiesta o segnalazione, puoi aprire un _issue_ nell’apposita sezione oppure puoi scrivere personalmente all’autore, che puoi contattare anche qualora volessi entrare a far parte del progetto come sviluppatore o per rimanere aggiornato sull'evoluzione pacchetto (e-mail: _davide.massidda_ [at] _gmail.com_).
 
-Tutorial disponibili
-====================
+## Tutorial disponibili
+
 + [Tabulazione di punteggi](norms.md)
 + [Gestione delle età](ages.md)
