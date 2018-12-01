@@ -15,7 +15,7 @@ average.r(r)
 Only positive values are allowed.
 }
 \seealso{
-\code{\link[testing]{fisher.z}}, \code{\link[testing]{cronbach.alpha}}
+\code{\link[testing]{cronbach.alpha}}
 }
 \examples{
 average.r(c(0.8,0.85,0.9))
