@@ -43,14 +43,8 @@ splithalf <- function(x, set1=seq(1,ncol(x),by=2))
     return(r)
 }
 
-fisher.z <- function(r)
-    0.5*log((1+r)/(1-r))
-
-invfisher.z <- function(z)
-    (exp(2*z)-1)/(exp(2*z)+1)
-
 average.r <- function(r)
-    invfisher.z(mean(fisher.z(c(r))))
+    tanh(mean(atanh(c(r)))) # atanh, tanh: Fisher's z transformation and its inverse
 
 dropitem <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=sum)
 {

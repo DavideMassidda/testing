@@ -28,7 +28,7 @@ Warning: testing is a package under development and important changes in the fut
 * **`explode`** Explosion of intervals of scores.
 * **`implode`** Implosion of intervals of scores.
 
-### Scores management
+### Scores arrangement
 * **`normalize`** Vector rescaling.
 * **`reverse`** Item reversing.
 * **`is.continuous`** Check for continuous vectors.
@@ -41,6 +41,10 @@ Warning: testing is a package under development and important changes in the fut
 * **`integer.floor`** Round a decimal number to the nearest integer floor.
 * **`integer.ceiling`** Round a decimal number to the nearest integer ceiling.
 
+### ROC Analysis
+* **`roc.curve`** ROC curve.
+* **`roc.table`** Receiver Operating Characteristic.
+
 ### Management of ages
 * **`age.completed`** Age Calculation.
 * **`age.numeric`** Age Conversion: from character to numeric.
@@ -52,10 +56,8 @@ Warning: testing is a package under development and important changes in the fut
 * **`cronbach.alpha`** Cronbach's alpha.
 * **`cronbach.strata`** Stratified Cronbach's alpha.
 * **`average.r`** Average reliability coefficient.
-* **`fisher.z`** Fisher's z transformation.
-* **`invfisher.z`** Inverse Fisher's z transformation.
 * **`dropitem`** Internal consistency reliability.
-* **`split.half`** Split-half reliability.
+* **`splithalf`** Split-half reliability.
 
 ### Content validity
 * **`parallel`** Parallel analysis.
@@ -65,10 +67,6 @@ Warning: testing is a package under development and important changes in the fut
 * **`entropy`** Entropy index.
 * **`se.measure`** Standard error of measurement.
 * **`bubble.plot`** Bubble plot.
-
-### ROC Analysis
-* **`roc.curve`** ROC curve.
-* **`roc.table`** Receiver Operating Characteristic.
 
 ### Development of test items
 * **`item.shuffle`** Item shuffling.
