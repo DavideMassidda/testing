@@ -17,7 +17,7 @@ integer.ceiling(x, base=10)
 }
 \arguments{
     \item{x}{A numeric vector.}
-    \item{upper5}{Logical value which rule the rounding in presence of the decimal .5.}
+    \item{upper5}{Logical value that regulates the rounding in presence of the decimal .5.}
     \item{digits}{Integer indicating the number of decimal places to consider.}
     \item{base}{
         Integer value to use as step in rounding. The \code{x} values will be rounded to
