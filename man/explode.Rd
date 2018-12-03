@@ -6,12 +6,10 @@ Converts a sequence of classified scores into a numeric sequence, by exploding t
 included in the intervals.
 }
 \usage{
-explode(x, direction = c("forward", "backward"), sep = "-", out.names = names(x))
+explode(x, sep = "-", out.names = names(x))
 }
 \arguments{
     \item{x}{Numeric vector.}
-    \item{direction}{Specify if the scores are classified in ascending (\code{forward})
-        or descending (\code{backward}) order. Default is \code{forward}.}
     \item{sep}{Symbol used to separate the extremes of an interval.}
     \item{out.names}{Names for the elements in the output vector (use \code{NULL} to exclude names).}
 }
@@ -26,10 +24,17 @@ vector.
 }
 \examples{
 # Example of interval explosion:
-explode("1-3", direction="forward")
-explode("1-3", direction="backward")
-# Example of explosion of scores:
+explode("1-3")
+explode("3-1")
+# Examples of explosion of scores:
 x <- c("19","17-18","","16","15","","14","11-13","10",
        "9","8","","","7","6","5","4","","3","1-2")
-explode(x, direction="backward")
+       cbind(x)
+explode(x)
+x <- c("18-20","21-24","25","26-28")
+cbind(x)
+explode(x)
+x <- rev(x)
+cbind(x)
+explode(x)
 }

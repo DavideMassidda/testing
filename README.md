@@ -18,34 +18,34 @@ Warning: testing is a package under development and important changes in the fut
 
 ## Package overview
 
-### Scores conversion
+### Scoring
 * **`stdscore`** From raw scores to standard scores.
 * **`rawscore`** From standard scores to raw scores.
 * **`percrank`** From observed scores to percentile ranks.
 * **`std2perc`** From standard scores to percentiles.
 * **`perc2std`** From percentiles to standard scores.
+* **`normalize`** (or `normalise`) Vector rescaling.
+* **`reverse`** Item reversing.
+
+### Norming
 * **`rollup`** Creation of intervals of scores.
 * **`explode`** Explosion of intervals of scores.
 * **`implode`** Implosion of intervals of scores.
-
-### Scores arrangement
-* **`normalize`** Vector rescaling.
-* **`reverse`** Item reversing.
 * **`is.continuous`** Check for continuous vectors.
 * **`is.monotonic`** Check for monotonic vectors.
 
-### Scores rounding
+### ROC Analysis
+* **`roc.curve`** Receiver Operating Characteristic curve.
+* **`roc.table`** Receiver Operating Characteristic table.
+
+### Rounding
 * **`integer.round`** Conversion from decimal to integer.
 * **`decimal.floor`** Round a decimal number to the nearest floor for a given decimal position.
 * **`decimal.ceiling`** Round a decimal number to the nearest ceiling for a given decimal position.
 * **`integer.floor`** Round a decimal number to the nearest integer floor.
 * **`integer.ceiling`** Round a decimal number to the nearest integer ceiling.
 
-### ROC Analysis
-* **`roc.curve`** ROC curve.
-* **`roc.table`** Receiver Operating Characteristic.
-
-### Management of ages
+### Aging
 * **`age.completed`** Age Calculation.
 * **`age.numeric`** Age Conversion: from character to numeric.
 * **`age.character`** Age Conversion: from numeric to character.
@@ -58,23 +58,26 @@ Warning: testing is a package under development and important changes in the fut
 * **`average.r`** Average reliability coefficient.
 * **`dropitem`** Internal consistency reliability.
 * **`splithalf`** Split-half reliability.
+* **`se.measure`** Standard error of measurement.
 
 ### Content validity
 * **`parallel`** Parallel analysis.
 
-### Data description
+### Describe scores
 * **`likert.counts`** Likert scale frequencies.
 * **`entropy`** Entropy index.
-* **`se.measure`** Standard error of measurement.
 * **`bubble.plot`** Bubble plot.
 
-### Development of test items
+### Build items
 * **`item.shuffle`** Item shuffling.
 * **`item.split`** Split items.
 
-### Missing data management
+### Missing data
 * **`knn.impute`** Missing data replacement by k-nearest neighbour.
 * **`na.impute`** Missing data imputation.
+
+### Datasets
+* **`drive`** Secure drive project.
 
 ### Export datasets
 * **`write.fwf`** Export data in a fixed-width format.
@@ -82,5 +85,3 @@ Warning: testing is a package under development and important changes in the fut
 ### Data simulation
 * **`sim.attitude`** Random responses for attitude tests.
 
-### Datasets
-* **`drive`** Secure drive project.

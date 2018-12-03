@@ -132,3 +132,19 @@ std2perc <- function(q, scale=c("z","t","nce","iq","scaled","stanine","sten"))
     p <- pnorm(z) * 100
     return(p)
 }
+
+# Riscala un punteggio entro un nuovo minimo e un nuovo massimo
+normalize <- function(x, new.min, new.max, x.min=min(x), x.max=max(x))
+{
+    x.new <- new.min + (new.max - new.min) * (x - x.min)/(x.max - x.min)
+    return(x.new)
+}
+normalise <- normalize
+
+# Inverte un punteggio scambiando massimo con minimo
+reverse <- function(x, x.min=min(x), x.max=max(x))
+{
+    x.new <- x.max-x+x.min
+    return(x.new)
+}
+

@@ -1,3 +1,8 @@
+se.measure <- function(r,s)
+{
+    return(s*sqrt(1-r))
+}
+
 kr20 <- function(x,hit=1)
 {
     x <- na.omit(x)

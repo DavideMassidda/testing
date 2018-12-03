@@ -1,6 +1,6 @@
 \name{roc.curve}
 \alias{roc.curve}
-\title{ROC Curve}
+\title{Receiver Operating Characteristic Curve}
 \description{
 Plot a ROC (Receiver Operating Characteristic) curve.
 }

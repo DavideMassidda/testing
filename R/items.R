@@ -1,5 +1,4 @@
-item.shuffle <-
-function(item, id=NULL, scale=NULL, tolerance=0, fixed=NULL)
+item.shuffle <- function(item, id=NULL, scale=NULL, tolerance=0, fixed=NULL)
 {
     item <- as.character(item)
     if(!is.null(fixed)) {
@@ -50,8 +49,7 @@ function(item, id=NULL, scale=NULL, tolerance=0, fixed=NULL)
     return(out)
 }
 
-item.split <-
-function(item, split="\\. ")
+item.split <- function(item, split="\\. ")
 {
     item <- as.character(item)
     splitted <- unlist(strsplit(item,split))

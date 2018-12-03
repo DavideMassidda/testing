@@ -1,11 +1,13 @@
 \name{normalize}
 \alias{normalize}
+\alias{normalise}
 \title{Vector Rescaling}
 \description{
 Rescale a vector within a new range.
 }
 \usage{
 normalize(x, new.min, new.max, x.min = min(x), x.max = max(x))
+normalise(x, new.min, new.max, x.min = min(x), x.max = max(x))
 }
 \arguments{
     \item{x}{Numeric vector or single value.}

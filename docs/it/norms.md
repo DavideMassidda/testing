@@ -275,12 +275,10 @@ show(normTab)
 
 All'occorrenza, i punteggi contenuti nella tabella normativa prodotta possono essere "srotolati" tramite esplosione o implosione dei vettori colonna.
 
-La funzione `explode` espande ogni intervallo di punteggi estraendo ogni singolo punteggio in esso contenuto. Per fare questo, però, la funzione necessita di sapere se i punteggi sono disposti in senso ascendente o discendente.
-
-Per capire la rilevanza di questo aspetto, si prenda la prima colonna della tabella normativa contenuta in `normTab`. Al punteggio standardizzato 19 corrisponde l'intervallo di punteggi grezzi \[20,30\]. Se il vettore fosse disposto in senso ascendente, questo intervallo sarebbe da esplodere creando una sequenza di interi che va da 20 a 30; all'opposto, se fosse disposto in senso discendente (come in effetti è), l'intervallo sarebbe da esplodere creando una sequenza di interi che va da 30 a 20. Questa informazione è quindi di fondamentale importanza per il risultato finale.
+La funzione `explode` espande ogni intervallo di punteggi estraendo ogni singolo punteggio in esso contenuto.
 
 ``` r
-explode(normTab[,"6"], direction="backward")
+explode(normTab[,"6"])
 ```
 
     ##  [1] 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8
@@ -289,7 +287,7 @@ explode(normTab[,"6"], direction="backward")
 Possiamo anche eseguire l'operazione tenendo traccia del punteggio standardizzato corrispondente a ogni punteggio grezzo:
 
 ``` r
-explode(normTab[,"6"], direction="backward", out.names=rownames(normTab))
+explode(normTab[,"6"], out.names=rownames(normTab))
 ```
 
     ## 19 19 19 19 19 19 19 19 19 19 19 18 17 17 16 15 15 14 13 13 12 11 10 10  9 

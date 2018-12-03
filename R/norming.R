@@ -24,15 +24,19 @@ implode <- function(x, fn=mean, out.names=names(x))
 }
 
 # Srotola una sequenza di punteggi in cui possono essere compresi valori espressi come intervallo
-explode <- function(x, direction=c("forward","backward"), sep="-", out.names=names(x))
+explode <- function(x, sep="-", out.names=names(x))
 {
-    direction <- match.arg(direction)
     if(!is.character(x))
         x <- as.character(x)
+    x <- gsub(" ","",x)
     x <- gsub(sep,":",x)
-    x <- lapply(x, function(x) eval(parse(text=x)))
-    if(direction=="backward")
-        x <- lapply(x, rev)
+    filled <- !is.na(x) & x!=""
+    x <- lapply(x, function(v) eval(parse(text=v)))
+    if(length(filled)>1) {
+        top <- as.integer(sapply(x[which(filled)[c(1,2)]], function(v) v[1]))
+        if(top[1] > top[2])
+            x <- lapply(x, function(v) rev(v))
+    }
     out.names <- rep(out.names, lapply(x, length))
     x <- unlist(x, use.names=FALSE)
     x <- .integer_round(as.numeric(x))
