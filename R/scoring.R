@@ -109,11 +109,6 @@ percrank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, out.names=as.char
     names(r) <- out.names
     return(r)
 }
-prank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, out.names=as.character(breaks))
-{
-    .Deprecated("percrank",package="testing",msg="\'prank\' is deprecated. Use \'percrank\' instead.")
-    percrank(x,breaks,fun,perc,digits,out.names)
-}
 
 # Calcola il percentile teorico corrispondente a un punteggio standardizzato
 perc2std <- function(p, scale=c("z","t","nce","iq","scaled","stanine","sten"))

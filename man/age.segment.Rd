@@ -1,6 +1,6 @@
 \name{age.segment}
 \alias{age.segment}
-\title{Age Segmentation}
+\title{Grouping by Age Segmentation}
 \description{
 The function allows to classify a group of subjects according their age. A a vector of ages, is
 segmented finding the band containing each element.

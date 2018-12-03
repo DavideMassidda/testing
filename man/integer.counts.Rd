@@ -1,25 +1,26 @@
-\name{likert.counts}
+\name{integer.counts}
+\alias{integer.counts}
 \alias{likert.counts}
-\title{Likert Scale Frequencies}
+\title{Count Integer Values}
 \description{
-Given a sequence of responses placed on a Likert-type scale, the function counts the
-number of data for each Likert category.
+Giver a vector of integer values, the function counts the number of data for each integer value
+included within the span of values.
 }
 \usage{
-likert.counts(x, x.min = min(x), x.max = max(x), perc = FALSE, na.keep = TRUE)
+integer.counts(x, x.min = min(x), x.max = max(x), perc = FALSE, na.keep = TRUE)
 }
 \arguments{
-    \item{x}{Numeric vector of responses.}
-    \item{x.min}{Minimum value assigned to the lower category of the scale.}
-    \item{x.max}{Maximum value assigned to the upper category of the scale.}
+    \item{x}{Numeric vector of integers.}
+    \item{x.min}{Minimum observable value.}
+    \item{x.max}{Maximum observable value.}
     \item{perc}{Logical value which specifies if convert the counts in percentages.}
     \item{na.keep}{Logical value which specifies if consider missing data
         when converting counts in percentages (see details).}
 }
 \details{
-The function is simular to \code{table}, but: 1) it returns a vector; 2) it returns the
-counts for all categories included in the range, considering also the categories
-which not compare in the vector of responses; 3) it can convert directly counts in
+The function is similar to \code{table}, but: 1) it returns a vector; 2) it returns the
+counts for all values included in the range, considering also the values
+which not compare in the input vector; 3) it can convert directly counts in
 percentages (\code{perc=T}).
 
 When \code{perc=T}, if \code{na.keep=T}, in the calculus of percentages missing data
@@ -37,12 +38,12 @@ A \code{vector} containing the frequencies.
 # Example with 0-frequency
 x <- c(5,2,1,2,5,2,4,5,4,4,2,1,2,1,4,4,4,1,2,4)
 table(x)
-likert.counts(x,1,5)
+integer.counts(x,1,5)
 # Example with NA's
 x <- c(5,4,2,5,4,2,1,NA,4,3,4,1,5,3,NA,3,3,2,4,3)
-likert.counts(x,1,5)
-likert.counts(x,1,5, perc=TRUE)
+integer.counts(x,1,5)
+integer.counts(x,1,5, perc=TRUE)
 prop.table(table(x, useNA="always"))*100
-likert.counts(x,1,5, perc=TRUE, na.keep=FALSE)
+integer.counts(x,1,5, perc=TRUE, na.keep=FALSE)
 prop.table(table(x))*100
 }

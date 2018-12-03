@@ -25,7 +25,7 @@ Warning: testing is a package under development and important changes in the fut
 * **`std2perc`** From standard scores to percentiles.
 * **`perc2std`** From percentiles to standard scores.
 * **`normalize`** (or `normalise`) Vector rescaling.
-* **`reverse`** Item reversing.
+* **`reverse`** Score reversing.
 
 ### Norming
 * **`rollup`** Creation of intervals of scores.
@@ -46,10 +46,10 @@ Warning: testing is a package under development and important changes in the fut
 * **`integer.ceiling`** Round a decimal number to the nearest integer ceiling.
 
 ### Aging
-* **`age.completed`** Age Calculation.
+* **`age.completed`** Age Calculation from dates.
 * **`age.numeric`** Age Conversion: from character to numeric.
 * **`age.character`** Age Conversion: from numeric to character.
-* **`age.segment`** Age Segmentation.
+* **`age.segment`** Grouping by age segmentation.
 
 ### Reliability
 * **`kr20`** Kuder–Richardson formula 20.
@@ -64,7 +64,7 @@ Warning: testing is a package under development and important changes in the fut
 * **`parallel`** Parallel analysis.
 
 ### Describe scores
-* **`likert.counts`** Likert scale frequencies.
+* **`integer.counts`** Count integer values.
 * **`entropy`** Entropy index.
 * **`bubble.plot`** Bubble plot.
 
@@ -84,4 +84,3 @@ Warning: testing is a package under development and important changes in the fut
 
 ### Data simulation
 * **`sim.attitude`** Random responses for attitude tests.
-
