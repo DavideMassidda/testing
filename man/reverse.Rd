@@ -1,6 +1,6 @@
 \name{reverse}
 \alias{reverse}
-\title{Score Reversing}
+\title{Score reversing}
 \description{
 Reverse the response of a score, inverting the minimum with the maximum.
 }

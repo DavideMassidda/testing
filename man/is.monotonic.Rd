@@ -1,6 +1,6 @@
 \name{is.monotonic}
 \alias{is.monotonic}
-\title{Check for Monotonic Vectors}
+\title{Check for monotony}
 \description{
 Check if the values in a vector are a monotonic sequence.
 }

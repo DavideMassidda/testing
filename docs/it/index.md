@@ -26,5 +26,8 @@ Per qualsiasi genere di richiesta o segnalazione, puoi aprire un _issue_ nell’
 
 ## Tutorial disponibili
 
-+ [Tabulazione di punteggi](norms.md)
-+ [Gestione delle età](ages.md)
++ [Uso e costruzione delle norme di un test](norms0.md)
+    1. [Standardizzazione di punteggi](norms1.md)
+    2. [Tabulazione di riferimenti normativi](norms2.md)
++ [Calcolo e conversione dell'età](ages.md)
+

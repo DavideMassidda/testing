@@ -1,7 +1,7 @@
-[Torna all'indice](index.md)
+[Torna all'indice dei tutorial](index.md)
 
-Gestione delle età per analisi di test psicometrici
-===================================================
+Calcolo e conversione dell'età
+==============================
 
 -   [Calcolo dell'età compiuta](#calcolo-delletà-compiuta)
     -   [Units](#units)
@@ -24,14 +24,14 @@ Calcolo dell'età compiuta
 
 Il modo più semplice per registrare l'età di un gruppo di soggetti è... non registrarla. Ci sono infatti diversi pacchetti R che consentono di calcolare l'età in un preciso istante conoscendo semplicemente la data del giorno della valutazione e la data di nascita dell'individuo. Il calcolo automatizzato dell'età consente di limitare l'influenza dell'errore che può essere commesso attraverso il calcolo manuale, ma presuppone una registrazione rigorosa delle date.
 
-Il dataset *testdates* contiene la data di nascita (*born*) e la data di somministrazione (*test*) di un test, per un ipotetico gruppo di bambini.
+Il dataset *testDates* contiene la data di nascita (*born*) e la data di somministrazione (*test*) di un test, per un ipotetico gruppo di bambini.
 
 ``` r
-load("testdates.rda")
+load("data/testDates.rda")
 ```
 
 ``` r
-show(testdates)
+show(testDates)
 ```
 
     ##          born       test
@@ -52,7 +52,7 @@ show(testdates)
     ## 15 2007-02-04 2013-01-15
 
 ``` r
-str(testdates)
+str(testDates)
 ```
 
     ## 'data.frame':    15 obs. of  2 variables:
@@ -69,7 +69,7 @@ Units
 La prima scelta che dobbiamo fare riguarda l'unità di misura da adottare per esprimere l'età. *testing* fornisce due alternative: **anni** compiuti oppure **mesi** compiuti. I giorni non sono disponibili semplicemente perché si tratta di un caso banale per il quale è sufficiente calcolare lo scarto fra la data del test e quella di nascita, ovvero:
 
 ``` r
-with(testdates, as.Date(test) - as.Date(born) )
+with(testDates, as.Date(test) - as.Date(born) )
 ```
 
     ## Time differences in days
@@ -81,7 +81,7 @@ Depth
 
 La seconda scelta riguarda la profondità del formato in cui l'età deve essere espressa. Per esempio, potremmo non accontentarci di esprimere l'età in anni compiuti, ma vorremmo anche tenere traccia dei mesi compiuti, se non dei giorni, così da poter ordinare per età soggetti nati nello stesso anno o nello stesso mese.
 
-Il primo soggetto inserito nella tabella *testdates*, nato il 17 febbraio del 2008 e valutato il 2 maggio del 2012, ha 4 anni, ma potremmo anche specificare meglio e dire che ha 4 anni e 2 mesi, come potremmo spingerci ancora più in profondità e dire che ha 4 anni, 2 mesi e 15 giorni compiuti.
+Il primo soggetto inserito nella tabella *testDates*, nato il 17 febbraio del 2008 e valutato il 2 maggio del 2012, ha 4 anni, ma potremmo anche specificare meglio e dire che ha 4 anni e 2 mesi, come potremmo spingerci ancora più in profondità e dire che ha 4 anni, 2 mesi e 15 giorni compiuti.
 
 Output
 ------
@@ -113,7 +113,7 @@ Esempi
 Età in formato numerico in cui la parte intera rappresenta il numero di anni compiuti e la parte decimale la porzione di anno successivo trascorsa dall'ultimo compleanno, espressa in giorni.
 
 ``` r
-age.completed(testdates$born, testdates$test,
+age.completed(testDates$born, testDates$test,
     units = "years", depth = "days", output = "n"
 )
 ```
@@ -125,7 +125,7 @@ age.completed(testdates$born, testdates$test,
 Età in formato numerico in cui la parte intera rappresenta il numero di anni compiuti e la parte decimale la porzione di anno successivo trascorsa dall'ultimo compleanno, espressa in mesi.
 
 ``` r
-age.completed(testdates$born, testdates$test,
+age.completed(testDates$born, testDates$test,
     units = "years", depth = "months", output = "n"
 )
 ```
@@ -137,7 +137,7 @@ age.completed(testdates$born, testdates$test,
 Età in formato numerico in cui la parte intera rappresenta il numero di mesi compiuti e la parte decimale la porzione di mese successivo dall'ultimo mese compiuto, espressa in giorni.
 
 ``` r
-age.completed(testdates$born, testdates$test,
+age.completed(testDates$born, testDates$test,
     units = "month", depth = "days", output = "n"
 )
 ```
@@ -149,7 +149,7 @@ age.completed(testdates$born, testdates$test,
 Numero di anni, mesi e giorni compiuti.
 
 ``` r
-age.completed(testdates$born, testdates$test,
+age.completed(testDates$born, testDates$test,
     units = "years", depth = "days", output = "c"
 )
 ```
@@ -161,7 +161,7 @@ age.completed(testdates$born, testdates$test,
 Numero di anni e di mesi compiuti.
 
 ``` r
-age.completed(testdates$born, testdates$test,
+age.completed(testDates$born, testDates$test,
     units = "years", depth = "months", output = "c"
 )
 ```
@@ -172,7 +172,7 @@ age.completed(testdates$born, testdates$test,
 Numero di mesi e di giorni compiuti.
 
 ``` r
-age.completed(testdates$born, testdates$test,
+age.completed(testDates$born, testDates$test,
     units = "month", depth = "days", output = "c"
 )
 ```
@@ -188,16 +188,16 @@ Non sempre le date di nascita e di somministrazione del test sono disponibili. T
 Prima di partire con gli esempi, aggiungiamo al dataset due variabili età, una in formato numerico e una in formato carattere.
 
 ``` r
-testdates$ageNum <- with(testdates,
+testDates$ageNum <- with(testDates,
     age.completed(born, test, units = "years", depth = "days", output = "n")
 )
-testdates$ageChr <- with(testdates,
+testDates$ageChr <- with(testDates,
     age.completed(born, test, units = "years", depth = "months", output = "c")
 )
 ```
 
 ``` r
-show(testdates)
+show(testDates)
 ```
 
     ##          born       test     ageNum ageChr
@@ -228,10 +228,10 @@ La funzione necessita dei seguenti argomenti:
 -   `units`, `depth`: unità di misura e di profondità del vettore da restituire in output.
 -   `use.leap`: valore logico che specifica se correggere per gli anni bisestili.
 
-Per esempio, la colonna ageChr del dataset testdates contiene delle età espresse come anni:mesi. Partendo da questo vettore, vogliamo calcolare l'età dei soggetti in anni compiuti, raggiungendo i giorni come livello di profondità:
+Per esempio, la colonna ageChr del dataset testDates contiene delle età espresse come anni:mesi. Partendo da questo vettore, vogliamo calcolare l'età dei soggetti in anni compiuti, raggiungendo i giorni come livello di profondità:
 
 ``` r
-age.numeric(testdates$ageChr,
+age.numeric(testDates$ageChr,
     origin.units = c("years","months"), units = "years", depth = "days"
 )
 ```
@@ -252,7 +252,7 @@ Volendo effettuare l'operazione inversa, ovvero convertire delle età da formato
 Il valore `origin.depth` interviene soprattutto nei casi in cui l'età è stata codificata saltando un livello di profondità, quindi in cui la parte intera rappresenta il numero di anni compiuti e la parte decimale rappresenta i giorni compiuti (come nella nostra variabile ageNum).
 
 ``` r
-age.character(testdates$ageNum,
+age.character(testDates$ageNum,
     origin.units = "years", origin.depth = "days",
     units = "years", depth = "months"
 )
@@ -283,14 +283,14 @@ La funzione richiede quattro argomenti:
 Proviamo a dividere i soggetti in cinque fasce d'età:
 
 ``` r
-testdates$group <- age.segment(testdates$ageChr,
+testDates$group <- age.segment(testDates$ageChr,
     breaks = c("0:0",      "2:0",      "3:0",      "4:0",    "6:0"),
     labels = c("0:0-1:11", "2:0-3:11", "3:0-4:11", "4:0-5:11"     )
 )
 ```
 
 ``` r
-show(testdates)
+show(testDates)
 ```
 
     ##          born       test     ageNum ageChr    group
@@ -311,7 +311,7 @@ show(testdates)
     ## 15 2007-02-04 2013-01-15 5.94535519   5:11 4:0-5:11
 
 ``` r
-table(testdates$group, useNA = "always")
+table(testDates$group, useNA = "always")
 ```
 
     ## 

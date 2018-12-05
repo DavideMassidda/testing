@@ -6,14 +6,15 @@ Identify the raw scores corresponding to a vector of standard scores.
 }
 \usage{
 rawscore(q, m, s,
-    scale = c("z","t","nce","iq","scaled","stanine","sten"),
-    integer = FALSE, out.names = as.character(q))
+    scale = c("z","t","nce","iq","wss","stanine","sten"),
+    integer = FALSE, out.names = NULL)
 }
 \arguments{
     \item{q}{Vector of standard scores.}
     \item{m}{Mean of observed data.}
-    \item{s}{Standard deviation of observed data.}
-    \item{scale}{Reference scale of the standard scores.}
+    \item{s}{Standard deviation of the population. If \code{NULL}, the mean of \code{x} will be used.}
+    \item{scale}{Reference scale of the population. If \code{NULL}, the standard deviation of \code{x}
+        will be used.}
     \item{integer}{Logical. If \code{TRUE}, data in output will bet rounded to nearest integer.}
     \item{out.names}{Names for the elements in the output vector (use \code{NULL} to exclude names).}
 }

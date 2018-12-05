@@ -1,7 +1,7 @@
 \name{integer.counts}
 \alias{integer.counts}
 \alias{likert.counts}
-\title{Count Integer Values}
+\title{Count integer values}
 \description{
 Giver a vector of integer values, the function counts the number of data for each integer value
 included within the span of values.

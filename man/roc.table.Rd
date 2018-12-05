@@ -1,7 +1,7 @@
 \name{roc.table}
 \alias{roc.table}
 \alias{print.ROC}
-\title{Receiver Operating Characteristic Table}
+\title{Receiver Operating Characteristic table}
 \description{
 Calculate the sensibility and the specificity of a test for candidate cutoffs.
 }

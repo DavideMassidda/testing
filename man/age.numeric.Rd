@@ -1,6 +1,6 @@
 \name{age.numeric}
 \alias{age.numeric}
-\title{Age Conversion: from Character to Numeric}
+\title{Age conversion: from character to numeric}
 \description{
 Converts ages expressed as years, months and days into approximated numeric values.
 }

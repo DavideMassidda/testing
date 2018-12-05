@@ -1,6 +1,6 @@
 \name{na.impute}
 \alias{na.impute}
-\title{Missing Data Imputation}
+\title{Missing data imputation}
 \description{
 Replace missing data by using a single value for each subject or each item.
 }

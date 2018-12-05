@@ -1,9 +1,9 @@
 \name{dropitem}
 \alias{dropitem}
 \alias{print.dropitem}
-\title{Internal Consistency Reliability}
+\title{Internal consistency reliability}
 \description{
-Verify the internal consistency of a scale.
+Verify the internal consistency of a scale by dropping items individually.
 }
 \usage{
 dropitem(x, cor.method = c("pearson","biserial","polyserial"), fn = sum)

@@ -1,8 +1,8 @@
 \name{kr20}
 \alias{kr20}
-\title{Kuder-Richardson Formula 20}
+\title{Kuder-Richardson formula 20}
 \description{
-Calculate the Kuder-Richardson Formula 20.
+Calculate the Kuder-Richardson formula 20.
 }
 \usage{
 kr20(x,hit=1)

@@ -1,6 +1,6 @@
 \name{age.character}
 \alias{age.character}
-\title{Age Conversion: from Numeric to Character}
+\title{Age conversion: from numeric to character}
 \description{
 Converts numeric ages into strings expressing the completed years, months and days.
 }

@@ -1,7 +1,7 @@
 \name{normalize}
 \alias{normalize}
 \alias{normalise}
-\title{Vector Rescaling}
+\title{Vector rescaling}
 \description{
 Rescale a vector within a new range.
 }

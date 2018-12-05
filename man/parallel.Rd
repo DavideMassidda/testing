@@ -2,7 +2,7 @@
 \alias{parallel}
 \alias{print.parallel}
 \alias{plot.parallel}
-\title{Parallel Analysis}
+\title{Parallel analysis}
 \description{
 Identify the number of components/factors starting by a raw data matrix by using the Parallel Analysis.
 }

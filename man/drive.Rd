@@ -1,7 +1,7 @@
 \name{drive}
 \alias{drive}
 \docType{data}
-\title{Secure Drive Project}
+\title{Secure drive project}
 \description{
 Data collected in an Italian secondary school at the end of a cycle of lessons
 regarding the secure drive.

@@ -1,6 +1,6 @@
 \name{implode}
 \alias{implode}
-\title{Score Implosion}
+\title{Score implosion}
 \description{
 Converts a sequence of classified scores into a numeric sequence, by imploding the values
 included in the intervals.

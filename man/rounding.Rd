@@ -4,7 +4,7 @@
 \alias{decimal.ceiling}
 \alias{integer.floor}
 \alias{integer.ceiling}
-\title{Rounding of Numbers}
+\title{Rounding of numbers}
 \description{
 Round a number to the nearest value.
 }

@@ -1,6 +1,6 @@
 \name{bubble.plot}
 \alias{bubble.plot}
-\title{Bubble Plot}
+\title{Bubble plot}
 \description{
 Generate a scatterplot using the frequency of each data to define the size of the dots.
 }

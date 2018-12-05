@@ -1,7 +1,7 @@
 \name{average.r}
 \alias{average.r}
 \alias{average.r}
-\title{Average Reliability Coefficient}
+\title{Average reliability}
 \description{
 Calculate the average reliability coefficient using the Fisher's z transformation.
 }

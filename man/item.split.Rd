@@ -1,6 +1,6 @@
 \name{item.split}
 \alias{item.split}
-\title{Split Items}
+\title{Split items}
 \description{
 Given a character string, splits the identity code (usually a number) from the text of the item.
 }

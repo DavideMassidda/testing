@@ -1,15 +1,28 @@
+# Converte un punteggio grezzo in standardizzato partendo da una tabella normativa
+raw2std <- function(x, std.norm, raw.norm, sep="-")
+{
+    std.norm <- as.character(std.norm)
+    raw.norm <- as.character(raw.norm)
+    norm <- explode(raw.norm, sep=sep, out.names=std.norm)
+    keep <- !is.na(norm)
+    std.norm <- as.vector(norm[keep])
+    raw.norm <- as.integer(names(norm[keep]))
+    x.std <- raw.norm[match(x,std.norm)]
+    return(x.std)
+}
+
 # Data una certa scala, estrae la media e la deviazione standard di riferimento
-.scale_param <- function(scale=c("z","t","nce","iq","scaled","stanine","sten"))
+.scale_param <- function(scale=c("z","t","nce","iq","wss","stanine","sten"))
 {
     scale <- tolower(scale[1])
     scale <- match.arg(scale)
-    m <- switch(scale,"z"=0,"t"=50,"nce"=50,"iq"=100,"scaled"=10,"stanine"=5,"sten"=5.5)
-    s <- switch(scale,"z"=1,"t"=10,"nce"=49/qnorm(0.99),"iq"=15,"scaled"=3,"stanine"=2,"sten"=2)
+    m <- switch(scale,"z"=0,"t"=50,"nce"=50,"iq"=100,"wss"=10,"stanine"=5,"sten"=5.5)
+    s <- switch(scale,"z"=1,"t"=10,"nce"=49/qnorm(0.99),"iq"=15,"wss"=3,"stanine"=2,"sten"=2)
     return(list(m=m,s=s))
 }
 
 # Converte un punteggio grezzo in punteggio standardizzato
-stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","scaled","stanine","sten"),integer=FALSE,out.names=as.character(x))
+stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=NULL)
 {
     if(is.null(m))
         m <- mean(x,na.rm=TRUE)
@@ -53,7 +66,7 @@ stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","scaled","stanin
 }
 
 # Converte un punteggio standardizzato in punteggio grezzo
-rawscore <- function(q,m,s,scale=c("z","t","nce","iq","scaled","stanine","sten"),integer=FALSE,out.names=as.character(q))
+rawscore <- function(q,m,s,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=NULL)
 {
     n <- list("m"=length(m),"s"=length(s))
     if(n$m>1 & n$s==1) {
@@ -111,7 +124,7 @@ percrank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, out.names=as.char
 }
 
 # Calcola il percentile teorico corrispondente a un punteggio standardizzato
-perc2std <- function(p, scale=c("z","t","nce","iq","scaled","stanine","sten"))
+perc2std <- function(p, scale=c("z","t","nce","iq","wss","stanine","sten"))
 {
     pars <- .scale_param(scale=scale)
     z <- qnorm(p/100)
@@ -120,7 +133,7 @@ perc2std <- function(p, scale=c("z","t","nce","iq","scaled","stanine","sten"))
 }
 
 # Calcola il punteggio standardizzato corrispondente a un percentile teorico
-std2perc <- function(q, scale=c("z","t","nce","iq","scaled","stanine","sten"))
+std2perc <- function(q, scale=c("z","t","nce","iq","wss","stanine","sten"))
 {
     pars <- .scale_param(scale=scale)
     z <- (q - pars$m) / pars$s

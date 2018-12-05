@@ -1,6 +1,6 @@
 \name{knn.impute}
 \alias{knn.impute}
-\title{Missing Data Replacement by k-Nearest Neighbour}
+\title{Missing data replacement by k-Nearest Neighbour}
 \description{
 Replacement of missing data for psychological questionnaires structured by Likert-type items.
 }

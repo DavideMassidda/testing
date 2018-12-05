@@ -1,6 +1,6 @@
 \name{age.completed}
 \alias{age.completed}
-\title{Age Calculation from Dates}
+\title{Age calculation from dates}
 \description{
 Calculate the completed age starting by the date of birth and another date (named date of test administration).
 }

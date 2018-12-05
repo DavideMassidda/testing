@@ -1,6 +1,6 @@
 \name{se.measure}
 \alias{se.measure}
-\title{Standard Error of Measurement}
+\title{Standard error of measurement}
 \description{
 Calculate the standard error of measurement (SEM) for a test score.
 }

@@ -22,6 +22,7 @@ Warning: testing is a package under development and important changes in the fut
 * **`stdscore`** From raw scores to standard scores.
 * **`rawscore`** From standard scores to raw scores.
 * **`percrank`** From observed scores to percentile ranks.
+* **`raw2std`** Conversion of raw scores from a norm table.
 * **`std2perc`** From standard scores to percentiles.
 * **`perc2std`** From percentiles to standard scores.
 * **`normalize`** (or `normalise`) Vector rescaling.

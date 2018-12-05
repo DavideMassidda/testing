@@ -1,6 +1,6 @@
 \name{write.fwf}
 \alias{write.fwf}
-\title{Export Data in a Fixed-Width Format}
+\title{Export data in a fixed-width format}
 \description{
 Export a data frame using a fixed-width format. Useful for software as Winsteps.
 }

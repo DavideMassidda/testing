@@ -1,6 +1,6 @@
 \name{explode}
 \alias{explode}
-\title{Score Explosion}
+\title{Score explosion}
 \description{
 Converts a sequence of classified scores into a numeric sequence, by exploding the values
 included in the intervals.

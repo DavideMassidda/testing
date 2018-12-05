@@ -1,6 +1,6 @@
 \name{item.shuffle}
 \alias{item.shuffle}
-\title{Item Shuffling}
+\title{Items shuffling}
 \description{
 Randomize a sequence of items.
 }

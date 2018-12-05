@@ -1,6 +1,6 @@
 \name{rollup}
 \alias{rollup}
-\title{Score Intervals}
+\title{Score intervals}
 \description{
 Classifies a numeric sequence of scores into a sequence of classes of scores.
 }

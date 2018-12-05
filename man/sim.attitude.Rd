@@ -1,6 +1,6 @@
 \name{sim.attitude}
 \alias{sim.attitude}
-\title{RaRandom Responses for Attitude Tests}
+\title{RaRandom responses for attitude tests}
 \description{
 Generate a random patttern of dichotomous responses for an attitude test.
 }

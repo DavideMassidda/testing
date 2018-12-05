@@ -1,6 +1,6 @@
 \name{entropy}
 \alias{entropy}
-\title{Entropy Index}
+\title{Entropy index}
 \description{
 Calculus of the Shannon's etropy index.
 }
