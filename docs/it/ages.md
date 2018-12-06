@@ -1,4 +1,4 @@
-[Torna all'indice dei tutorial](index.md)
+[:rewind:](index.md) [Torna all'indice dei tutorial](index.md)
 
 Calcolo e conversione dell'età
 ==============================
