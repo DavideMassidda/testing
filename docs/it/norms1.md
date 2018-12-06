@@ -32,15 +32,15 @@ Tale formula viene adottata per ricentrare ed espandere la scala dei punteggi st
 
 Il pacchetto *testing* implementa diverse opzioni per la scalatura dei punteggi:
 
-| Codice  | Punteggio                     | Media | Dev. St.       |
-|:--------|:------------------------------|:------|:---------------|
-| z       | *z* Score                     | 0     | 1              |
-| T       | *T* Score                     | 50    | 10             |
-| NCE     | Normal Scale Equivalent Score | 50    | 49/qnorm(0.99) |
-| IQ      | Intelligence Quotient Score   | 100   | 15             |
-| WSS     | Wechsler Scaled Score         | 10    | 3              |
-| Stanine | Standard-nine Score           | 5     | 2              |
-| Sten    | Standard-ten Score            | 5.5   | 2              |
+| Codice  | Punteggio                     | Media | Dev. St. |
+|:--------|:------------------------------|:------|:---------|
+| z       | *z* Score                     | 0     | 1        |
+| T       | *T* Score                     | 50    | 10       |
+| NCE     | Normal Scale Equivalent Score | 50    | ≈ 21     |
+| IQ      | Intelligence Quotient Score   | 100   | 15       |
+| WSS     | Wechsler Scaled Score         | 10    | 3        |
+| Stanine | Standard-nine Score           | 5     | 2        |
+| Sten    | Standard-ten Score            | 5.5   | 2        |
 
 Conversione da parametri normativi
 ----------------------------------

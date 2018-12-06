@@ -55,7 +55,7 @@ Codice  | Punteggio | Media | Dev. St.
 :--- | :--- | :--- | :---
 z | $z$ Score | 0 | 1
 T | *T* Score | 50 | 10
-NCE | Normal Scale Equivalent Score | 50 | 49/qnorm(0.99)
+NCE | Normal Scale Equivalent Score | 50 | $\approx$ 21
 IQ | Intelligence Quotient Score | 100 | 15
 WSS | Wechsler Scaled Score | 10 | 3
 Stanine | Standard-nine Score | 5 | 2
