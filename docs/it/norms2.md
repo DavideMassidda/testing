@@ -13,7 +13,7 @@ Tabulazione di riferimenti normativi
 -   [Norme basate sui ranghi percentili](#norme-basate-sui-ranghi-percentili)
 -   [Corrispondenza fra ranghi e punti z](#corrispondenza-fra-ranghi-e-punti-z)
 
-Un test standardizzato include un sistema di **tabelle normative** che riportano la corrispondenza fra punteggi grezzi e standardizzati, permettendo così di convertire un punteggio grezzo in uno standardizzato ([vai al tutorial](norms1.md)). Una parte importante del processo di messa a punto di un test psicometrico riguarda proprio la costruzione di queste tabelle.
+Un test standardizzato include un sistema di **tabelle normative** che riportano la corrispondenza fra punteggi grezzi e standardizzati, permettendo così di convertire un punteggio grezzo in uno standardizzato. Una parte importante del processo di messa a punto di un test psicometrico riguarda proprio la costruzione di queste tabelle.
 
 Nel costruire una tabella normativa si devono sempre tenere ben presenti alcuni aspetti.
 

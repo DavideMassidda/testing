@@ -16,11 +16,11 @@ Standardizzazione di punteggi
 Punti z e loro derivati
 -----------------------
 
-Il più importante punteggio standardizzato è forse il celebre punto *z*, che viene ottenuto centrando un valore osservato *x* rispetto alla media *μ* della popolazione di riferimento e riscalando il risultato per la deviazione standard *σ* della medesima popolazione:
+Il più importante punteggio standardizzato è probabilmente il celebre punto *z*, che viene ottenuto centrando un valore osservato *x* rispetto alla media *μ* della popolazione di riferimento e riscalando il risultato per la deviazione standard *σ* della medesima popolazione:
 
 *z* = (*x* - *μ*) / *σ*
 
-Rispetto al valore grezzo, il punto *z* consente di interpretare immediatamente come un soggetto si colloca rispetto alla "norma", rappresentata dalla prestazione al test della popolazione di riferimento.
+Rispetto al valore grezzo, il punto *z* consente di capire immediatamente come un soggetto si colloca rispetto alla "norma", rappresentata dalla prestazione al test della popolazione di riferimento.
 
 Moltissime altre tipologie di punteggi non sono altro che una riscalatura dei punti *z*, ottenuta con la generica formula:
 
@@ -28,12 +28,12 @@ Moltissime altre tipologie di punteggi non sono altro che una riscalatura dei pu
 
 in cui *μ*<sub>*n**e**w*</sub> e *σ*<sub>*n**e**w*</sub> sono la nuova centratura e la nuova scala dei punteggi.
 
-Tale formula viene adottata per espandere la scala dei punteggi standardizzati così da renderlì più interpretabili, facendo in modo che i valori possano essere agevolmente ricondotti all'insieme dei numeri naturali (ovvero numeri interi positivi). Queste riscalature consentono di escludere la possibilità che un punteggio risulti negativo o contenga una parte decimale, favorendo l'interpretazione clinica del valore. La precisa metrica del punteggio dipende poi da esigenze specifiche, esattamente come per il punteggio grezzo.
+Tale formula viene adottata per ricentrare ed espandere la scala dei punteggi standardizzati così da renderlì più interpretabili, facendo in modo che i valori possano essere agevolmente ricondotti all'insieme dei numeri naturali (ovvero numeri interi positivi). Queste riscalature consentono di escludere la possibilità che un punteggio risulti negativo o contenga una parte decimale, favorendo l'interpretazione clinica del valore. La precisa metrica del punteggio dipende poi da esigenze specifiche, esattamente come per il punteggio grezzo.
 
 Il pacchetto *testing* implementa diverse opzioni per la scalatura dei punteggi:
 
 | Codice  | Punteggio                     | Media | Dev. St.       |
-|---------|-------------------------------|-------|----------------|
+|:--------|:------------------------------|:------|:---------------|
 | z       | *z* Score                     | 0     | 1              |
 | T       | *T* Score                     | 50    | 10             |
 | NCE     | Normal Scale Equivalent Score | 50    | 49/qnorm(0.99) |
@@ -63,7 +63,7 @@ head(abilityTest)
     ## 5       5    24      2
     ## 6       6     7      0
 
-Supponiamo di conoscere, per ogni gruppo d'età, i parametri normativi, quindi di sapere quale siano la media *μ* e la deviazione standard *σ* della popolazione di riferimento, che salviamo nei due oggetti `m` e `s`:
+Supponiamo di conoscere la media *μ* e la deviazione standard *σ* dei punteggi ottenuti al test dalla popolazione di riferimento, rappresentata dai bambini di 8 anni. Salviamo i due valori nei due oggetti `m` e `s`:
 
 ``` r
 m <- 16.96
@@ -72,7 +72,7 @@ s <- 4.13
 
 ### Da grezzo a standardizzato
 
-Per convertire i punteggi grezzi in punteggi standardizzati a partire dalla media e dalla deviazione standard normative, è possibile utilizzare la funzione `stdscore`:
+Per standardizzare i punteggi a partire dalla media e dalla deviazione standard normative, è possibile utilizzare la funzione `stdscore`:
 
 ``` r
 abilityTest$z_score <- stdscore(abilityTest$score, m=m, s=s, scale="z")
@@ -102,7 +102,7 @@ Grazie alla funzione inversa:
 
 *x* = *μ* + *σ* (*q* - *μ*<sub>*n**e**w*</sub>) / *σ*<sub>*n**e**w*</sub>
 
-è possibile riottenere il punteggio punteggio grezzo corrispondente al suo corrispettivo standardizzato. Questa operazione è implementata nella funzione `rawscore`:
+è possibile riottenere il punteggio grezzo corrispondente a un certo valore standardizzato. Questa operazione è implementata nella funzione `rawscore`:
 
 ``` r
 rawscore(abilityTest$scaled, m=m, s=s, scale="WSS", integer=TRUE)
@@ -114,7 +114,7 @@ rawscore(abilityTest$scaled, m=m, s=s, scale="WSS", integer=TRUE)
 Conversione da tabella normativa
 --------------------------------
 
-In alcuni casi i parametri normativi di media e deviazione standard non sono disponibili e l'unica possibilità di standardizzare un punteggio grezzo prevede di appoggiarsi a una tabella normativa ([vedi tutorial](norms2.md)).
+In alcuni casi i parametri normativi di media e deviazione standard non sono disponibili e l'unica possibilità di standardizzare un punteggio grezzo prevede di appoggiarsi a una tabella normativa.
 
 Immaginiamo di avere a disposizione la tabella normativa del test che contiene i punteggi grezzi corrispondenti a ogni punteggio standardizzato, per ogni fascia d'età:
 
