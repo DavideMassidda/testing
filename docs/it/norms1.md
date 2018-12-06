@@ -1,8 +1,8 @@
-[Torna all'indice dei tutorial](index.md)
+[:rewind:](index.md) [Torna all'indice dei tutorial](index.md)
 
-[Torna a: Uso e costruzione delle norme di un test](norms0.md)
+[:arrow\_backward:](norms0.md) [Uso e costruzione delle norme di un test](norms0.md)
 
-[Prosegui con: Tabulazione di riferimenti normativi](norms2.md)
+[:arrow\_forward:](norms2.md) [Tabulazione di riferimenti normativi](norms2.md)
 
 Standardizzazione di punteggi
 =============================

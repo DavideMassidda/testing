@@ -1,4 +1,8 @@
-[Torna all'indice dei tutorial](index.md)
+[:rewind:](index.md) [Torna all'indice dei tutorial](index.md)
+
+[:arrow\_forward:](norms1.md) [Standardizzazione di punteggi](norms1.md)
+
+[:arrow\_forward:](norms2.md) [Tabulazione di riferimenti normativi](norms2.md)
 
 Uso e costruzione delle norme di un test
 ========================================
@@ -9,8 +13,4 @@ Inoltre, il test, se dotato di una **taratura**, contiene una serie di riferimen
 
 A differenza del punteggio grezzo, il punteggio standardizzato consente di localizzare la prestazione di un soggetto rispetto alla prestazione di una popolazione di riferimento. Tale punteggio è quindi generalmente adottato per verificare come il soggetto si colloca rispetto a uno standard. In particolare, nel caso di fenomeni che si assumono essere distribuiti normalmente, il punteggio standardizzato consente di localizzare il soggetto rispetto alla media della popolazione di riferimento.
 
-Le norme dei test psicometrici sono comunemente basate o sulla distribuzione normale o sui ranghi percentili. Nel primo caso si assume che i dati osservati presentino delle peculiarità che rendolo la distribuzione normale un buon modello di rappresentazione del fenomeno sottoposto a misura, mentre nel secondo caso le norme vengono calcolate prescindendo da uno specifico modello distributivo.
-
-**Tutorial 1:** [Standardizzazione di punteggi](norms1.md)
-
-**Tutorial 2:** [Tabulazione di riferimenti normativi](norms2.md)
+Le norme dei test psicometrici sono comunemente basate o sulla distribuzione normale o sui ranghi percentili. Nel primo caso si assume che i dati osservati presentino delle peculiarità che rendono la distribuzione normale un buon modello di rappresentazione del fenomeno sottoposto a misura, mentre nel secondo caso le norme vengono calcolate prescindendo da uno specifico modello distributivo.
