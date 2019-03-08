@@ -22,7 +22,7 @@ raw2std <- function(x, std.norm, raw.norm, sep="-")
 }
 
 # Converte un punteggio grezzo in punteggio standardizzato
-stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=NULL)
+stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=x)
 {
     if(is.null(m))
         m <- mean(x,na.rm=TRUE)
@@ -66,7 +66,7 @@ stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","wss","stanine",
 }
 
 # Converte un punteggio standardizzato in punteggio grezzo
-rawscore <- function(q,m,s,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=NULL)
+rawscore <- function(q,m,s,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=q)
 {
     n <- list("m"=length(m),"s"=length(s))
     if(n$m>1 & n$s==1) {

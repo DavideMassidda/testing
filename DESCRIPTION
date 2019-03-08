@@ -1,8 +1,8 @@
 Package: testing
 Type: Package
 Title: Psychometric Testing
-Version: 1.7.0
-Date: 2018-12-05
+Version: 1.7.1
+Date: 2019-03-08
 Author: Davide Massidda <d.massidda@kode-solutions.net>
 Maintainer: Davide Massidda <d.massidda@kode-solutions.net>
 Description: Convenience functions to develop psychometric tests.

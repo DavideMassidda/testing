@@ -4,7 +4,7 @@ See documentation pages in [Italian](docs/it/index.md).
 
 _testing_ is a package for the R statistical software providing functions to develop psychometric tests. The package can be installed by connecting to this repository by using the package devtools, which must be previously installed.
 
-``` r
+```r
 install.packages("devtools")
 ```
 

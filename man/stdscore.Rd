@@ -7,7 +7,7 @@ Rescale a vector of raw scores on a giver standard scale.
 \usage{
 stdscore(x, m = NULL, s = NULL,
     scale = c("z","t","nce","iq","wss","stanine","sten"),
-    integer = FALSE, out.names = NULL)
+    integer = FALSE, out.names = x)
 }
 \arguments{
     \item{x}{Vector of raw scores.}

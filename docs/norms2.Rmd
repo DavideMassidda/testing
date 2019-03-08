@@ -191,7 +191,7 @@ Si ricorda che, spesso, variabili che quantificano errori o tempi non sono limit
 
 ## Corrispondenza fra ranghi e punti z
 
-*testing* dispone di funzioni che permettono di covertire un rango percentile nel corrispettivo punto *z* (o altro punteggio derivato), e viceversa di conoscere quale rango percentile corrisponde a un certo punto *z*.
+*testing* dispone di funzioni che permettono di convertire un rango percentile nel corrispettivo punto *z* (o altro punteggio derivato), e viceversa di conoscere quale rango percentile corrisponde a un certo punto *z*.
 
 Utilizzando la funzione `perc2std` possiamo per esempio sapere quale *Wechsler Scaled Score* corrisponde al rango percentile 75:
 
