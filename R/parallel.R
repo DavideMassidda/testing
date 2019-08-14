@@ -3,6 +3,11 @@
     return(numGEN(nRows))
 }
 
+.generate_perm <- function(x, nRows)
+{
+    return(sample(x, size=nRows, replace=FALSE))
+}
+
 .parallel_random <- function(loadMat, emptyMat, nRows, numGEN, fn, corfn, ...)
 {
     # loadMat is used to iterate with apply().
@@ -11,19 +16,20 @@
     return(eigenValues)
 }
 
-.parallel_permutate <- function(loadMat, N, K, V, nRows, nComp, fn, corfn, ...)
+.parallel_perm <- function(loadMat, x, nRows, fn, corfn, ...)
 {
     # loadMat is used to iterate with apply().
-    permMat <- matrix(V[sample(K,size=N,replace=FALSE)],nrow=nRows,ncol=nComp)
-    eigenValues <- fn(corfn(permMat),...)$values
+    x[,] <- apply(x, 2, .generate_perm, nRows)
+    eigenValues <- fn(corfn(x),...)$values
     return(eigenValues)
 }
 
-parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, standard=FALSE, plot=TRUE, fn=eigen, ...)
+parallel <- function(x, iter=1000, ordinal=FALSE, method=c("perm","random"), alpha=0.05, standard=FALSE, plot=TRUE, fn=eigen, ...)
 {
     x <- as.matrix(x)
     nRows <- nrow(x)
     nComp <- ncol(x)
+    method <- match.arg(method)
     if(!ordinal) {
         numGEN <- rnorm
         corfn <- cor
@@ -53,8 +59,7 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method="perm", alpha=0.05, sta
         if(method=="perm") {
             N <- length(x)
             K <- 1:N
-            V <- c(x)
-            randLoad <- apply(randLoad, 2, .parallel_permutate, N, K, V, nRows, nComp, fn, corfn, ...)
+            randLoad <- apply(randLoad, 2, .parallel_perm, x, nRows, fn, corfn, ...)
         }
     }
     randLoad <- t(randLoad)

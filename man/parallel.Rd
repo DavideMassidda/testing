@@ -7,17 +7,17 @@
 Identify the number of components/factors starting by a raw data matrix by using the Parallel Analysis.
 }
 \usage{
-parallel(x, iter = 1000, ordinal = FALSE, method = "perm", alpha = 0.05,
-         standard = FALSE, plot = TRUE, fn = eigen, ...)
+parallel(x, iter = 1000, ordinal = FALSE, method = c("perm", "random"),
+         alpha = 0.05, standard = FALSE, plot = TRUE, fn = eigen, ...)
 }
 \arguments{
     \item{x}{Data frame or matrix of raw data.}
     \item{iter}{Number of iterations.}
     \item{ordinal}{If \code{TRUE}, the function uses the polychoric/tetrachoric correlation
          instead of the Pearson's index (very slow).}
-    \item{method}{Method for random data generation. When \code{method="perm"}, random
-         permutations of observed data are used. When \code{method="random"}, random data
-         normally distributed are generated.}
+    \item{method}{Method for random data generation. When \code{method="perm"}, random permutations
+        of observed data are used (permutation is performed within each column independently).
+        When \code{method="random"}, random data normally distributed are generated.}
     \item{alpha}{Alpha threshold to select the number of components/factors.}
     \item{standard}{If \code{TRUE}, the analysis is performed on standardized data.}
     \item{plot}{Shows the scree plot overlapping the eigen values from the parallel analysis
