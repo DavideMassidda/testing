@@ -52,15 +52,11 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method=c("perm","random"), alp
     rownames(randLoad) <- compLabels
     eigenVal <- fn(corfn(x),...)$values
     names(eigenVal) <- compLabels
-    if(method=="random") {
+    if(method=="perm") {
+        randLoad <- apply(randLoad, 2, .parallel_perm, x, nRows, fn, corfn, ...)
+    } else {
         emptyMat <- matrix(nrow=nRows,ncol=nComp)
         randLoad <- apply(randLoad, 2, .parallel_random, emptyMat, nRows, numGEN, fn, corfn, ...)
-    } else {
-        if(method=="perm") {
-            N <- length(x)
-            K <- 1:N
-            randLoad <- apply(randLoad, 2, .parallel_perm, x, nRows, fn, corfn, ...)
-        }
     }
     randLoad <- t(randLoad)
     z <- qnorm(1-alpha/2)
