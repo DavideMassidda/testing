@@ -46,7 +46,7 @@ parallel <- function(x, iter=1000, ordinal=FALSE, method=c("perm","random"), alp
         }
     }
     if(!ordinal & standard)
-        x <- sapply(x, function(x) as.numeric(scale(x)))
+        x[,] <- apply(x, 2, function(x) as.numeric(scale(x)))
     compLabels <- paste0("c",1:nComp)
     randLoad <- matrix(nrow=nComp,ncol=iter)
     rownames(randLoad) <- compLabels
