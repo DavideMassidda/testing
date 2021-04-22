@@ -5,7 +5,7 @@
 Calculate the Kuder-Richardson formula 20.
 }
 \usage{
-kr20(x,hit=1)
+kr20(x, hit = 1)
 }
 \arguments{
     \item{x}{A data frame in which the rows represents the subjects and the columns the items.}
@@ -15,7 +15,7 @@ kr20(x,hit=1)
 Missing data are treated by listwise deletion.
 }
 \seealso{
-\code{\link[testing]{cronbach.alpha}}, \code{\link[testing]{dropitem}}
+\code{\link[testing]{cronbach_alpha}}, \code{\link[testing]{drop_item}}
 }
 \examples{
 data("drive")

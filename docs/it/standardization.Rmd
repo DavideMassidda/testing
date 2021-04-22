@@ -1,0 +1,143 @@
+---
+title: "Standardizzazione di punteggi"
+subtitle: "Le funzioni del pacchetto testing"
+author: "Davide Massidda, [Kode Srl, Pisa](https://www.kode-solutions.net/it/index.html)"
+date: "`r format(Sys.Date(),'%d %b %Y')`"
+output:
+  md_document:
+    variant: gfm
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    echo=TRUE, warning=FALSE, message=FALSE,
+    fig.width=12, fig.height=6, fig.align='center'
+)
+```
+
+[:rewind:](../../README.md) [Torna all'indice](../../README.md)
+
+```{r, echo=FALSE}
+library("testing")
+```
+
+# Standardizzazione dei punteggi
+
++ [Punti z e loro derivati](#punti-z-e-loro-derivati)
++ [Conversione da parametri normativi](#conversione-da-parametri-normativi)
+    + [Da grezzo a standardizzato](#da-grezzo-a-standardizzato)
+    + [Da standardizzato a grezzo](#da-standardizzato-a-grezzo)
++ [Conversione da tabelle normative](#conversione-da-tabelle-normative)
+
+Un test deputato alla misura di un costrutto psicologico produce, di base, un punteggio che viene comunemente definito **grezzo**. Tale punteggio quantifica su una certa scala di misura il costrutto e la sua metrica può dipendere da molti fattori, quali la variabilità del fenomeno che cerca di catturare, la tipologia e il numero di prove che lo compongono, le convenzioni adottate nella letteratura di riferimento, scelte contestuali alla natura del test, ecc.
+
+Inoltre, il test, se dotato di una **taratura**, contiene una serie di riferimenti normativi ottenuti a partire dai dati rilevati su un campione rappresentativo di una popolazione di interesse. Queste **norme** permettono di convertire il punteggio grezzo in uno **standardizzato**.
+
+A differenza del punteggio grezzo, il punteggio standardizzato consente di localizzare la prestazione di un soggetto rispetto alla prestazione di una popolazione di riferimento. Tale punteggio è quindi generalmente adottato per verificare come il soggetto si colloca rispetto a uno standard. In particolare, nel caso di fenomeni che si assumono essere distribuiti normalmente, il punteggio standardizzato consente di localizzare il soggetto rispetto alla media della popolazione di riferimento.
+
+Le norme dei test psicometrici sono comunemente basate o sulla distribuzione normale o sui ranghi percentili. Nel primo caso si assume che i dati osservati presentino delle peculiarità che rendono la distribuzione normale un buon modello di rappresentazione del fenomeno sottoposto a misura, mentre nel secondo caso le norme vengono calcolate prescindendo da uno specifico modello distributivo.
+
+## Punti z e loro derivati
+
+Il più importante punteggio standardizzato è probabilmente il celebre punto $z$, che viene ottenuto centrando un valore osservato $x$ rispetto alla media $\mu$ della popolazione di riferimento e riscalando il risultato per la deviazione standard $\sigma$ della medesima popolazione:
+
+$z$ = ($x$ - $\mu$) / $\sigma$
+
+Rispetto al valore grezzo, il punto $z$ consente di capire immediatamente come un soggetto si colloca rispetto alla "norma", rappresentata dalla prestazione al test della popolazione di riferimento.
+
+Moltissime altre tipologie di punteggi non sono altro che una riscalatura dei punti $z$, ottenuta con la generica formula:
+
+$q$ = $z$ * $\sigma_{new}$ + $\mu_{new}$
+
+in cui $\mu_{new}$ e $\sigma_{new}$ sono la nuova centratura e la nuova scala dei punteggi.
+
+Tale formula viene adottata per ricentrare ed espandere la scala dei punteggi standardizzati così da renderli più interpretabili, facendo in modo che i valori possano essere agevolmente ricondotti all'insieme dei numeri naturali (ovvero numeri interi positivi). Queste riscalature consentono di escludere la possibilità che un punteggio risulti negativo o contenga una parte decimale, favorendo l'interpretazione clinica del valore. La precisa metrica del punteggio dipende poi da esigenze specifiche, esattamente come per il punteggio grezzo.
+
+Il pacchetto *testing* implementa diverse opzioni per la scalatura dei punteggi:
+
+Codice  | Punteggio | Media | Dev. St.
+:--- | :--- | :--- | :---
+z | $z$ Score | 0 | 1
+T | *T* Score | 50 | 10
+NCE | Normal Scale Equivalent Score | 50 | $\approx$ 21
+IQ | Intelligence Quotient Score | 100 | 15
+WSS | Wechsler Scaled Score | 10 | 3
+Stanine | Standard-nine Score | 5 | 2
+Sten | Standard-ten Score | 5.5 | 2
+
+## Conversione da parametri normativi
+
+Consideriamo un ipotetico test dedicato alla misura di un'abilità cognitiva in età scolare, che può produrre un punteggio grezzo compreso fra 0 e 30. Nel dataset *abilityTest* sono contenuti i risultati ottenuti al test (colonna `score`) da un gruppo di bambini di 8 anni.
+
+```{r}
+data("abilityTest")
+```
+
+```{r}
+head(abilityTest)
+```
+
+Supponiamo di conoscere la media $\mu$ e la deviazione standard $\sigma$ dei punteggi ottenuti al test dalla popolazione di riferimento, rappresentata dai bambini di 8 anni. Salviamo i due valori nei due oggetti `m` e `s`:
+
+```{r}
+m <- 16.96
+s <- 4.13
+```
+
+### Da grezzo a standardizzato
+
+Per standardizzare i punteggi a partire dalla media e dalla deviazione standard normative, è possibile utilizzare la funzione `std_score`:
+
+```{r}
+abilityTest$z_score <- std_score(abilityTest$score, m=m, s=s, scale="z")
+```
+
+Per utilizzare altri tipi di scalatura dei punteggi è possibile manipolare l'argomento `scale`, scegliendo l'opzione desiderata e all'occorrenza impostando l'argomento `integer` uguale a TRUE, così da arrotondare il punteggio risultante all'intero più vicino:
+
+```{r}
+abilityTest$scaled <- std_score(abilityTest$score, m=m, s=s, scale="WSS", integer=TRUE)
+```
+
+```{r}
+head(abilityTest)
+```
+
+### Da standardizzato a grezzo
+
+Grazie alla funzione inversa:
+
+$x$ = $\mu$ + $\sigma$ ($q$ - $\mu_{new}$) / $\sigma_{new}$
+
+È possibile riottenere il punteggio grezzo corrispondente a un certo valore standardizzato. Questa operazione è implementata nella funzione `raw_score`:
+
+```{r}
+raw_score(abilityTest$scaled, m=m, s=s, scale="WSS", integer=TRUE)
+```
+
+## Conversione da tabella normativa
+
+In alcuni casi i parametri normativi di media e deviazione standard non sono disponibili e l'unica possibilità di standardizzare un punteggio grezzo prevede di appoggiarsi a una tabella normativa.
+
+Immaginiamo di avere a disposizione la tabella normativa del test che contiene i punteggi grezzi corrispondenti a ogni punteggio standardizzato, per ogni fascia d'età:
+
+```{r}
+data("normTab")
+```
+
+```{r}
+show(normTab)
+```
+
+Nella tabella, i nomi delle righe riportano la sequenza di punteggi grezzi ottenibili al test, mentre i nomi delle colonne indicano a quale fascia d'età fa riferimento ogni vettore di punteggi grezzi.
+
+La funzione `raw2std` converte un punteggio grezzo in punteggio standardizzato utilizzando come riferimento una tabella normativa. Oltre al vettore di punteggi grezzi da standardizzare, la funzione richiede due argomenti obbligatori:
+
++ `raw.norm`: vettore di punteggi grezzi estratto della tabella normativa;
+
++ `std.norm`: vettore di punteggi standardizzati estratto dalla tabella normativa.
+
+Dato che i dati osservati sono stati raccolti somministrando il test a bambini di 8 anni, utilizziamo la norma per questa fascia d'età come riferimento:
+
+```{r}
+raw2std(abilityTest$score, std.norm=rownames(normTab), raw.norm=normTab[,"8"])
+```

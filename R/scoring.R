@@ -3,7 +3,7 @@ raw2std <- function(x, std.norm, raw.norm, sep="-")
 {
     std.norm <- as.character(std.norm)
     raw.norm <- as.character(raw.norm)
-    norm <- explode(raw.norm, sep=sep, out.names=std.norm)
+    norm <- score_explode(raw.norm, sep=sep, out.names=std.norm)
     keep <- !is.na(norm)
     std.norm <- as.vector(norm[keep])
     raw.norm <- as.integer(names(norm[keep]))
@@ -22,7 +22,7 @@ raw2std <- function(x, std.norm, raw.norm, sep="-")
 }
 
 # Converte un punteggio grezzo in punteggio standardizzato
-stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=x)
+std_score <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=x)
 {
     if(is.null(m))
         m <- mean(x,na.rm=TRUE)
@@ -58,15 +58,15 @@ stdscore <- function(x,m=NULL,s=NULL,scale=c("z","t","nce","iq","wss","stanine",
     }
     if(integer) {
         if(n$m==1)
-            q <- integer.round(q)
+            q <- integer_round(q)
         else
-            q[,] <- apply(q, 2, integer.round)
+            q[,] <- apply(q, 2, integer_round)
     }
     return(q)
 }
 
 # Converte un punteggio standardizzato in punteggio grezzo
-rawscore <- function(q,m,s,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=q)
+raw_score <- function(q,m,s,scale=c("z","t","nce","iq","wss","stanine","sten"),integer=FALSE,out.names=q)
 {
     n <- list("m"=length(m),"s"=length(s))
     if(n$m>1 & n$s==1) {
@@ -98,17 +98,17 @@ rawscore <- function(q,m,s,scale=c("z","t","nce","iq","wss","stanine","sten"),in
     }
     if(integer) {
         if(n$m==1)
-            x <- integer.round(x)
+            x <- integer_round(x)
         else
-            x[,] <- apply(x, 2, integer.round)
+            x[,] <- apply(x, 2, integer_round)
     }
-    
-        
+
+
     return(x)
 }
 
 # Calcola il rango percentile corrispondente a un punteggio grezzo
-percrank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, out.names=as.character(breaks))
+perc_rank <- function(x, breaks, fun="<=", perc=TRUE, digits=1, out.names=as.character(breaks))
 {
     x <- as.vector(x[!is.na(x)])
     r <- numeric(length(breaks))
@@ -155,4 +155,3 @@ reverse <- function(x, x.min=min(x), x.max=max(x))
     x.new <- x.max-x+x.min
     return(x.new)
 }
-

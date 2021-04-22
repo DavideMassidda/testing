@@ -1,19 +1,19 @@
 \name{rounding}
-\alias{integer.round}
-\alias{decimal.floor}
-\alias{decimal.ceiling}
-\alias{integer.floor}
-\alias{integer.ceiling}
+\alias{integer_round}
+\alias{integer_floor}
+\alias{integer_ceiling}
+\alias{decimal_floor}
+\alias{decimal_ceiling}
 \title{Rounding of numbers}
 \description{
 Round a number to the nearest value.
 }
 \usage{
-integer.round(x, upper5 = TRUE)
-decimal.floor(x, digits = 1)
-decimal.ceiling(x, digits = 1)
-integer.floor(x, base=10)
-integer.ceiling(x, base=10)
+integer_round(x, upper5 = TRUE)
+decimal_floor(x, digits = 1)
+decimal_ceiling(x, digits = 1)
+integer_floor(x, base=10)
+integer_ceiling(x, base=10)
 }
 \arguments{
     \item{x}{A numeric vector.}
@@ -24,14 +24,14 @@ integer.ceiling(x, base=10)
         the nearest lower/upper \code{base} value.}
 }
 \details{
-\code{integer.round} rounds a decimal number to the nearest integer. When the decimal
+\code{integer_round} rounds a decimal number to the nearest integer. When the decimal
 is exactly .5, the number is rounded to the upper integer (\code{upper5 = T}).
 The opposite behavior is obtained when \code{upper5 = F}.
 
-\code{decimal.floor} and \code{decimal.ceiling} round a decimal number to the nearest
+\code{decimal_floor} and \code{decimal_ceiling} round a decimal number to the nearest
 decimal digit, specified by \code{digits}.
 
-\code{integer.floor} and \code{integer.ceiling} round a number to the nearest integer
+\code{integer_floor} and \code{integer_ceiling} round a number to the nearest integer
 value specified by \code{base}.
 }
 \seealso{
@@ -39,13 +39,13 @@ value specified by \code{base}.
 }
 \examples{
 x <- c(8.87, 9.26, 10.5, 11.5, 12.5)
-integer.round(x)
-integer.round(x, upper5=FALSE)
-round(x) # round has a different behavior
-decimal.floor(x)
-decimal.ceiling(x)
+integer_round(x)
+integer_round(x, upper5=FALSE)
+round(x) # round has a different behavior for 10.5 and 11.5
+decimal_floor(x)
+decimal_ceiling(x)
 x <- c(1, 9, 24, 32, 59)
-integer.floor(x)
-integer.ceiling(x)
-integer.ceiling(x, base=5)
+integer_floor(x)
+integer_ceiling(x)
+integer_ceiling(x, base=5)
 }

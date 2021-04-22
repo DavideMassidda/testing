@@ -8,9 +8,9 @@
 
 .month_days <- function(year,month)
 {
-    x <- c(31,28,31,30,31,30,31,31,30,31,30,31)
+    x <- c(31L,28L,31L,30L,31L,30L,31L,31L,30L,31L,30L,31L)
     if(.is_leap(year))
-        x[2] <- x[2]+1
+        x[2] <- x[2]+1L
     x <- x[month]
     return(x)
 }
@@ -18,7 +18,7 @@
 .year_align <- function(x,year=NULL,leap=FALSE,date=TRUE)
 {
     if(is.null(year))
-        year <- ifelse(!leap,2001,2000)
+        year <- ifelse(!leap,2001L,2000L)
     x <- strsplit(as.character(x),"-")
     x <- sapply(1:length(x), function(i) paste(year[i],x[[i]][2],x[[i]][3],sep="-"))
     if(date)
@@ -28,7 +28,7 @@
     return(x)
 }
 
-age.completed <- function(born, test, units=c("years","months"),
+age_completed <- function(born, test, units=c("years","months"),
     depth=c("days","months","years"), use.leap=TRUE, output=c("numeric","character"))
 {
     units <- match.arg(units)
@@ -163,7 +163,7 @@ age.completed <- function(born, test, units=c("years","months"),
     return(x)
 }
 
-age.numeric <- function(x, units=c("years","months"), depth=c("days","months","years"),
+age_numeric <- function(x, units=c("years","months"), depth=c("days","months","years"),
     origin.units=c("years","months"), use.leap=TRUE)
 {
     units <- match.arg(units)
@@ -216,7 +216,7 @@ age.numeric <- function(x, units=c("years","months"), depth=c("days","months","y
     return(age.calc)
 }
 
-age.character <- function(x, units=c("years","months"), depth=c("days","months","years"),
+age_character <- function(x, units=c("years","months"), depth=c("days","months","years"),
     origin.units=c("years","months"), origin.depth=c("days","months","years"), use.leap=TRUE)
 {
     units <- match.arg(units)
@@ -273,10 +273,10 @@ age.character <- function(x, units=c("years","months"), depth=c("days","months",
     return(age.calc)
 }
 
-age.segment <- function(x, breaks, labels=NULL, factor=TRUE)
+age_segment <- function(x, breaks, labels=NULL, factor=TRUE)
 {
-    x <- age.numeric(x)
-    breaks <- age.numeric(breaks)
+    x <- age_numeric(x)
+    breaks <- age_numeric(breaks)
     age.class <- findInterval(x,breaks,rightmost.closed=FALSE,left.open=FALSE)
     n.class <- length(breaks)-1
     age.class[which(age.class==0 | age.class>n.class)] <- NA
@@ -286,4 +286,3 @@ age.segment <- function(x, breaks, labels=NULL, factor=TRUE)
         age.class <- factor(age.class,levels=labels)
     return(age.class)
 }
-

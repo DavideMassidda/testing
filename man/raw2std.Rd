@@ -18,7 +18,7 @@ The vectors \code{raw.norm} and \code{std.norm} come from a norm table and provi
 correspondence between raw scores and standard scores.
 }
 \seealso{
-\code{\link[testing]{stdscore}}, \code{\link[testing]{explode}}
+\code{\link[testing]{std_score}}, \code{\link[testing]{score_explode}}
 }
 \examples{
 norms <- data.frame(

@@ -1,4 +1,4 @@
-.integer_round <- function(x) 
+.integer_round <- function(x)
 {
     neg <- which(x < 0)
     x[neg] <- x[neg] * (-1)
@@ -9,7 +9,7 @@
 }
 
 # Converte in numerico un intervallo di punteggi
-implode <- function(x, fn=mean, out.names=names(x))
+score_implode <- function(x, fn=mean, out.names=names(x))
 {
     if(!is.character(x))
         x <- as.character(x)
@@ -24,7 +24,7 @@ implode <- function(x, fn=mean, out.names=names(x))
 }
 
 # Srotola una sequenza di punteggi in cui possono essere compresi valori espressi come intervallo
-explode <- function(x, sep="-", out.names=names(x))
+score_explode <- function(x, sep="-", out.names=names(x))
 {
     if(!is.character(x))
         x <- as.character(x)
@@ -45,7 +45,7 @@ explode <- function(x, sep="-", out.names=names(x))
 }
 
 # Classifica una variabile continua in punteggi interi o intervalli di punteggio
-rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"), extremes=FALSE)
+score_rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"), extremes=FALSE)
 {
     direction <- match.arg(direction)
     forward <- direction=="forward"
@@ -134,7 +134,7 @@ rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"),
     return(output)
 }
 
-is.monotonic <- function(x, direction=c("both","forward","backward"), decreasing=NULL, na.rm=TRUE)
+is_monotonic <- function(x, direction=c("both","forward","backward"), decreasing=NULL, na.rm=TRUE)
 {
     # Warning: the argument decreasing is deprecated.
     # It's kept only for backward compatibility.
@@ -158,7 +158,7 @@ is.monotonic <- function(x, direction=c("both","forward","backward"), decreasing
     return(check)
 }
 
-is.continuous <- function(x, direction = c("both","forward","backward"), na.rm=TRUE)
+is_continuous <- function(x, direction = c("both","forward","backward"), na.rm=TRUE)
 {
     direction <- match.arg(direction)
     if(na.rm)
