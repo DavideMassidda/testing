@@ -10,7 +10,7 @@ _testing_ is a collection of R functions useful to develop psychometric tools. _
 
 The package stems from the author's need to collect into a single repository the most commonly R functions used in his daily practice. These functions are therefore rather heterogeneous, but they share the usefulness in some step of psychometric test building. Some functions of _testing_ are present in other forms into different R packages, if not in base R. In these cases, _testing_ offers a different output format optimized for application in psychometric data analysis. Sometimes, the functions are implemented following algorithmic peculiarities that make them only apparently similar to other sources.
 
-Born from a messy collection of commands scattered within a multitude of scripts, over time the package has been refined, making a great effort to optimize the functions and standardize the style. During the development, some function were refined, other deprecated and not replaced. If you search old versions including function no more available, you can take a look of [old sources](https://github.com/DavideMassidda/testing/tags) of the package.
+Born from a messy collection of commands scattered within a multitude of scripts, over time the package has been refined, making a great effort to optimize the functions and standardize the style. During the development, some function were refined, other deprecated and not replaced. If you search old versions including function no more available, you can take a look of [old sources](https://github.com/DavideMassidda/testing/releases) of the package.
 
 ## Package overview
 
