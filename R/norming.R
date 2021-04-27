@@ -45,8 +45,9 @@ score_explode <- function(x, sep="-", out.names=names(x))
 }
 
 # Classifica una variabile continua in punteggi interi o intervalli di punteggio
-score_rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"), extremes=FALSE)
+score_rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backward"), extremes=c(FALSE,FALSE))
 {
+    names(x) <- NULL
     direction <- match.arg(direction)
     forward <- direction=="forward"
     # Rimozione posizioni con dati mancanti
@@ -55,8 +56,9 @@ score_rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backw
         if(sum(na.check) < length(x)) {
             na.pos <- which(na.check)
             x <- x[-na.pos]
-        } else
+        } else {
             return(x)
+        }
     }
     # Arrotondamento valori
     x <- .integer_round(x)
@@ -70,22 +72,34 @@ score_rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backw
     if(decreasing)
         x <- rev(x)
     # Individuazione del minimo e massimo
-    if(is.null(x.min))
+    if(is.null(x.min)) {
         x.min <- min(x,na.rm=TRUE)
-    else
+    } else {
         x[which(x<x.min)] <- x.min
-    if(is.null(x.max))
+    }
+    if(is.null(x.max)) {
         x.max <- max(x,na.rm=TRUE)
-    else
+    } else {
         x[which(x>x.max)] <- x.max
+    }
     # Classificazione dei valori
     # -> individuazione e rimozione dei valori duplicati
-    dupl <- which(duplicated(x,fromLast=!forward))
+    extr <- list(min = x == min(x), max = x == max(x))
+    dupl <- logical(length(x))
+    dupl[!extr$min & !extr$max] <- duplicated(x[!extr$min & !extr$max],fromLast=!forward)
+    if(sum(extr$min) > 1) {
+        dupl[which(extr$min)[-sum(extr$min)]] <- TRUE
+    }
+    if(sum(extr$max) > 1) {
+        dupl[which(extr$max)[-1]] <- TRUE
+    }
+    dupl <- which(dupl)
     if(length(dupl) > 0) {
         x[dupl] <- NA
         v <- x[-dupl]
-    } else
+    } else {
         v <- x
+    }
     n <- length(v)
     # -> individuazione dei limiti degli intervalli
     if(forward) {
@@ -104,28 +118,38 @@ score_rollup <- function(x, x.min=NULL, x.max=NULL, direction=c("forward","backw
     intervals <- which(from==to)
     v[intervals] <- from[intervals]
     # -> sostituzione dei valori originali con quelli collassati
-    if(length(dupl) > 0)
+    if(length(dupl) > 0) {
         x[-dupl] <- v
-    else
+    } else {
         x <- v
+    }
     # -> rigiramento del vettore
-    if(decreasing)
+    if(decreasing) {
         x <- rev(x)
+    }
     # -> reintroduzione dei dati mancanti
     if(any(na.check)) {
         output <- rep.int(NA,length(x)+sum(na.check))
         output[-na.pos] <- x
-    } else
+    } else {
         output <- x
-    if(extremes) {
+    }
+    # -> eventuale aggiustamento degli estremi
+    if(length(extremes) < 2) {
+        extremes[2] <- extremes[1]
+    }
+    if(any(extremes)) {
+        if(decreasing) {
+            extremes <- rev(extremes)
+        }
         n <- length(output)
         v.pos <- which(!is.na(output))
-        if(is.na(output[1])) {
+        if(extremes[1] && is.na(output[1])) {
             pos.catch <- v.pos[1]
             output[1] <- output[pos.catch]
             output[pos.catch] <- NA
         }
-        if(is.na(output[n])) {
+        if(extremes[2] && is.na(output[n])) {
             pos.catch <- v.pos[length(v.pos)]
             output[n] <- output[pos.catch]
             output[pos.catch] <- NA

@@ -1,8 +1,8 @@
 Package: testing
 Type: Package
 Title: Psychometric Testing
-Version: 2.0.0
-Date: 2021-04-22
+Version: 2.1.0
+Date: 2021-04-27
 Author: Davide Massidda <davide.massidda@gmail.com>
 Maintainer: Davide Massidda <davide.massidda@gmail.com>
 Description: Convenience functions to develop psychometric tests.

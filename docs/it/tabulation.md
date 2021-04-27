@@ -179,11 +179,11 @@ data.frame(
     ## 8   4.8066667     4-5        4
     ## 7   3.3800000       3      2-3
     ## 6   1.9533333     1-2        1
-    ## 5   0.5266667    <NA>        0
+    ## 5   0.5266667       0        0
     ## 4  -0.9000000    <NA>     <NA>
     ## 3  -2.3266667    <NA>     <NA>
     ## 2  -3.7533333    <NA>     <NA>
-    ## 1  -5.1800000       0     <NA>
+    ## 1  -5.1800000    <NA>     <NA>
 
 Si presti molta attenzione a due aspetti. Il primo è che non a tutti i
 punteggi standardizzati è associato un punteggio grezzo, ma si possono
@@ -198,8 +198,7 @@ tabella normativa facendo uso del comando `sapply`:
 
 ``` r
 normTab <- sapply(tab, score_rollup, x.min=0, x.max=30, direction="forward")
-normTab <- data.frame(normTab, stringsAsFactors=FALSE, check.names=FALSE)
-rownames(normTab) <- rownames(tab)
+normTab <- data.frame(normTab, row.names = rownames(tab), check.names=FALSE)
 ```
 
 ``` r
@@ -221,11 +220,11 @@ show(normTab)
     ## 8    4-5     9    14 17-18    20
     ## 7      3   7-8 12-13    16 18-19
     ## 6    1-2     6    11 14-15    17
-    ## 5   <NA>   4-5    10    13    16
+    ## 5      0   4-5    10    13    16
     ## 4   <NA>   2-3   8-9 11-12    15
     ## 3   <NA>     1     7    10 13-14
-    ## 2   <NA>  <NA>   5-6     9    12
-    ## 1      0     0   0-4   0-8  0-11
+    ## 2   <NA>     0   5-6     9    12
+    ## 1   <NA>  <NA>   0-4   0-8  0-11
 
 Nella tabella normativa costruita, le ultime due fasce d’età non possono
 mai ottenere il punteggio standardizzato massimo, perché in entrambi i

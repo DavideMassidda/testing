@@ -105,8 +105,7 @@ Possiamo applicare la funzione `score_rollup` a tutte le colonne della tabella n
 
 ```{r}
 normTab <- sapply(tab, score_rollup, x.min=0, x.max=30, direction="forward")
-normTab <- data.frame(normTab, stringsAsFactors=FALSE, check.names=FALSE)
-rownames(normTab) <- rownames(tab)
+normTab <- data.frame(normTab, row.names = rownames(tab), check.names=FALSE)
 ```
 
 ```{r}
