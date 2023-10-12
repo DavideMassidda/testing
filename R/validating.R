@@ -3,12 +3,12 @@ se_measure <- function(r,s)
     return(s*sqrt(1-r))
 }
 
-kr20 <- function(x,hit=1)
+kr20 <- function(x, hit=1)
 {
     x <- na.omit(x)
     k <- ncol(x)
     n <- nrow(x)
-    x <- data.frame(apply(x==hit, 2, as.numeric))
+    x <- data.frame(apply(x>=hit, 2, as.numeric))
     totalVar <- var(apply(x, 1, sum))
     p <- colSums(x)/n
     q <- 1-p
@@ -19,8 +19,8 @@ kr20 <- function(x,hit=1)
 cronbach_alpha <- function(x)
 {
     x <- na.omit(x)
-    itemVar <- sum(apply(x,2,var))
-    totalVar <- var(apply(x,1,sum))
+    itemVar <- sum(apply(x, 2, var))
+    totalVar <- var(apply(x, 1, sum))
     k <- ncol(x)
     r <- (k/(k-1))*(1-(itemVar/totalVar))
     return(r)
@@ -37,19 +37,24 @@ cronbach_strata <- function(x, r, composite=NULL)
     return(r)
 }
 
-split_half <- function(x, set1=seq(1,ncol(x),by=2))
+splithalf_reliability <- function(x1, x2)
 {
-    x <- na.omit(x)
-    set2 <- seq_len(ncol(x))[-set1]
-    x1 <- rowSums(x[,set1])
-    x2 <- rowSums(x[,set2])
-    r <- cor(x1,x2)
-    r <- (2*r)/(1+r)
-    return(r)
+    x1 <- na.omit(x1)
+    x2 <- na.omit(x2)
+    k1 <- ncol(x1)
+    k2 <- ncol(x2)
+    k <- (k1+k2) / k1
+    r <- cor(rowSums(x1), rowSums(x2))
+    rel <- (k * r) / (1 + (k - 1) * r)
+    return(rel)
 }
 
-average_reliab <- function(r)
-    tanh(mean(atanh(c(r)))) # atanh, tanh: Fisher's z transformation and its inverse
+average_reliability <- function(r)
+{
+    r <- c(r)
+    rel <- tanh(mean(atanh(r))) # atanh, tanh: Fisher's z transformation and its inverse
+    return(rel)
+}
 
 drop_item <- function(x, cor.method=c("pearson","biserial","polyserial"), fn=sum)
 {

@@ -1,12 +1,12 @@
-\name{average_reliab}
-\alias{average_reliab}
-\alias{average_reliab}
+\name{average_reliability}
+\alias{average_reliability}
+\alias{average_reliability}
 \title{Average reliability}
 \description{
 Calculate the average reliability coefficient using the Fisher's z transformation.
 }
 \usage{
-average_reliab(r)
+average_reliability(r)
 }
 \arguments{
     \item{r}{Vector of reliability coefficients.}
@@ -18,5 +18,5 @@ Only positive values are allowed.
 \code{\link[testing]{cronbach_alpha}}
 }
 \examples{
-average_reliab(c(0.8,0.85,0.9))
+average_reliability(c(0.8, 0.85, 0.9))
 }

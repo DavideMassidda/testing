@@ -29,5 +29,5 @@ Cronbach, L.J., Schoenemann, P., McKie, D. (1965).
 \examples{
 data("drive")
 r <- c(0.97,0.86,0.85,0.99,0.81,0.88)
-cronbach_strata(drive[,5:10],r)
+cronbach_strata(drive[,5:10], r)
 }

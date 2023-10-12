@@ -19,7 +19,7 @@ score and the deleted item. Moreover, the function calculate the variation in Cr
 deletion of the target item.
 }
 \seealso{
-\code{\link[testing]{cronbach_alpha}}, \code{\link[testing]{split_half}}
+\code{\link[testing]{cronbach_alpha}}, \code{\link[testing]{splithalf_reliability}}
 }
 \examples{
 data("drive")
